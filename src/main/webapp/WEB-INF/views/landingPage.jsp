@@ -27,6 +27,7 @@
 	      <th scope="col">Close</th>
 	      <th scope="col">SMA</th>
 	      <th scope="col">EMA</th>
+	      <th scope="col">Pattern</th>
 	    </tr>
   </thead>
   <tbody class="searchable">
@@ -52,6 +53,7 @@
 							<br>
 					</c:forEach>
 					</td>
+					<td>${candle.candlePattern}</td>
   				</tr>
   		</c:forEach>
   </tbody>

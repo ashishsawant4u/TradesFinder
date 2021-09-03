@@ -22,6 +22,8 @@ public class CandleModel
 	public Map<Integer, Double> sma;
     
 	public Map<Integer, Double> ema;
+	
+	public String candlePattern;
 
 	public String getSymbol() {
 		return symbol;
@@ -95,11 +97,29 @@ public class CandleModel
 		this.ema = ema;
 	}
 
+	public Date getMarketDateTime() {
+		return marketDateTime;
+	}
+
+	public void setMarketDateTime(Date marketDateTime) {
+		this.marketDateTime = marketDateTime;
+	}
+
+	public String getCandlePattern() {
+		return candlePattern;
+	}
+
+	public void setCandlePattern(String candlePattern) {
+		this.candlePattern = candlePattern;
+	}
+
 	@Override
 	public String toString() {
 		return "CandleModel [symbol=" + symbol + ", marketDateTime=" + marketDateTime + ", open=" + open + ", high="
 				+ high + ", low=" + low + ", close=" + close + ", volume=" + volume + ", sma=" + sma + ", ema=" + ema
-				+ "]";
+				+ ", candlePattern=" + candlePattern + "]";
 	}
+
+	
 	
 }

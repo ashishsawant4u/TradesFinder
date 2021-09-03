@@ -49,6 +49,10 @@ public class DataHandler
 					  
 					  List<CandleModel> candleWithEMA = AverageIndicator.exponentialMovingAverage(candleWithSMA);
 					  
+					  TradeConstants.ALL_CANDLES = candleWithEMA;
+					  
+					  candleWithEMA.forEach(c-> c.setCandlePattern(CandlestickPattern.findCandlePattern(c)));
+					  
 					  return candleWithEMA;
 				  }
 			  }
@@ -102,6 +106,18 @@ public class DataHandler
 		Collections.sort(candleList, (c1, c2) -> c1.getmarketDateTime().compareTo(c2.getmarketDateTime()));
 		
 		return candleList;
+	}
+	
+	public static List<CandleModel> getPreviousCandles(CandleModel currentCandle,List<CandleModel> allCandles,int period)
+	{
+		List<CandleModel> filterdList = allCandles.stream().filter(c->!c.getmarketDateTime().after(currentCandle.getmarketDateTime())).collect(Collectors.toList());
+	
+		if(filterdList.size() < period)
+		{
+			return filterdList;
+		}
+		
+		return filterdList.subList(filterdList.size() - period , filterdList.size()-1);
 	}
 	
 }
