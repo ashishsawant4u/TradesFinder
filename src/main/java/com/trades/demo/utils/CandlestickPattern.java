@@ -140,6 +140,17 @@ public final class CandlestickPattern
     	return currentCandleBody < (0.5*previous15candlesBodyAvg);
     };
     
+    public static final Predicate<CandleModel> LONG_CANDLE = (candle) -> {
+    	
+    	double currentCandleBody = body(candle);
+    	
+    	List<CandleModel> previous15candles = DataHandler.getPreviousCandles(candle, TradeConstants.ALL_CANDLES, 15);
+    	
+    	double previous15candlesBodyAvg = previous15candles.stream().mapToDouble((c-> Math.abs(c.getOpen()-c.getClose()))).average().getAsDouble();
+    	
+    	return currentCandleBody > (1.3*previous15candlesBodyAvg);
+    };
+    
     /**
      * 
      * https://www.mql5.com/en/articles/101
@@ -149,7 +160,48 @@ public final class CandlestickPattern
         		.and(ALL_SHADOW_LARGER_THAN_BODY)
         		.test(candle);
     };
+    
+    /**
+     * A Marubozu Candle is a Long Candle which is all body, having no shadows / wicks.
+     * H - L = ABS(O - C)
+     */
+    public static final Predicate<CandleModel> MARUBOZU = (candle) -> {
+        
+    	 return (candle.high - candle.low) == body(candle);
+    };
+    
+    
+    /**
+     * The body is located in the upper part of the daily range and the lower shadow is much longer than the body. 
+     * It is also necessary to consider the length of the upper shadow, if there is any. 
+     * The ratio between the body and the lower shadow is defined as the ratio of the body length to the length of the lower shadow:
+	 * (lower shadow)>(body)*2 and  (upper shadow)< (body)*0.1
+     * 
+     */
+    public static final Predicate<CandleModel> HAMMER = (candle) -> {
+        
+    	 if(lowerShadow(candle) > (body(candle)*2) && upperShadow(candle) < (body(candle)*0.1)) 
+    	 {
+    		 return true;
+    	 }
+    	
+    	 return false;
+   };
 	
+   /**
+    * "Shooting Star" and "Inverted Hammer" are similar to the "Hammer", but with the opposite condition:
+	* (lower shadow)<(body)*0.1 and (upper shadow)> (body)*2
+	* https://www.mql5.com/en/articles/101
+    */
+   public static final Predicate<CandleModel> SHOOTING_STAR = (candle) -> {
+       
+	   if(lowerShadow(candle) < (body(candle)*0.1) && upperShadow(candle) > (body(candle)*2))
+	   {
+	  		 return true;
+	   }
+	  	
+	  	 return false;
+   };
     
     /**
      * Get the candle size
@@ -173,13 +225,26 @@ public final class CandlestickPattern
         return Math.abs(ohlc.open - ohlc.close);
     }
     
+    public static double upperShadow(final CandleModel ohlc) {
+        return ohlc.high - Math.max(ohlc.open, ohlc.close);
+    }
+    
+    public static double lowerShadow(final CandleModel ohlc) {
+        return Math.min(ohlc.open, ohlc.close) - ohlc.low;
+    }
+    
 
     
     public static String findCandlePattern(CandleModel currentCandle)
 	{
-		if(LONG_GREEN_CANDLE.test(currentCandle))
+    	if(HAMMER.test(currentCandle))
 		{
-			return CandlePatterns.LONG_GREEN_CANDLE.toString();
+			return CandlePatterns.HAMMER_CANDLE.toString();
+		}
+		
+		if(SHOOTING_STAR.test(currentCandle))
+		{
+			return CandlePatterns.SHOOTING_STAR_CANDLE.toString();
 		}
 		
 		if(DOJI.test(currentCandle))
@@ -192,9 +257,24 @@ public final class CandlestickPattern
 			return CandlePatterns.SPINNING_TOP_CANDLE.toString();
 		}
 		
+		if(MARUBOZU.test(currentCandle))
+		{
+			return CandlePatterns.MARUBOZU_CANDLE.toString();
+		}
+		
+		if(LONG_GREEN_CANDLE.test(currentCandle))
+		{
+			return CandlePatterns.LONG_GREEN_CANDLE.toString();
+		}
+		
 		if(SHORT_CANDLE.test(currentCandle))
 		{
 			return CandlePatterns.SHORT_CANLDE.toString();
+		}
+		
+		if(LONG_CANDLE.test(currentCandle))
+		{
+			return CandlePatterns.LONG_CANDLE.toString();
 		}
 		
 		if(GREEN.test(currentCandle))
