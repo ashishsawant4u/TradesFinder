@@ -1,0 +1,70 @@
+Starting TradesFinderApplication using Java 15.0.2 on LAPTOP-LQ543551 with PID 35640 (D:\workspace\eclipse_workspace\TradesFinder\target\classes started by ashis in D:\workspace\eclipse_workspace\TradesFinder)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8045 (http)
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.52]
+At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1089 ms
+Tomcat started on port(s): 8045 (http) with context path ''
+Started TradesFinderApplication in 1.906 seconds (JVM running for 2.655)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 0 ms
+Application shutdown requested.
+Starting TradesFinderApplication using Java 15.0.2 on LAPTOP-LQ543551 with PID 43828 (D:\workspace\eclipse_workspace\TradesFinder\target\classes started by ashis in D:\workspace\eclipse_workspace\TradesFinder)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8045 (http)
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.52]
+At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1016 ms
+Tomcat started on port(s): 8045 (http) with context path ''
+Started TradesFinderApplication in 1.767 seconds (JVM running for 2.517)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 2 ms
+Application shutdown requested.
+Starting TradesFinderApplication using Java 15.0.2 on LAPTOP-LQ543551 with PID 7032 (D:\workspace\eclipse_workspace\TradesFinder\target\classes started by ashis in D:\workspace\eclipse_workspace\TradesFinder)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8045 (http)
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.52]
+At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1045 ms
+Tomcat started on port(s): 8045 (http) with context path ''
+Started TradesFinderApplication in 1.824 seconds (JVM running for 2.629)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 1 ms
+Application shutdown requested.
+Starting TradesFinderApplication using Java 15.0.2 on LAPTOP-LQ543551 with PID 46548 (D:\workspace\eclipse_workspace\TradesFinder\target\classes started by ashis in D:\workspace\eclipse_workspace\TradesFinder)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8045 (http)
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.52]
+At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1005 ms
+Tomcat started on port(s): 8045 (http) with context path ''
+Started TradesFinderApplication in 1.78 seconds (JVM running for 2.527)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 1 ms
+Application shutdown requested.
+Starting TradesFinderApplication using Java 15.0.2 on LAPTOP-LQ543551 with PID 50484 (D:\workspace\eclipse_workspace\TradesFinder\target\classes started by ashis in D:\workspace\eclipse_workspace\TradesFinder)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8045 (http)
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.52]
+At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1079 ms
+Tomcat started on port(s): 8045 (http) with context path ''
+Started TradesFinderApplication in 1.882 seconds (JVM running for 2.671)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 0 ms
+Application shutdown requested.
