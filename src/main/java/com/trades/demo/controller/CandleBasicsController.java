@@ -28,6 +28,6 @@ public class CandleBasicsController
 		
 		model.addAttribute("candlesWithSMA", DataHandler.getSymbolDailyEODCandles(symbol, fromDate, new Date()));
 		
-		return "landingPage";
+		return "candleBasicsPage";
 	}
 }

@@ -146,9 +146,17 @@ public final class CandlestickPattern
     	
     	List<CandleModel> previous15candles = DataHandler.getPreviousCandles(candle, TradeConstants.ALL_CANDLES, 15);
     	
-    	double previous15candlesBodyAvg = previous15candles.stream().mapToDouble((c-> Math.abs(c.getOpen()-c.getClose()))).average().getAsDouble();
+    	if(previous15candles.size()<15)
+    	{
+    		return false;
+    	}
+    	else
+    	{
+    		double previous15candlesBodyAvg = previous15candles.stream().mapToDouble((c-> Math.abs(c.getOpen()-c.getClose()))).average().getAsDouble();
+        	
+        	return currentCandleBody > (1.3*previous15candlesBodyAvg);
+    	}
     	
-    	return currentCandleBody > (1.3*previous15candlesBodyAvg);
     };
     
     /**

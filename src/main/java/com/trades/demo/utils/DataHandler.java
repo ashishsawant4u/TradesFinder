@@ -23,13 +23,13 @@ public class DataHandler
 {
 	static Logger logger = LoggerFactory.getLogger(DataHandler.class);
 	
-	public static String DAILY_EOD_SYMBOL_CSV_LOCALCATION = "C:\\Users\\ashis\\Downloads\\archive\\Datasets\\SCRIP\\data-symbol\\";
+	public static String DAILY_EOD_SYMBOL_CSV_LOCATION = "C:\\Users\\ashis\\Downloads\\archive\\Datasets\\SCRIP\\data-symbol\\";
 	public static String COMMA_DELIMITER = ",";
 
 	
 	public static List<CandleModel> getSymbolDailyEODCandles(String instrument,Date from,Date till)
 	{
-		 File[] files = new File(DAILY_EOD_SYMBOL_CSV_LOCALCATION).listFiles();
+		 File[] files = new File(DAILY_EOD_SYMBOL_CSV_LOCATION).listFiles();
 		  
 		  for (File file : files)
 		  { 
@@ -43,7 +43,7 @@ public class DataHandler
 				  {
 					  List<CandleModel> candleList = readSymbolDailyEODCandles(symbol);
 					  
-					  List<CandleModel> candleListWithDateRange = candleList.stream().filter(c->!c.getmarketDateTime().before(from) &&  !c.getmarketDateTime().after(till)).collect(Collectors.toList());
+					  List<CandleModel> candleListWithDateRange = candleList.stream().filter(c->!c.getMarketDateTime().before(from) &&  !c.getMarketDateTime().after(till)).collect(Collectors.toList());
 				  
 					  List<CandleModel> candleWithSMA = AverageIndicator.simpleMovingAverage(candleListWithDateRange);
 					  
@@ -72,7 +72,7 @@ public class DataHandler
 		try 
 		{
 			
-			BufferedReader br = new BufferedReader(new FileReader(DAILY_EOD_SYMBOL_CSV_LOCALCATION+symbol+".csv"));
+			BufferedReader br = new BufferedReader(new FileReader(DAILY_EOD_SYMBOL_CSV_LOCATION+symbol+".csv"));
 			    String line;
 			    while ((line = br.readLine()) != null) {
 			    	
@@ -84,7 +84,7 @@ public class DataHandler
 				            
 			    		 	CandleModel candle = new CandleModel();
 			            	candle.setSymbol(symbol);
-			            	candle.setmarketDateTime(marketDate);
+			            	candle.setMarketDateTime(marketDate);
 			            	candle.setOpen(Double.parseDouble(lineData[1].replace("\"", "")));
 			            	candle.setHigh(Double.parseDouble(lineData[2].replace("\"", "")));
 			            	candle.setLow(Double.parseDouble(lineData[3].replace("\"", "")));
@@ -103,14 +103,14 @@ public class DataHandler
 			logger.info("Exception while reading CSV "+e);
 		}
 		
-		Collections.sort(candleList, (c1, c2) -> c1.getmarketDateTime().compareTo(c2.getmarketDateTime()));
+		Collections.sort(candleList, (c1, c2) -> c1.getMarketDateTime().compareTo(c2.getMarketDateTime()));
 		
 		return candleList;
 	}
 	
 	public static List<CandleModel> getPreviousCandles(CandleModel currentCandle,List<CandleModel> allCandles,int period)
 	{
-		List<CandleModel> filterdList = allCandles.stream().filter(c->!c.getmarketDateTime().after(currentCandle.getmarketDateTime())).collect(Collectors.toList());
+		List<CandleModel> filterdList = allCandles.stream().filter(c->!c.getMarketDateTime().after(currentCandle.getMarketDateTime())).collect(Collectors.toList());
 	
 		if(filterdList.size() < period)
 		{
@@ -118,6 +118,13 @@ public class DataHandler
 		}
 		
 		return filterdList.subList(filterdList.size() - period , filterdList.size()-1);
+	}
+	
+	public static List<String> getAllNSESymbols()
+	{
+		File[] files = new File(DAILY_EOD_SYMBOL_CSV_LOCATION).listFiles();
+		  
+		return Arrays.asList(files).stream().filter(f->f.isFile()).map(f -> f.getName().replace(".csv", "")).collect(Collectors.toList());
 	}
 	
 }

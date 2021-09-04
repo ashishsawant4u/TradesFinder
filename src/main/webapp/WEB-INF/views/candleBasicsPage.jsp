@@ -8,14 +8,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>TradeFinder</title>
+<title>CandleStickBasics</title>
 <tags:scripts/>
 </head>
 <body>
 
 <tags:navbar/>
 
-
+<tags:candles/>
 
 </body>
 </html>
