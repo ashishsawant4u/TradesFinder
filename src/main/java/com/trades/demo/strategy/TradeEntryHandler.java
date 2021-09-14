@@ -1,8 +1,6 @@
 package com.trades.demo.strategy;
 
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.trades.demo.common.TradeStatus;
@@ -10,8 +8,9 @@ import com.trades.demo.models.CandleModel;
 import com.trades.demo.models.TradeEntryModel;
 import com.trades.demo.utils.DataHandler;
 
-public class TradeEntryHandler 
+public class TradeEntryHandler extends AbstractTradeEntryHandler
 {
+	
 	public static void setBuyEntryAsPerRatio(CandleModel candle,double RISK_RATIO,double REWARD_RATIO)
 	{
 		TradeEntryModel tradeEntry = new TradeEntryModel();
@@ -41,13 +40,13 @@ public class TradeEntryHandler
 
 		tradeEntry.setInvestment(tradeEntry.getQuantity()*buyPrice);
 		
-		candle.setTradeEntry(tradeEntry);
+		validateTradeAgainstMonthlyBudget(candle);
 	}
 	
 	public static void setBuyEntryAsPerRecentSupport(CandleModel candle , List<CandleModel> symbolAllCandles)
 	{
 		
-		List<CandleModel> prev15Candles = DataHandler.getPreviousCandles(candle, symbolAllCandles, 15);
+		List<CandleModel> prev15Candles = DataHandler.getPreviousCandles(candle, symbolAllCandles, 5);
 		
 		double lowestOfPrev15Candles = prev15Candles.stream().mapToDouble(c->c.getLow()).min().getAsDouble();
 		
@@ -83,8 +82,6 @@ public class TradeEntryHandler
 	
 	public static void setBuyExit(CandleModel entryCandle, List<CandleModel> symbolAllCandles)
 	{
-		//List<CandleModel>  candlesAfterEntry = DataHandler.getSymbolDailyEODCandles(entryCandle.getSymbol(), entryCandle.getMarketDateTime(), new Date());
-		
 		List<CandleModel>  candlesAfterEntry =  symbolAllCandles.stream().filter(c->c.getMarketDateTime().after(entryCandle.getMarketDateTime())).collect(Collectors.toList());
 		
 		TradeEntryModel tradeEntry = entryCandle.getTradeEntry();
@@ -114,27 +111,4 @@ public class TradeEntryHandler
 			
 		}
 	}
-	
-	public static float getEntryMargin(CandleModel  candle)
-	{
-		float entryMargin = 0.0F;
-		
-		if(candle.open <=400)
-		{
-			entryMargin = 0.5F;
-		}
-		else
-		{
-			entryMargin = 1.0F;
-		}
-		
-		return entryMargin;
-	}
-	
-	public static int getNosDaysBetweenDates(Date entryDate, Date existDate) 
-	{
-	    long diff = existDate.getTime() - entryDate.getTime();
-	    return (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-	}
-	
 }

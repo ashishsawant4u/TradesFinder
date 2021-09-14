@@ -23,7 +23,13 @@ public class CandleModel
     
 	public Map<Integer, Double> ema;
 	
+	public Map<Integer, Double> atr;
+	
+	public Map<Integer, Double> chandelierExitBuy;
+	
 	public String candlePattern;
+
+	public String trend;
 	
 	public TradeEntryModel tradeEntry;
 
@@ -115,11 +121,35 @@ public class CandleModel
 		this.tradeEntry = tradeEntry;
 	}
 
+	public Map<Integer, Double> getAtr() {
+		return atr;
+	}
+
+	public void setAtr(Map<Integer, Double> atr) {
+		this.atr = atr;
+	}
+
+	public Map<Integer, Double> getChandelierExitBuy() {
+		return chandelierExitBuy;
+	}
+
+	public void setChandelierExitBuy(Map<Integer, Double> chandelierExitBuy) {
+		this.chandelierExitBuy = chandelierExitBuy;
+	}
+
+	public String getTrend() {
+		return trend;
+	}
+
+	public void setTrend(String trend) {
+		this.trend = trend;
+	}
+
 	@Override
 	public String toString() {
 		return "CandleModel [symbol=" + symbol + ", marketDateTime=" + marketDateTime + ", open=" + open + ", high="
 				+ high + ", low=" + low + ", close=" + close + ", volume=" + volume + ", sma=" + sma + ", ema=" + ema
-				+ ", candlePattern=" + candlePattern + ", tradeEntry=" + tradeEntry + "]";
+				+ ", atr=" + atr + ", chandelierExitBuy=" + chandelierExitBuy + ", candlePattern=" + candlePattern
+				+ ", trend=" + trend + ", tradeEntry=" + tradeEntry + "]";
 	}
-	
 }

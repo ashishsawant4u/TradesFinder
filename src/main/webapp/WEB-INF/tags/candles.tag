@@ -16,7 +16,10 @@
 	      <th scope="col">Close</th>
 	      <th scope="col">SMA</th>
 	      <th scope="col">EMA</th>
+	      <!-- <th scope="col">ATR</th>
+	      <th scope="col">ChandelierExitLong</th>
 	      <th scope="col">Pattern</th>
+	      <th scope="col">Trend</th> -->
 	    </tr>
   </thead>
   <tbody class="searchable">
@@ -42,7 +45,22 @@
 							<br>
 					</c:forEach>
 					</td>
+					<%-- <td>
+					<c:forEach var="entry" items="${candle.atr}">
+							${entry.key} : 
+							<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${entry.value}" />
+							<br>
+					</c:forEach>
+					</td>
+					<td>
+					<c:forEach var="entry" items="${candle.chandelierExitBuy}">
+							${entry.key} : 
+							<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${entry.value}" />
+							<br>
+					</c:forEach>
+					</td>
 					<td>${candle.candlePattern}</td>
+					<td>${candle.trend}</td> --%>
   				</tr>
   		</c:forEach>
   </tbody>

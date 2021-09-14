@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trades.demo.bhavcopy.NSEBhavCopyService;
+import com.trades.demo.bhavcopy.YahooFinanaceService;
 
 @Controller
 @RequestMapping("/bhavcopy")
@@ -24,13 +25,16 @@ public class BhavCopyController
 	@Resource(name = "nseBhavCopyService")
 	NSEBhavCopyService nseBhavCopyService;
 	
+	@Resource(name = "yahooFinanaceService")
+	YahooFinanaceService yahooFinanaceService;
+	
 	@RequestMapping("/nse-refresh")
 	@ResponseBody
-	public String getNSEDailyEodBhavCopy(Model model,@PathVariable("symbol")String symbol)
+	public String getNSEDailyEodBhavCopy(Model model)
 	{
 		Calendar cal = Calendar.getInstance();  
 		cal.setTime(new Date());
-		cal.add(Calendar.YEAR, -10); 
+		cal.add(Calendar.YEAR, -21); 
 		Date fromDate = cal.getTime();
 		
 		return nseBhavCopyService.getNSEDailyEodBhavCopy(fromDate, new Date());
@@ -42,4 +46,12 @@ public class BhavCopyController
 	{	
 		return nseBhavCopyService.updateNSEDailyEodBhavCopy();
 	}
+	
+	@RequestMapping("/yahoo-eod")
+	@ResponseBody
+	public String getNSEDailyEodBhavCopyWithYahoo(Model model)
+	{	
+		return yahooFinanaceService.getHistoricalEodDataForNSE();
+	}
+	
 }

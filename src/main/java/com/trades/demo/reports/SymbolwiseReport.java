@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.trades.demo.common.TradeStatus;
 import com.trades.demo.models.CandleModel;
 
@@ -35,7 +37,10 @@ public class SymbolwiseReport
 			
 			DecimalFormat df=new DecimalFormat("#.##");
 			
-			//trade.setAvgTradeDuration((int) Math.round(Double.parseDouble(df.format(tradeDurationList.stream().mapToInt(val -> val).average().getAsDouble()))));
+			if(CollectionUtils.isNotEmpty(tradeDurationList))
+			{
+				trade.setAvgTradeDuration((int) Math.round(Double.parseDouble(df.format(tradeDurationList.stream().mapToInt(val -> val).average().getAsDouble()))));
+			}
 			
 			tradeReults.add(trade);
 		}

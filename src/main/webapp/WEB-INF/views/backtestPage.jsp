@@ -10,6 +10,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>TradeFinder</title>
+<style type="text/css">
+.bg01
+{
+	background-color: #5D6D7E!important;;
+
+}
+
+</style>
 <tags:scripts/>
 </head>
 <body>
@@ -19,7 +27,7 @@
 
 ${strategyDesc}
 
-<div class="card bg-primary bg-gradient text-white">
+<div class="card bg01 text-white">
   <div class="card-body">
 		Total Trades Found : <span class="badge rounded-pill bg-dark">${summaryReport.tradesCount}</span>
 		Target Exit Count : <span class="badge rounded-pill bg-dark">${summaryReport.targetExistCount}</span>

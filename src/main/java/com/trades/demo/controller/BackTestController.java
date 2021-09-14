@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trades.demo.models.CandleModel;
+import com.trades.demo.strategy.QuantityPlanner;
 import com.trades.demo.strategy.TradingStrategyService;
 
 @Controller
@@ -29,12 +30,14 @@ public class BackTestController extends ReportsController
 	{
 		logger.info("backtesting strategy1.....");
 		
-		model.addAttribute("strategyDesc", "Strategy1 : EMA 50 Support");
+		model.addAttribute("strategyDesc", "Strategy1 : SMA 50 Support");
 		Calendar cal = Calendar.getInstance();  
 		cal.setTime(new Date());
-		cal.add(Calendar.YEAR, -2); 
+		cal.add(Calendar.YEAR, -7); 
 		Date fromDate = cal.getTime();
 		Date tillDate = new Date();
+		
+		QuantityPlanner.monthlyTradeAmountTrackerMap.clear();
 	
 		
 		List<CandleModel> candlesWithTrade = tradingStrategyService.strategy1(fromDate,tillDate);

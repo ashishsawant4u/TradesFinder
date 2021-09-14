@@ -15,15 +15,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.trades.demo.common.TradeConstants;
+import com.trades.demo.indicators.AverageTrueRange;
 import com.trades.demo.indicators.ExponentialMovingAverage;
 import com.trades.demo.indicators.SimpleMovingAverage;
+import com.trades.demo.indicators.TrendFinder;
 import com.trades.demo.models.CandleModel;
 
 public class DataHandler 
 {
 	static Logger logger = LoggerFactory.getLogger(DataHandler.class);
 	
-	public static String DAILY_EOD_SYMBOL_CSV_LOCATION = "C:\\Users\\ashis\\Downloads\\archive\\Datasets\\SCRIP\\data-symbol\\";
+	//public static String DAILY_EOD_SYMBOL_CSV_LOCATION = "C:\\Users\\ashis\\Downloads\\archive\\Datasets\\SCRIP\\data-symbol\\";
+	
+	public static String DAILY_EOD_SYMBOL_CSV_LOCATION = "C:\\Users\\ashis\\Pictures\\nse_bhavcopy\\yahoo-symbols\\";
+			
 	public static String COMMA_DELIMITER = ",";
 
 	
@@ -49,9 +54,17 @@ public class DataHandler
 					  
 					  List<CandleModel> candleWithEMA = AverageIndicator.exponentialMovingAverage(candleWithSMA);
 					  
-					  TradeConstants.ALL_CANDLES = candleWithEMA;
+//					  List<CandleModel> candleWithATR = AverageIndicator.averageTrueRange(candleWithEMA);
+//					  
+//					  List<CandleModel> candleWithChandelierExitBuy = AverageIndicator.chandelierExitForBuy(candleWithATR);
+//					  
+//					  new TrendFinder(22).setTrendUsingChandelierExitBuy(candleWithChandelierExitBuy);
+//					  
+//					  TradeConstants.ALL_CANDLES = candleWithChandelierExitBuy;
+//					  
+//					  candleWithChandelierExitBuy.forEach(c-> c.setCandlePattern(CandlestickPattern.findCandlePattern(c)));
 					  
-					  candleWithEMA.forEach(c-> c.setCandlePattern(CandlestickPattern.findCandlePattern(c)));
+					  TradeConstants.ALL_CANDLES = candleWithEMA;
 					  
 					  return candleWithEMA;
 				  }
@@ -124,7 +137,14 @@ public class DataHandler
 	{
 		File[] files = new File(DAILY_EOD_SYMBOL_CSV_LOCATION).listFiles();
 		  
-		return Arrays.asList(files).stream().filter(f->f.isFile()).map(f -> f.getName().replace(".csv", "")).collect(Collectors.toList());
+		List<String> allNSEQ =  Arrays.asList(files).stream().filter(f->f.isFile()).map(f -> f.getName().replace(".csv", "")).collect(Collectors.toList());
+	
+		
+		List<String> allETF = Arrays.asList("LICNFNHGP","JUNIORBEES","NETFNIF100","CPSEETF","NETFDIVOPP","NIFTYEES","ICICIB22","HDFCSENETF","IVZINNIFTY","ICICI500","ICICINF100","AXISHCETF","NETFNV20","KOTAKNV20","AXISTECETF","SETFNN50","NETFIT","UTINIFTETF","MOM50","KOTAKPSUBK","SHARIABEES","MAN50ETF","BSLNIFTY","MOM100","HDFCNIFETF","INFRABEES","SBIETFQLTY","UTINEXT50","QNIFTY","NIFTYBEES","MAESGETF","ICICIMCAP","ICICISENSX","EQ30","ICICITECH","ICICINIFTY","ICICINV20","ICICIM150","MANXT50","SBIETFCON","UTIBANKETF","KOTAKNIFTY","LICNETFGSC","SETFNIF50","EBBETF0431","IBMFNIFTY","EBBETF0430","BSLGOLDETF","LICNETFSEN","EBBETF0425","ABSLNN50ET","ICICIPHARM","NETFCONSUM","PSUBNKBEES","AXISBPSETF","AXISNIFTY","NETFLTGILT","NCPSESDL24","ICICILOVOL","AXISBNKETF","ICICINXT50","ICICIALPLV","NPBET","NETFPHARMA","KOTAKIT","HBANKETF","QGOLDHALF","NETFGILT5Y","UTISENSETF","SETF10GILT","EBBETF0423","NETFMID150","BANKBEES","MOGSEC","GOLDBEES","NETFSDL26","IDFNIFTYET","LIQUIDBEES","ICICILIQ","LIQUIDETF","GOLDSHARE","ICICIBANKN","SETFNIFBK","HDFCMFGETF","KOTAKBKETF","KOTAKGOLD","AXISGOLD","ICICIBANKP","MON100","ICICIGOLD","SBIETFIT","SETFGOLD","IVZINGOLD","MAFANG","IDBIGOLD","NETF","ABSLBANETF","LICNETFN50","SBIETFPB","UTISXN50","EBANK","HNGSNGBEES");
+
+		allNSEQ = allNSEQ.stream().filter(s->!allETF.contains(s)).collect(Collectors.toList());
+		
+		return allNSEQ;
 	}
 	
 }
