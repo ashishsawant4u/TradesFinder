@@ -1,5 +1,6 @@
 package com.trades.demo.indicators;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -21,25 +22,17 @@ public class CommonIndicators
 	 */
 	public static boolean hasSupport(CandleModel candle,int supportLevel)
 	{
-		//boolean isMAWithingCandleBodyRange = (candle.high > supportLevel && candle.low < supportLevel);
-		//boolean isCandleLandingCloseToMA  = (candle.low > supportLevel && ((candle.low - supportLevel) < 3));
+		boolean isCandleLandingCloseToMA  =  (candle.low >= candle.getSma().get(supportLevel)) && (candle.getSma().get(supportLevel)/candle.low)*100 >= 99;
 		
 		boolean isMAWithingCandleBodyRange = (candle.close > candle.getSma().get(supportLevel) && candle.open < candle.getSma().get(supportLevel));
 		
-		boolean hasSupport = isMAWithingCandleBodyRange 
-					&& CandlestickPattern.NO_SHADOW_LARGER_THAN_BODY.test(candle) 
-					&& !CandlestickPattern.DOJI.test(candle)
-					&& !CandlestickPattern.SPINNING_TOP.test(candle)
-					&&  CandlestickPattern.GREEN.test(candle) 
-					&& !CandlestickPattern.LONG_CANDLE.test(candle)
-					&& CandlestickPattern.ALL_SHADOW.test(candle);
+		boolean candleTakingSupportOnMA = (isMAWithingCandleBodyRange || isCandleLandingCloseToMA);
 		
-		if(hasSupport)
-		{
-			logger.info("hasSupport "+candle);
-		}
-		
-		return hasSupport;
+		return candleTakingSupportOnMA
+				&&  CandlestickPattern.GREEN.test(candle)
+				&& CandlestickPattern.NO_SHADOW_LARGER_THAN_BODY.test(candle)
+				&& !CandlestickPattern.LONG_CANDLE.test(candle)
+				&& CandlestickPattern.NO_SHADOW_LARGER_THAN_HALF_OF_BODY.test(candle);
 	}
 	
 	public static boolean hasSupport(CandleModel candle)
@@ -57,9 +50,9 @@ public class CommonIndicators
 		return false;
 	}
 	
-	public static boolean prevCandlehasSupport(CandleModel candle,List<CandleModel> symbolCandles)
+	public static boolean isOpenedAbovePrevCandle(CandleModel currentCandle,List<CandleModel> symbolCandles)
 	{
-		List<CandleModel> prevCandles = DataHandler.getPreviousCandles(candle, symbolCandles, 2);
+		List<CandleModel> prevCandles = DataHandler.getPreviousCandles(currentCandle, symbolCandles, 2);
 		
 		
 		if(CollectionUtils.isEmpty(prevCandles))
@@ -68,7 +61,14 @@ public class CommonIndicators
 		}
 		else
 		{
-			return hasSupport(prevCandles.get(0), 50) && CandlestickPattern.GREEN.test(candle);
+			CandleModel prevCandle = prevCandles.get(0);
+			
+			if(currentCandle.open>= CandlestickPattern.candleCenter(prevCandle))
+			{
+				System.out.println("isOpenedAbovePrevCandle ");
+				return true;
+			}
+			return false;
 		}
 	}
 	
@@ -119,14 +119,14 @@ public class CommonIndicators
 				}
 			}
 			
-			for(CandleModel candle : prevCandles)
-			{
-				if(candle.low < candle.getSma().get(average))
-				{
-					allCandlesLowAboveMA = false;
-					break;
-				}
-			}
+//			for(CandleModel candle : prevCandles.subList(prevCandles.size()-10, prevCandles.size()-1))
+//			{
+//				if(candle.getSma().get(risingMARatio) < candle.getSma().get(average))
+//				{
+//					allCandlesLowAboveMA = false;
+//					break;
+//				}
+//			}
 		}
 		
 		if(avgType.equals("EMA"))

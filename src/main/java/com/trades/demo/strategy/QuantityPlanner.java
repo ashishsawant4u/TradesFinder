@@ -25,7 +25,7 @@ public class QuantityPlanner {
 	
 	public static float MAX_TRADE_AMOUNT_PER_MONTH = 30001.00F;
 	
-	static float MAX_AMOUNT_PER_TRADE = 10000.00F;
+	static float MAX_AMOUNT_PER_TRADE = 5000.00F;
 	
 	static float MAX_RISK_PER_TRADE = 5000.00F;
 	

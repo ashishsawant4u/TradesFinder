@@ -87,6 +87,12 @@ public final class CandlestickPattern
     public static final Predicate<CandleModel> ANY_SHADOW_LARGER_THAN_BODY
             = UPPER_SHADOW_LARGER_THAN_BODY.or(LOWER_SHADOW_LARGER_THAN_BODY);
 
+    
+    public static final Predicate<CandleModel> NO_SHADOW_LARGER_THAN_HALF_OF_BODY = ALL_SHADOW.and((ohlc) -> {
+        return (ohlc.high - Math.max(ohlc.open, ohlc.close)) <= (body(ohlc)/2)
+        		&& (Math.min(ohlc.open, ohlc.close) - ohlc.low) <= (body(ohlc)/2);
+    });
+    
     /**
      * Candle pattern where NONE of the shadows is bigger than the body
      */
@@ -153,8 +159,9 @@ public final class CandlestickPattern
     	else
     	{
     		double previous15candlesBodyAvg = previous15candles.stream().mapToDouble((c-> Math.abs(c.getOpen()-c.getClose()))).average().getAsDouble();
-        	
         	return currentCandleBody > (1.3*previous15candlesBodyAvg);
+    		//double maxCandleHeightInPrev15Candles = previous15candles.stream().mapToDouble(c->CandlestickPattern.size(c)).max().getAsDouble();
+    		//return CandlestickPattern.size(candle) > maxCandleHeightInPrev15Candles;
     	}
     	
     };
@@ -241,6 +248,17 @@ public final class CandlestickPattern
         return Math.min(ohlc.open, ohlc.close) - ohlc.low;
     }
     
+    public static double candleCenter(final CandleModel ohlc) {
+        
+    	if(CandlestickPattern.GREEN.test(ohlc))
+    	{
+    		return ohlc.open + (body(ohlc)/2);
+    	}
+    	else
+    	{
+    		return ohlc.close + (body(ohlc)/2);
+    	}
+    }
 
     
     public static String findCandlePattern(CandleModel currentCandle)

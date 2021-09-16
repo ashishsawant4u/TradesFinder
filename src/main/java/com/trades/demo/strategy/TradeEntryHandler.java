@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.trades.demo.common.TradeStatus;
 import com.trades.demo.models.CandleModel;
 import com.trades.demo.models.TradeEntryModel;
+import com.trades.demo.utils.CandlestickPattern;
 import com.trades.demo.utils.DataHandler;
 
 public class TradeEntryHandler extends AbstractTradeEntryHandler
@@ -78,6 +79,70 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 		tradeEntry.setInvestment(tradeEntry.getQuantity()*buyPrice);
 		
 		candle.setTradeEntry(tradeEntry);
+	}
+	
+	public static void setBuyEntryAsPerHigherMA(CandleModel candle,int supportLevel)
+	{
+		TradeEntryModel tradeEntry = new TradeEntryModel();
+		
+		tradeEntry.setEntry(true);
+		
+		double ENTRY_MARGIN = getEntryMargin(candle);
+		
+		double buyPrice = candle.high + ENTRY_MARGIN;
+		
+		double stopLossPrice = candle.getSma().get(supportLevel);
+		
+		double targetPrice = buyPrice + (buyPrice - stopLossPrice) * 1.5;
+		
+		double lossPerUnit = buyPrice - stopLossPrice;
+
+		tradeEntry.setBuyPrice(buyPrice);
+		tradeEntry.setStopLossPrice(stopLossPrice);
+		tradeEntry.setTargetPrice(targetPrice);
+		tradeEntry.setLossPerUnit(lossPerUnit);
+		tradeEntry.setTradeStatus(TradeStatus.OPEN);
+		candle.setTradeEntry(tradeEntry);
+		
+		int quantity = QuantityPlanner.getQuantity(candle);
+		
+		tradeEntry.setQuantity(quantity);
+
+		tradeEntry.setInvestment(tradeEntry.getQuantity()*buyPrice);
+		
+		validateTradeAgainstMonthlyBudget(candle);
+	}
+	
+	public static void setBuyEntryAsPer2xBody(CandleModel candle)
+	{
+		TradeEntryModel tradeEntry = new TradeEntryModel();
+		
+		tradeEntry.setEntry(true);
+		
+		double ENTRY_MARGIN = getEntryMargin(candle);
+		
+		double buyPrice = candle.high + ENTRY_MARGIN;
+		
+		double stopLossPrice = candle.low - CandlestickPattern.size(candle);
+		
+		double targetPrice = buyPrice + (buyPrice - stopLossPrice) * 1.5;
+		
+		double lossPerUnit = buyPrice - stopLossPrice;
+
+		tradeEntry.setBuyPrice(buyPrice);
+		tradeEntry.setStopLossPrice(stopLossPrice);
+		tradeEntry.setTargetPrice(targetPrice);
+		tradeEntry.setLossPerUnit(lossPerUnit);
+		tradeEntry.setTradeStatus(TradeStatus.OPEN);
+		candle.setTradeEntry(tradeEntry);
+		
+		int quantity = QuantityPlanner.getQuantity(candle);
+		
+		tradeEntry.setQuantity(quantity);
+
+		tradeEntry.setInvestment(tradeEntry.getQuantity()*buyPrice);
+		
+		validateTradeAgainstMonthlyBudget(candle);
 	}
 	
 	public static void setBuyExit(CandleModel entryCandle, List<CandleModel> symbolAllCandles)

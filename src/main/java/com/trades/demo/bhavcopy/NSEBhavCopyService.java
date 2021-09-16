@@ -7,4 +7,5 @@ public interface NSEBhavCopyService
 	public String getNSEDailyEodBhavCopy(Date from,Date till);
 	
 	public String updateNSEDailyEodBhavCopy();
+	
 }

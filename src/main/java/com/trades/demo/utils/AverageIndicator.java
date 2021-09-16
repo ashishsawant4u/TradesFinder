@@ -14,7 +14,7 @@ import com.trades.demo.models.CandleModel;
 
 public class AverageIndicator 
 {
-	public static List<Integer> SMA_PERIODS = Arrays.asList(50,75,100);
+	public static List<Integer> SMA_PERIODS = Arrays.asList(12,25,50,75,100);
 	
 	public static List<Integer> EMA_PERIODS = Arrays.asList(20,50);
 
