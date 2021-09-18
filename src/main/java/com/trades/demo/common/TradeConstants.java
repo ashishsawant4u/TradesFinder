@@ -11,4 +11,9 @@ public class TradeConstants
 	public static List<CandleModel> ALL_CANDLES; 
 	
 	public static boolean ENABLE_QTY_PLANNER = false;
+	
+	public static String ORDER_TYPE_BUY = "BUY";
+	
+	public static String ORDER_TYPE_SELL = "SELL";
+
 }

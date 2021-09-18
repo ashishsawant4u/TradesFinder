@@ -14,7 +14,9 @@
 	    <tr>
 	      <th scope="col">Month</th>
 	      <th scope="col">Trade Count</th>
+	      <th scope="col">Open Trades</th>
 	      <th scope="col">Investment</th>
+	      <th scope="col">Max Possible Loss</th>
 	      <th scope="col">P/L</th>
 	      <th scope="col">% Gain</th>
 	    </tr>
@@ -29,7 +31,9 @@
 		</c:if>
 			<td class="table-primary"><fmt:formatDate value="${report.month}" pattern="MMM-yyyy"/></td>
 			<td>${report.tradesCount}</td>
+			<td>${report.openTradesCount}</td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${report.investment}" /></td>
+			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${report.maxRiskAmount}" /></td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${report.profitAndLoss}" /></td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${report.percentageGain}" />%</td>
 		</tr>

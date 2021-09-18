@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trades.demo.models.CandleModel;
+import com.trades.demo.reports.OrderTracker;
 import com.trades.demo.strategy.QuantityPlanner;
 import com.trades.demo.strategy.TradingStrategyService;
 
@@ -38,7 +39,7 @@ public class BackTestController extends ReportsController
 		Date tillDate = new Date();
 		
 		QuantityPlanner.monthlyTradeAmountTrackerMap.clear();
-	
+		OrderTracker.ORDER_LIST.clear();
 		
 		List<CandleModel> candlesWithTrade = tradingStrategyService.strategy1(fromDate,tillDate);
 		

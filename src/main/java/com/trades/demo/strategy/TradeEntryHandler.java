@@ -113,7 +113,13 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 		validateTradeAgainstMonthlyBudget(candle);
 	}
 	
-	public static void setBuyEntryAsPer2xBody(CandleModel candle)
+	/**
+	 *  BUY above high
+	 *  STOPLOSS = candle low - candle_height
+	 * 	TARGET ==> BUY + [ (BUY-STOPLOSS)* 1.5 ]
+	 * 
+	 */
+	public static void setBuyEntryAsPerStopLossatCandleHeight(CandleModel candle,double rewardRatio)
 	{
 		TradeEntryModel tradeEntry = new TradeEntryModel();
 		
@@ -125,7 +131,7 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 		
 		double stopLossPrice = candle.low - CandlestickPattern.size(candle);
 		
-		double targetPrice = buyPrice + (buyPrice - stopLossPrice) * 1.5;
+		double targetPrice = buyPrice + (buyPrice - stopLossPrice) * rewardRatio;
 		
 		double lossPerUnit = buyPrice - stopLossPrice;
 
@@ -160,6 +166,8 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 				tradeEntry.setTradeExitDate(candle.getMarketDateTime());
 				tradeEntry.setTradeDuration(getNosDaysBetweenDates(entryCandle.getMarketDateTime(), candle.getMarketDateTime()));
 				tradeEntry.setProfitAndLossAmount((tradeEntry.targetPrice - tradeEntry.buyPrice) * tradeEntry.quantity);
+				entryCandle.setTradeEntry(tradeEntry);
+				placeSellOrder(entryCandle);
 				break;
 			}
 			if(candle.low <= tradeEntry.stopLossPrice && tradeEntry.stopLossPrice <= candle.high)
@@ -169,11 +177,10 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 				tradeEntry.setTradeExitDate(candle.getMarketDateTime());
 				tradeEntry.setTradeDuration(getNosDaysBetweenDates(entryCandle.getMarketDateTime(), candle.getMarketDateTime()));
 				tradeEntry.setProfitAndLossAmount((tradeEntry.stopLossPrice - tradeEntry.buyPrice ) * tradeEntry.quantity );
+				entryCandle.setTradeEntry(tradeEntry);
+				placeSellOrder(entryCandle);
 				break;
 			}
-			
-			entryCandle.setTradeEntry(tradeEntry);
-			
 		}
 	}
 }

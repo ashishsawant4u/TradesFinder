@@ -15,19 +15,15 @@ public class QuantityPlanner {
 
 	private static final Logger logger = LoggerFactory.getLogger(QuantityPlanner.class);	
 	
-//	static float BALANCE_AMOUNT = 50000.00F;
+	public static double CAPITAL_AMOUNT = 20000.00;
 	
-//	static float MAX_AFFORDABLE_LOSS_AMOUNT = 50000.00F;
+	public static double CAPITAL_PER_TRADE_RISK_PERCENTAGE = 2.0;
 	
-//	static int NUMBER_OF_TRADES_CAN_GO_WRONG = 20;
-
-//	static float MAX_RISK_PER_TRADE = MAX_AFFORDABLE_LOSS_AMOUNT / NUMBER_OF_TRADES_CAN_GO_WRONG;
+	public static double MAX_TRADE_AMOUNT_PER_MONTH =  CAPITAL_AMOUNT;
 	
-	public static float MAX_TRADE_AMOUNT_PER_MONTH = 30001.00F;
+	public static double MAX_AMOUNT_PER_TRADE = 4000.00;
 	
-	static float MAX_AMOUNT_PER_TRADE = 5000.00F;
-	
-	static float MAX_RISK_PER_TRADE = 5000.00F;
+	public static double MAX_RISK_PER_TRADE = (MAX_TRADE_AMOUNT_PER_MONTH *  CAPITAL_PER_TRADE_RISK_PERCENTAGE)/100;
 	
 	public static Map<String,Double> monthlyTradeAmountTrackerMap = new HashMap<String, Double>();
 	
@@ -50,6 +46,21 @@ public class QuantityPlanner {
 					int tempQty = (int) (MAX_AMOUNT_PER_TRADE / tradeEntry.getBuyPrice());
 					quantity = (tempQty<1) ? 0 : tempQty;
 					investmentAmount = tradeEntry.getBuyPrice() * Math.round(quantity);
+				}
+				
+				double riskAmount = quantity * tradeEntry.lossPerUnit;
+				if(riskAmount >  MAX_RISK_PER_TRADE)
+				{
+					for(int qty=quantity; qty>0 ; qty--)
+					{
+						riskAmount = qty * tradeEntry.lossPerUnit;
+						
+						if(riskAmount <= MAX_RISK_PER_TRADE)
+						{
+							quantity = qty;
+							break;
+						}
+					}
 				}
 			}
 		} 

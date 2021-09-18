@@ -56,5 +56,16 @@ $( document ).ready(function() {
         		],
     	});
 
+		$('#orderTrackerTable').DataTable({
+		        dom: 'Bfrtip',
+		        buttons: [
+		            'copyHtml5',
+		            'excelHtml5',
+		            'csvHtml5'
+		        ],
+				"paging":   true,
+				"ordering": false,
+    	});
+
 });
 

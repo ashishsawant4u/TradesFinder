@@ -8,11 +8,15 @@ public class MonthlyReport
 	
 	private double investment;
 	
+	private double maxRiskAmount;
+	
 	private double profitAndLoss;
 	
 	private double percentageGain;
 	
 	private int tradesCount;
+	
+	private int openTradesCount;
 
 	public Date getMonth() {
 		return month;
@@ -54,9 +58,26 @@ public class MonthlyReport
 		this.tradesCount = tradesCount;
 	}
 
+	public double getMaxRiskAmount() {
+		return maxRiskAmount;
+	}
+
+	public void setMaxRiskAmount(double maxRiskAmount) {
+		this.maxRiskAmount = maxRiskAmount;
+	}
+
+	public int getOpenTradesCount() {
+		return openTradesCount;
+	}
+
+	public void setOpenTradesCount(int openTradesCount) {
+		this.openTradesCount = openTradesCount;
+	}
+
 	@Override
 	public String toString() {
-		return "MonthlyReport [month=" + month + ", investment=" + investment + ", profitAndLoss=" + profitAndLoss
-				+ ", percentageGain=" + percentageGain + ", tradesCount=" + tradesCount + "]";
+		return "MonthlyReport [month=" + month + ", investment=" + investment + ", maxRiskAmount=" + maxRiskAmount
+				+ ", profitAndLoss=" + profitAndLoss + ", percentageGain=" + percentageGain + ", tradesCount="
+				+ tradesCount + ", openTradesCount=" + openTradesCount + "]";
 	}
 }

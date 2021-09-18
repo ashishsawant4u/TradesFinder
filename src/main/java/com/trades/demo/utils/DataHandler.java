@@ -130,7 +130,9 @@ public class DataHandler
 			return filterdList;
 		}
 		
-		return filterdList.subList(filterdList.size() - period , filterdList.size()-1);
+		int fromIndex = filterdList.size() - (period + 1);
+		fromIndex = fromIndex < 0 ? 0 : fromIndex;
+		return filterdList.subList(fromIndex , filterdList.size()-1);
 	}
 	
 	public static List<String> getAllNSESymbols()

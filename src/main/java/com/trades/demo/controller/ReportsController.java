@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.trades.demo.models.CandleModel;
 import com.trades.demo.reports.MonthlyReportHandler;
+import com.trades.demo.reports.OrderTracker;
 import com.trades.demo.reports.SymbolwiseReport;
 import com.trades.demo.reports.TradeSummaryReportHandler;
 import com.trades.demo.reports.YearlyReportHandler;
@@ -29,6 +30,7 @@ public class ReportsController
 		model.addAttribute("symbolwiserTradeReport", SymbolwiseReport.symbolwiserTradeReport(candlesWithTrade));
 		model.addAttribute("monthlyReport", MonthlyReportHandler.monthlyReport(candlesWithTrade));
 		model.addAttribute("yearlyReport", YearlyReportHandler.yearlyReport(candlesWithTrade));
+		model.addAttribute("orderTracker", OrderTracker.orderTracker());
 		
 		logger.info("Reports Done.....");
 	}

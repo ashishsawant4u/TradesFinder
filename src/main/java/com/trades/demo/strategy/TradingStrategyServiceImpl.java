@@ -1,6 +1,5 @@
 package com.trades.demo.strategy;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -9,20 +8,14 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.trades.demo.common.ShortListedStocks;
 import com.trades.demo.common.TradeConstants;
-import com.trades.demo.common.Trends;
 import com.trades.demo.indicators.CommonIndicators;
-import com.trades.demo.indicators.TrendFinder;
 import com.trades.demo.models.CandleModel;
-import com.trades.demo.utils.AverageIndicator;
-import com.trades.demo.utils.CandlestickPattern;
 import com.trades.demo.utils.DataHandler;
 
 @Component("tradingStrategyService")
@@ -34,10 +27,10 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 	/**
 	 *  BUY IF
 	 *  Candle taking support on SMA50
-	 *  RISK:REWARD ratio ==> 1:2
+	 *  RISK:REWARD ratio ==> 1:1.5
 	 *  BUY above high
-	 *  STOPLOSS below low
-	 * 	TARGET ==> BUY + [ (BUY-STOPLOSS)*2 ]
+	 *  STOPLOSS = candle low - candle_height
+	 * 	TARGET ==> BUY + [ (BUY-STOPLOSS)* 1.5 ]
 	 * 
 	 */
 	@Override
@@ -49,12 +42,13 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 		
 		List<String> ALL_NSE_SYMBOLS = DataHandler.getAllNSESymbols();
 		
-		//ALL_NSE_SYMBOLS = Arrays.asList("SEQUENT");
+		ALL_NSE_SYMBOLS = Arrays.asList("BRIGADE");
 		
 		Predicate<String> isShortlisted = (s) -> { return ShortListedStocks.strategy1().contains(s); };
-		ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
+		//ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
 		
 		int suppportMA = 50;
+		double rewardRatio = 1.5;
 		
 		//AverageIndicator.SMA_PERIODS = Arrays.asList(56,84,112,140);
 		
@@ -63,7 +57,7 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 			List<CandleModel> symbolCandles = DataHandler.getSymbolDailyEODCandles(symbol, fromDate, tillDate);
 			
 			List<CandleModel> candlesWithSMA50SupportAndGreen = symbolCandles.stream()
-																	 .filter(c-> CommonIndicators.hasSupport(c,suppportMA))
+																	 .filter(c-> CommonIndicators.hasSupportForLong(c,suppportMA))
 																	 .filter(c->CommonIndicators.isUptrendByMA(c, symbolCandles, "SMA", suppportMA, 60))
 																	 .collect(Collectors.toList());
 
@@ -76,7 +70,7 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 			
 			//candlesWithSMA50SupportAndGreen.stream().forEach(c->TradeEntryHandler.setBuyEntryAsPerRatio(c, 1.0, 2.0));
 			//candlesWithSMA50SupportAndGreen.stream().forEach(c->TradeEntryHandler.setBuyEntryAsPerHigherMA(c, 75));
-			candlesWithSMA50SupportAndGreen.stream().forEach(c->TradeEntryHandler.setBuyEntryAsPer2xBody(c));
+			candlesWithSMA50SupportAndGreen.stream().forEach(c->TradeEntryHandler.setBuyEntryAsPerStopLossatCandleHeight(c,rewardRatio));
 			
 			List<CandleModel> withingBudgetExecutedTrades = candlesWithSMA50SupportAndGreen.stream().filter(c->null!=c.getTradeEntry()&&c.getTradeEntry().isEntry()).collect(Collectors.toList());
 			

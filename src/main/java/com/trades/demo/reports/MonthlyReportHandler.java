@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trades.demo.common.TradeStatus;
 import com.trades.demo.models.CandleModel;
 
 public class MonthlyReportHandler 
@@ -28,7 +29,9 @@ public class MonthlyReportHandler
 			report.setMonth(monthFormat.parse(month));
 			report.setInvestment(monthCandles.stream().mapToDouble(c->c.getTradeEntry().getInvestment()).sum());
 			report.setProfitAndLoss(monthCandles.stream().mapToDouble(c->c.getTradeEntry().getProfitAndLossAmount()).sum());
+			report.setMaxRiskAmount(monthCandles.stream().mapToDouble(c->(c.getTradeEntry().quantity*c.getTradeEntry().lossPerUnit)).sum());
 			report.setTradesCount(monthCandles.size());
+			report.setOpenTradesCount((int)monthCandles.stream().filter(c->c.getTradeEntry().getTradeStatus().toString().equals(TradeStatus.OPEN.toString())).count());
 			report.setPercentageGain((report.getProfitAndLoss() / report.getInvestment())*100);
 			reportList.add(report);
 		}

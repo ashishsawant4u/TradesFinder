@@ -54,12 +54,16 @@ ${strategyDesc}
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="tradesList-tab" data-bs-toggle="tab" data-bs-target="#tradesList" type="button" role="tab" aria-controls="contact" aria-selected="false">Trades</button>
   </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="contact" aria-selected="false">Orders</button>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="symbolTradeSummary" role="tabpanel" aria-labelledby="home-tab"><tags:symbolTradeResults/></div>
   <div class="tab-pane fade" id="monthlyReport" role="tabpanel" aria-labelledby="profile-tab"><tags:monthlyReport/></div>
   <div class="tab-pane fade" id="yearlyReport" role="tabpanel" aria-labelledby="contact-tab"><tags:yearlyReport/></div>
   <div class="tab-pane fade" id="tradesList" role="tabpanel" aria-labelledby="contact-tab"><tags:tradeList/></div>
+  <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="contact-tab"><tags:orderTracker/></div>
 </div>
 
 

@@ -1,6 +1,5 @@
 package com.trades.demo.indicators;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -16,11 +15,11 @@ public class CommonIndicators
 	static Logger logger = LoggerFactory.getLogger(CommonIndicators.class);
 	/**
 	 * Support IF
-	 * Candle body taking support over MA
-	 * Candle close is near to MA
-	 * 
+	 * Candle low taking support over MA
+	 * Candle body is within MA
+	 * GREEN & NO_SHADOW_LARGER_THAN_BODY & NOT LONG_CANDLE & NO_SHADOW_LARGER_THAN_HALF_OF_BODY
 	 */
-	public static boolean hasSupport(CandleModel candle,int supportLevel)
+	public static boolean hasSupportForLong(CandleModel candle,int supportLevel)
 	{
 		boolean isCandleLandingCloseToMA  =  (candle.low >= candle.getSma().get(supportLevel)) && (candle.getSma().get(supportLevel)/candle.low)*100 >= 99;
 		
@@ -31,8 +30,59 @@ public class CommonIndicators
 		return candleTakingSupportOnMA
 				&&  CandlestickPattern.GREEN.test(candle)
 				&& CandlestickPattern.NO_SHADOW_LARGER_THAN_BODY.test(candle)
-				&& !CandlestickPattern.LONG_CANDLE.test(candle)
+				//&& !CandlestickPattern.LONG_CANDLE.test(candle)
 				&& CandlestickPattern.NO_SHADOW_LARGER_THAN_HALF_OF_BODY.test(candle);
+	}
+	
+	/**
+	 * Rising MA = MAs are ascending order on chart one after another 
+	 * GIVEN Candle Support MA = 50
+	 * IF MA-50 > MA-75 && MA-75 > MA-100
+	 * THEN MA is considered to be rising/UpTrend
+	 * 
+	 */
+	public static boolean isUptrendByMA(CandleModel supportCandle, List<CandleModel> symbolCandles,String avgType,int average,int period)
+	{	
+		List<CandleModel> prevCandles = DataHandler.getPreviousCandles(supportCandle, symbolCandles, period);
+		
+		boolean allCandlesLowAboveMA = true;
+		
+		//average = 50
+		int shorterMARange = average/2;  //shorterMARange = 25
+		int higherMARange1 = average + shorterMARange;  //higherMARange1 = 75
+		int higherMARange2 = higherMARange1 + shorterMARange; //higherMARange2 = 100
+		
+		
+		if(avgType.equals("SMA"))
+		{
+			for(CandleModel candle : prevCandles)
+			{
+				if(candle.getSma().get(average) < candle.getSma().get(higherMARange1) || candle.getSma().get(higherMARange1) < candle.getSma().get(higherMARange2))
+				{
+					allCandlesLowAboveMA = false;
+					break;
+				}
+			}
+		}
+		
+		if(avgType.equals("EMA"))
+		{
+			for(CandleModel candle : prevCandles)
+			{
+				if(candle.getEma().get(average) < candle.getEma().get(higherMARange1) || candle.getEma().get(higherMARange1) < candle.getEma().get(higherMARange2))
+				{
+					allCandlesLowAboveMA = false;
+					break;
+				}
+			}
+		}
+		
+		if(allCandlesLowAboveMA)
+		{
+			logger.info("UPTREND "+supportCandle.symbol+" ON "+supportCandle.marketDateTime);
+		}
+		
+		return allCandlesLowAboveMA;
 	}
 	
 	public static boolean hasSupport(CandleModel candle)
@@ -96,49 +146,5 @@ public class CommonIndicators
 		return allCandlesLowAboveMA;
 	}
 	
-	public static boolean isUptrendByMA(CandleModel supportCandle, List<CandleModel> symbolCandles,String avgType,int average,int period)
-	{	
-		List<CandleModel> prevCandles = DataHandler.getPreviousCandles(supportCandle, symbolCandles, period);
-		
-		boolean allCandlesLowAboveMA = true;
-		
-		//average = 50
-		int risingMARatio = average/2;  //risingMARatio = 25
-		int higherMARange1 = average + risingMARatio;  //higherMARange1 = 75
-		int higherMARange2 = higherMARange1 + risingMARatio; //higherMARange2 = 100
-		
-		
-		if(avgType.equals("SMA"))
-		{
-			for(CandleModel candle : prevCandles)
-			{
-				if(candle.getSma().get(average) < candle.getSma().get(higherMARange1) || candle.getSma().get(higherMARange1) < candle.getSma().get(higherMARange2))
-				{
-					allCandlesLowAboveMA = false;
-					break;
-				}
-			}
-			
-//			for(CandleModel candle : prevCandles.subList(prevCandles.size()-10, prevCandles.size()-1))
-//			{
-//				if(candle.getSma().get(risingMARatio) < candle.getSma().get(average))
-//				{
-//					allCandlesLowAboveMA = false;
-//					break;
-//				}
-//			}
-		}
-		
-		if(avgType.equals("EMA"))
-		{
-			
-		}
-		
-		if(allCandlesLowAboveMA)
-		{
-			System.out.println("UPTREND");
-		}
-		
-		return allCandlesLowAboveMA;
-	}
+	
 }
