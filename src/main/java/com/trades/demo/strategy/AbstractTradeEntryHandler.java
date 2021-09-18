@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import com.trades.demo.common.TradeConstants;
+import com.trades.demo.common.TradeStatus;
 import com.trades.demo.models.CandleModel;
 import com.trades.demo.models.TradeEntryModel;
 import com.trades.demo.reports.Order;
@@ -72,26 +73,42 @@ public class AbstractTradeEntryHandler
 
 	public static void placeBuyOrder(CandleModel candle) 
 	{
-		Order order = new Order();
-		order.setSymbol(candle.getSymbol());
-		order.setOrderType(TradeConstants.ORDER_TYPE_BUY);
-		order.setMarketDateTime(candle.getMarketDateTime());
-		order.setBuyPrice(candle.getTradeEntry().getBuyPrice());
-		order.setQuantity(candle.getTradeEntry().getQuantity());
-		order.setOrderAmount(candle.getTradeEntry().getInvestment());
-		OrderTracker.ORDER_LIST.add(order);
+		if(candle.getTradeEntry().getQuantity()>0)
+		{
+			Order order = new Order();
+			order.setSymbol(candle.getSymbol());
+			order.setOrderType(TradeConstants.ORDER_TYPE_BUY);
+			order.setMarketDateTime(candle.getMarketDateTime());
+			order.setBuyPrice(candle.getTradeEntry().getBuyPrice());
+			order.setQuantity(candle.getTradeEntry().getQuantity());
+			order.setOrderAmount(candle.getTradeEntry().getInvestment());
+			OrderTracker.ORDER_LIST.add(order);
+		}
 	}
 	
 	public static void placeSellOrder(CandleModel candle) 
 	{
-		Order order = new Order();
-		order.setSymbol(candle.getSymbol());
-		order.setOrderType(TradeConstants.ORDER_TYPE_SELL);
-		order.setMarketDateTime(candle.getTradeEntry().getTradeExitDate());
-		order.setSellPrice(candle.getTradeEntry().getTargetPrice());
-		order.setQuantity(candle.getTradeEntry().getQuantity());
-		order.setOrderAmount(candle.getTradeEntry().getInvestment() + candle.getTradeEntry().getProfitAndLossAmount());
-		
-		OrderTracker.ORDER_LIST.add(order);
+		if(candle.getTradeEntry().getQuantity()>0)
+		{
+			Order order = new Order();
+			order.setSymbol(candle.getSymbol());
+			order.setOrderType(TradeConstants.ORDER_TYPE_SELL);
+			order.setMarketDateTime(candle.getTradeEntry().getTradeExitDate());
+			order.setSellPrice(candle.getTradeEntry().getTargetPrice());
+			order.setQuantity(candle.getTradeEntry().getQuantity());
+			if(candle.getTradeEntry().getTradeStatus().equals(TradeStatus.TARGET_EXIT))
+			{
+				order.setOrderAmount(candle.getTradeEntry().getTargetPrice() * candle.getTradeEntry().getQuantity());
+			}
+			
+			if(candle.getTradeEntry().getTradeStatus().equals(TradeStatus.STOP_LOSS))
+			{
+				order.setOrderAmount(candle.getTradeEntry().getStopLossPrice() * candle.getTradeEntry().getQuantity());
+			}
+			
+			order.setExitType(candle.getTradeEntry().getTradeStatus().toString());
+			
+			OrderTracker.ORDER_LIST.add(order);
+		}
 	}
 }

@@ -42,10 +42,10 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 		
 		List<String> ALL_NSE_SYMBOLS = DataHandler.getAllNSESymbols();
 		
-		ALL_NSE_SYMBOLS = Arrays.asList("BRIGADE");
+		//ALL_NSE_SYMBOLS = Arrays.asList("BRIGADE");
 		
 		Predicate<String> isShortlisted = (s) -> { return ShortListedStocks.strategy1().contains(s); };
-		//ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
+		ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
 		
 		int suppportMA = 50;
 		double rewardRatio = 1.5;

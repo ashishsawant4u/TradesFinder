@@ -19,6 +19,8 @@ public class Order
 	public double orderAmount;
 	
 	public double capitalBalance;
+	
+	public String exitType;
 
 	public String getSymbol() {
 		return symbol;
@@ -84,10 +86,20 @@ public class Order
 		this.orderAmount = orderAmount;
 	}
 
+	public String getExitType() {
+		return exitType;
+	}
+
+	public void setExitType(String exitType) {
+		this.exitType = exitType;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [symbol=" + symbol + ", orderType=" + orderType + ", marketDateTime=" + marketDateTime
 				+ ", buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", quantity=" + quantity + ", orderAmount="
-				+ orderAmount + ", capitalBalance=" + capitalBalance + "]";
+				+ orderAmount + ", capitalBalance=" + capitalBalance + ", exitType=" + exitType + "]";
 	}
+
+	
 }

@@ -19,14 +19,15 @@ public class OrderTracker
 			
 			if(order.getOrderType().equals(TradeConstants.ORDER_TYPE_BUY))
 			{
-				order.setCapitalBalance(QuantityPlanner.CAPITAL_AMOUNT - order.orderAmount);
 				QuantityPlanner.CAPITAL_AMOUNT = QuantityPlanner.CAPITAL_AMOUNT - order.orderAmount;
+				order.setCapitalBalance(QuantityPlanner.CAPITAL_AMOUNT);
+				
 			}
 			
 			if(order.getOrderType().equals(TradeConstants.ORDER_TYPE_SELL))
 			{
-				order.setCapitalBalance(QuantityPlanner.CAPITAL_AMOUNT + order.orderAmount);
 				QuantityPlanner.CAPITAL_AMOUNT = QuantityPlanner.CAPITAL_AMOUNT + order.orderAmount;
+				order.setCapitalBalance(QuantityPlanner.CAPITAL_AMOUNT);
 			}
 			
 		});

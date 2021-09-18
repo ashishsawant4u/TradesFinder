@@ -14,25 +14,29 @@
 	      <th scope="col">Sell Price</th>
 	      <th scope="col">Quantity</th>
 	      <th scope="col">Order Amount</th>
+	      <th scope="col">Trade Status</th>
 	      <th scope="col">Capital Balance</th>
 	    </tr>
   </thead>
   <tbody class="searchable">
 	<c:forEach var="order" items="${orderTracker}">
-		<c:if test="${order.capitalBalance gt 0}">
-				<tr>
-		</c:if>
-		<c:if test="${order.capitalBalance lt 0}">
-				<tr class="bg-danger bg-gradient text-white">
-		</c:if>
-			<td>${order.orderType}</td>
+		<tr>
+			
+			<c:if test="${order.orderType eq 'BUY'}"> <td class="bg-success bg-gradient text-white">${order.orderType}</td></c:if>
+			<c:if test="${order.orderType eq 'SELL'}"> <td class="bg-danger bg-gradient text-white">${order.orderType}</td></c:if>
 			<td>${order.symbol}</td>
 			<td><fmt:formatDate value="${order.marketDateTime}" pattern="dd-MMM-yyyy"/></td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.buyPrice}" /></td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.sellPrice}" /></td>
 			<td>${order.quantity}</td>
 			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.orderAmount}" /></td>
-			<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.capitalBalance}" /></td>
+			<td>${order.exitType}</td>
+			<c:if test="${order.capitalBalance gt 0}">
+				<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.capitalBalance}" /></td>
+			</c:if>
+			<c:if test="${order.capitalBalance lt 0}">
+				<td class="bg-warning bg-gradient"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${order.capitalBalance}" /></td>
+			</c:if>
 		</tr>
 	</c:forEach>
 	</tbody>

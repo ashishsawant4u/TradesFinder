@@ -15,13 +15,13 @@ public class QuantityPlanner {
 
 	private static final Logger logger = LoggerFactory.getLogger(QuantityPlanner.class);	
 	
-	public static double CAPITAL_AMOUNT = 20000.00;
+	public static double CAPITAL_AMOUNT = 50000.00;
 	
-	public static double CAPITAL_PER_TRADE_RISK_PERCENTAGE = 2.0;
+	public static double CAPITAL_PER_TRADE_RISK_PERCENTAGE = 1.0;
 	
 	public static double MAX_TRADE_AMOUNT_PER_MONTH =  CAPITAL_AMOUNT;
 	
-	public static double MAX_AMOUNT_PER_TRADE = 4000.00;
+	public static double MAX_AMOUNT_PER_TRADE = 5000.00;
 	
 	public static double MAX_RISK_PER_TRADE = (MAX_TRADE_AMOUNT_PER_MONTH *  CAPITAL_PER_TRADE_RISK_PERCENTAGE)/100;
 	
