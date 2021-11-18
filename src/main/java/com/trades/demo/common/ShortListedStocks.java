@@ -26,4 +26,21 @@ public class ShortListedStocks
 			return null;
 		}
 	}
+	
+	public static List<String> strategy2()
+	{
+		try 
+		{
+			File shortlistedile = ResourceUtils.getFile("classpath:Shortlisted-strategy2.txt");
+			  
+			  List<String> lines = Collections.emptyList();
+			  lines = Files.readAllLines(Paths.get(shortlistedile.getPath()));
+			  
+			  return lines;
+		} 
+		catch (Exception e) 
+		{
+			return null;
+		}
+	}
 }

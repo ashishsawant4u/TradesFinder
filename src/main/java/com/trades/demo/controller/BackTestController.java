@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trades.demo.common.TradeConstants;
 import com.trades.demo.models.CandleModel;
 import com.trades.demo.reports.OrderTracker;
+import com.trades.demo.reports.StrategyInfo;
 import com.trades.demo.strategy.QuantityPlanner;
 import com.trades.demo.strategy.TradingStrategyService;
 
@@ -41,10 +43,51 @@ public class BackTestController extends ReportsController
 		QuantityPlanner.monthlyTradeAmountTrackerMap.clear();
 		OrderTracker.ORDER_LIST.clear();
 		
+		TradeConstants.STRATEGY_RISK_RATIO = 1;
+		TradeConstants.STRATEGY_REWARD_RATIO = 1.5;
+		
+		StrategyInfo strategyInfo = new StrategyInfo();
+		strategyInfo.setId("strategy1");
+		strategyInfo.setName("SMA 50 Support Long");
+		strategyInfo.setDescription("");
+		strategyInfo.setRiskRewardRation(TradeConstants.STRATEGY_RISK_RATIO+":"+TradeConstants.STRATEGY_REWARD_RATIO);
+		
 		List<CandleModel> candlesWithTrade = tradingStrategyService.strategy1(fromDate,tillDate);
 		
-		generateReports(model, candlesWithTrade);
+		generateReports(model, candlesWithTrade,strategyInfo);
 		
+		logger.info("backtesting strategy1 done.....");
+		
+		return "backtestPage";
+	}
+	
+	@RequestMapping("/strategy2")
+	public String strategy2(Model model) throws Exception
+	{
+		logger.info("backtesting strategy2.....");
+		
+		model.addAttribute("strategyDesc", "Strategy2 : SMA 50 Support Exit 4 Days");
+		Calendar cal = Calendar.getInstance();  
+		cal.setTime(new Date());
+		cal.add(Calendar.YEAR, -7); 
+		Date fromDate = cal.getTime();
+		Date tillDate = new Date();
+		
+		QuantityPlanner.monthlyTradeAmountTrackerMap.clear();
+		OrderTracker.ORDER_LIST.clear();
+		
+		TradeConstants.STRATEGY_RISK_RATIO = 1;
+		TradeConstants.STRATEGY_REWARD_RATIO = 0;
+		
+		StrategyInfo strategyInfo = new StrategyInfo();
+		strategyInfo.setId("strategy2");
+		strategyInfo.setName("SMA 50 Support Exit 4 Days");
+		strategyInfo.setDescription("");
+		strategyInfo.setRiskRewardRation(TradeConstants.STRATEGY_RISK_RATIO+":"+TradeConstants.STRATEGY_REWARD_RATIO);
+		
+		List<CandleModel> candlesWithTrade = tradingStrategyService.strategy2(fromDate,tillDate);
+		
+		generateReports(model, candlesWithTrade,strategyInfo);
 		
 		logger.info("backtesting strategy1 done.....");
 		

@@ -17,6 +17,8 @@ import com.trades.demo.common.TradeConstants;
 import com.trades.demo.indicators.CommonIndicators;
 import com.trades.demo.models.CandleModel;
 import com.trades.demo.utils.DataHandler;
+import com.trades.demo.utils.IndicesConstants;
+import com.trades.demo.utils.StockIndicesHelper;
 
 @Component("tradingStrategyService")
 public class TradingStrategyServiceImpl implements TradingStrategyService 
@@ -40,15 +42,15 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 		
 		List<CandleModel> candlesWithTrade = new ArrayList<CandleModel>();
 		
-		List<String> ALL_NSE_SYMBOLS = DataHandler.getAllNSESymbols();
-		
+		List<String> ALL_NSE_SYMBOLS = StockIndicesHelper.getSymbolsList(IndicesConstants.ALL_NSE_EQ_SYMBOLS);
+		//List<String> ALL_NSE_SYMBOLS =  StockIndicesHelper.getSymbolsList(IndicesConstants.Nifty_Metal_Index);
 		//ALL_NSE_SYMBOLS = Arrays.asList("BRIGADE");
 		
 		Predicate<String> isShortlisted = (s) -> { return ShortListedStocks.strategy1().contains(s); };
-		ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
+		//ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
 		
 		int suppportMA = 50;
-		double rewardRatio = 1.5;
+		double rewardRatio = TradeConstants.STRATEGY_REWARD_RATIO;
 		
 		//AverageIndicator.SMA_PERIODS = Arrays.asList(56,84,112,140);
 		
@@ -58,7 +60,7 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 			
 			List<CandleModel> candlesWithSMA50SupportAndGreen = symbolCandles.stream()
 																	 .filter(c-> CommonIndicators.hasSupportForLong(c,suppportMA))
-																	 .filter(c->CommonIndicators.isUptrendByMA(c, symbolCandles, "SMA", suppportMA, 60))
+																	 .filter(c->CommonIndicators.isUptrendByMA(c, symbolCandles, "SMA", suppportMA, 40))
 																	 .collect(Collectors.toList());
 
 			
@@ -75,6 +77,53 @@ public class TradingStrategyServiceImpl implements TradingStrategyService
 			List<CandleModel> withingBudgetExecutedTrades = candlesWithSMA50SupportAndGreen.stream().filter(c->null!=c.getTradeEntry()&&c.getTradeEntry().isEntry()).collect(Collectors.toList());
 			
 			withingBudgetExecutedTrades.forEach(c-> TradeEntryHandler.setBuyExit(c,symbolCandles));
+			
+			candlesWithTrade.addAll(withingBudgetExecutedTrades);
+			
+			logger.info(symbol + " ...done");
+		}
+		
+		return candlesWithTrade;
+	}
+
+	@Override
+	public List<CandleModel> strategy2(Date fromDate, Date tillDate) 
+	{
+		TradeConstants.ENABLE_QTY_PLANNER = true;
+		
+		List<CandleModel> candlesWithTrade = new ArrayList<CandleModel>();
+		
+		List<String> ALL_NSE_SYMBOLS = StockIndicesHelper.getSymbolsList(IndicesConstants.ALL_NSE_EQ_SYMBOLS);
+		//List<String> ALL_NSE_SYMBOLS =  StockIndicesHelper.getSymbolsList(IndicesConstants.Nifty_Metal_Index);
+		//ALL_NSE_SYMBOLS = Arrays.asList("BRIGADE");
+		
+		Predicate<String> isShortlisted = (s) -> { return ShortListedStocks.strategy2().contains(s); };
+		ALL_NSE_SYMBOLS = ALL_NSE_SYMBOLS.stream().filter(isShortlisted).collect(Collectors.toList());
+		
+		int suppportMA = 50;
+		
+
+		for(String symbol :  ALL_NSE_SYMBOLS)
+		{
+			List<CandleModel> symbolCandles = DataHandler.getSymbolDailyEODCandles(symbol, fromDate, tillDate);
+			
+			List<CandleModel> candlesWithSMA50SupportAndGreen = symbolCandles.stream()
+																	 .filter(c-> CommonIndicators.hasSupportForLong(c,suppportMA))
+																	 .filter(c->CommonIndicators.isUptrendByMA(c, symbolCandles, "SMA", suppportMA, 40))
+																	 .collect(Collectors.toList());
+
+			
+			Calendar cal = Calendar.getInstance();  
+			cal.setTime(fromDate);
+			cal.add(Calendar.YEAR, 4); 
+			
+			candlesWithSMA50SupportAndGreen = candlesWithSMA50SupportAndGreen.stream().filter(c->c.getMarketDateTime().after(cal.getTime())).collect(Collectors.toList());
+			
+			candlesWithSMA50SupportAndGreen.stream().forEach(c->TradeEntryHandler.setBuyEntryAsPerRatio(c, 1.0, 2.0));
+			
+			List<CandleModel> withingBudgetExecutedTrades = candlesWithSMA50SupportAndGreen.stream().filter(c->null!=c.getTradeEntry()&&c.getTradeEntry().isEntry()).collect(Collectors.toList());
+			
+			withingBudgetExecutedTrades.forEach(c-> TradeEntryHandler.setBuyExitAfterNextnDays(c, symbolCandles, 4));
 			
 			candlesWithTrade.addAll(withingBudgetExecutedTrades);
 			

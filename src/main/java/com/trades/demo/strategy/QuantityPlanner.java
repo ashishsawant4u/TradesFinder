@@ -21,7 +21,7 @@ public class QuantityPlanner {
 	
 	public static double MAX_TRADE_AMOUNT_PER_MONTH =  CAPITAL_AMOUNT;
 	
-	public static double MAX_AMOUNT_PER_TRADE = 5000.00;
+	public static double MAX_AMOUNT_PER_TRADE = 10000.00;
 	
 	public static double MAX_RISK_PER_TRADE = (MAX_TRADE_AMOUNT_PER_MONTH *  CAPITAL_PER_TRADE_RISK_PERCENTAGE)/100;
 	

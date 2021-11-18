@@ -13,6 +13,8 @@ public class TradeSummaryReport
 	public int profitableTrades;
 	
 	public double profitAndLossAmount;
+	
+	public double winRate;
 
 	public int getTradesCount() {
 		return tradesCount;
@@ -62,10 +64,18 @@ public class TradeSummaryReport
 		this.profitAndLossAmount = profitAndLossAmount;
 	}
 
+	public double getWinRate() {
+		return winRate;
+	}
+
+	public void setWinRate(double winRate) {
+		this.winRate = winRate;
+	}
+
 	@Override
 	public String toString() {
 		return "TradeSummaryReport [tradesCount=" + tradesCount + ", targetExistCount=" + targetExistCount
 				+ ", stopLossCount=" + stopLossCount + ", openTradesCount=" + openTradesCount + ", profitableTrades="
-				+ profitableTrades + ", profitAndLossAmount=" + profitAndLossAmount + "]";
+				+ profitableTrades + ", profitAndLossAmount=" + profitAndLossAmount + ", winRate=" + winRate + "]";
 	}
 }

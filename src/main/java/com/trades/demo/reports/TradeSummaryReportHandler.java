@@ -16,6 +16,8 @@ public class TradeSummaryReportHandler
 		report.setStopLossCount((int)candleWithTrade.stream().filter(c->c.getTradeEntry().getTradeStatus().toString().equals(TradeStatus.STOP_LOSS.toString())).count());
 		report.setOpenTradesCount((int)candleWithTrade.stream().filter(c->c.getTradeEntry().getTradeStatus().toString().equals(TradeStatus.OPEN.toString())).count());
 		report.setProfitableTrades(report.targetExistCount - report.stopLossCount);
+		double winrate = report.getTargetExistCount()*100/report.getTradesCount();;
+		report.setWinRate(winrate);
 		report.setProfitAndLossAmount(candleWithTrade.stream().mapToDouble(c->c.getTradeEntry().getProfitAndLossAmount()).sum());
 		return report;
 	}

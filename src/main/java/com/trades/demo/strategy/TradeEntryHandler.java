@@ -183,4 +183,28 @@ public class TradeEntryHandler extends AbstractTradeEntryHandler
 			}
 		}
 	}
+	
+	public static void setBuyExitAfterNextnDays(CandleModel entryCandle, List<CandleModel> symbolAllCandles,int existDays)
+	{
+		List<CandleModel>  candlesAfterEntry =  symbolAllCandles.stream().filter(c->c.getMarketDateTime().after(entryCandle.getMarketDateTime())).collect(Collectors.toList());
+		
+		TradeEntryModel tradeEntry = entryCandle.getTradeEntry();
+		
+		if(candlesAfterEntry.size() > existDays)
+		{
+			CandleModel existDayCandle = candlesAfterEntry.get(existDays);
+			
+			tradeEntry.setExit(true);
+			
+			TradeStatus tradeStatus = existDayCandle.high > tradeEntry.getBuyPrice() ? TradeStatus.TARGET_EXIT : TradeStatus.STOP_LOSS;
+			
+			tradeEntry.setTradeStatus(tradeStatus);
+			tradeEntry.setTradeExitDate(existDayCandle.getMarketDateTime());
+			tradeEntry.setTradeDuration(getNosDaysBetweenDates(entryCandle.getMarketDateTime(), existDayCandle.getMarketDateTime()));
+			tradeEntry.setProfitAndLossAmount( (existDayCandle.high - tradeEntry.getBuyPrice())* tradeEntry.quantity );
+			entryCandle.setTradeEntry(tradeEntry);
+			placeSellOrder(entryCandle);
+		}
+		
+	}
 }

@@ -57,7 +57,7 @@ public class CommonIndicators
 		{
 			for(CandleModel candle : prevCandles)
 			{
-				if(candle.getSma().get(average) < candle.getSma().get(higherMARange1) || candle.getSma().get(higherMARange1) < candle.getSma().get(higherMARange2))
+				if(candle.getSma().get(shorterMARange) < candle.getSma().get(average) && candle.getSma().get(average) < candle.getSma().get(higherMARange1) || candle.getSma().get(higherMARange1) < candle.getSma().get(higherMARange2))
 				{
 					allCandlesLowAboveMA = false;
 					break;

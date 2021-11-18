@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trades.demo.bhavcopy.NSEBhavCopyService;
 import com.trades.demo.bhavcopy.YahooFinanaceService;
+import com.trades.demo.utils.StockIndicesHelper;
 
 @Controller
 @RequestMapping("/bhavcopy")
@@ -52,6 +53,22 @@ public class BhavCopyController
 	public String getNSEDailyEodBhavCopyWithYahoo(Model model)
 	{	
 		return yahooFinanaceService.getHistoricalEodDataForNSE();
+	}
+	
+	@RequestMapping("/yahoo-eod-update")
+	@ResponseBody
+	public String updateNSEDailyEodBhavCopyWithYahoo(Model model)
+	{	
+		return yahooFinanaceService.updateHistoricalEodDataForNSE();
+	}
+	
+	@RequestMapping("/download-indices")
+	@ResponseBody
+	public String downloadIndices(Model model)
+	{	
+		StockIndicesHelper.downloadAllIndices();
+		
+		return "Indices Download Done";
 	}
 	
 }

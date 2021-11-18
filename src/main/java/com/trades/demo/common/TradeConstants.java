@@ -15,5 +15,8 @@ public class TradeConstants
 	public static String ORDER_TYPE_BUY = "BUY";
 	
 	public static String ORDER_TYPE_SELL = "SELL";
-
+	
+	public static double STRATEGY_RISK_RATIO = 1;
+	
+	public static double STRATEGY_REWARD_RATIO = 2.0;
 }
