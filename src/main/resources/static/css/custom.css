@@ -14,5 +14,14 @@
 }
 .steps-input
 {
-	background-color: #fdd40d!important;
+	/* background-color: #fdd40d!important; */
+}
+.bullish
+{
+	background-color: #1ddc35!important;
+}
+.bearish
+{
+	background-color: #fd0d18!important;
+	color: white;
 }
