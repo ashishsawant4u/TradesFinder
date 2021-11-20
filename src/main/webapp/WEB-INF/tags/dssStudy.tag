@@ -42,7 +42,7 @@
 <div class="col-md-6">
 	<label for="dssDecision" class="form-label">Double Screen Decision</label>
 	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioBuy" autocomplete="off" checked>
+	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioBuy" autocomplete="off">
 	  <label class="btn btn-outline-success cursor-pointer" for="btnradioBuy">BUY</label>
 	
 	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioShortSell" autocomplete="off">
@@ -53,25 +53,25 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-md-6 bullishCandlestickPattern">
 	<label for="bullishCandlestickPattern" class="form-label">Bullish Candlestick Pattern</label>
 	<div class="input-group">
     <span class="input-group-text steps-input">4</span>
 	<select class="form-select" aria-label="Candlestick Pattern" id="bullishCandlestickPattern">
 	  <option selected>Select Candlestick Pattern</option>
-	  <option value="Bearish Green Candle">Bearish Red Candle</option>
-	  <option value="Bearish Piercing">Bearish Piercing</option>
-	  <option value="Bearish Engulf">Bearish Engulf</option>
-	  <option value="Inverted Hammer">Inverted Hammer (Strong Signal if at Top)</option>
-	  <option value="Evening Star">Evening Star</option>
-  </select>
+	  <option value="Bullish Green Candle">Bullish Green Candle</option>
+	  <option value="Bullish Piercing">Bullish Piercing</option>
+	  <option value="Bullish Engulf">Bullish Engulf</option>
+	  <option value="Hammer">Hammer (Strong Signal if at Bottom)</option>
+	  <option value="Morning Star">Morning Star</option>
+	  </select>
   </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 bearishCandlestickPattern">
 	<label for="bearishCandlestickPattern" class="form-label">Bearish Candlestick Pattern</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">5</span>
+    <span class="input-group-text steps-input">4</span>
 	<select class="form-select" aria-label="Candlestick Pattern" id="bearishCandlestickPattern">
 	  <option selected>Select Candlestick Pattern</option>
 	  <option value="Bearish Green Candle">Bearish Red Candle</option>
@@ -86,7 +86,7 @@
 <div class="col-md-6">
 	<label for="volume" class="form-label">Volume on most significant candle</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">6</span>
+    <span class="input-group-text steps-input">5</span>
     <input type="text" class="form-control" id="volumeText">
     </div>
 </div>
@@ -94,7 +94,7 @@
 <div class="col-md-6">
 	<label for="emaState" class="form-label">Moving Average EMA</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">7</span>
+    <span class="input-group-text steps-input">6</span>
     <select class="form-select" aria-label="Select EMA State" id="emaState">
 	  <option selected>Select EMA State</option>
 	  <option value="PCO">Positive Crossover State</option>
@@ -111,10 +111,10 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-md-6 bullishChartPatern">
 	<label for="bullishChartPatern" class="form-label">Bullish Chart Pattern</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">8</span>
+    <span class="input-group-text steps-input">7</span>
      <select class="form-select" aria-label="Select Chart Pattern" id="bullishChartPatern">
 	  <option selected>Select Chart Pattern</option>
 	  <option value="Inverted Head And Shoulder">Inverted Head And Shoulder</option>
@@ -126,11 +126,11 @@
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 bearishChartPatern">
 	<label for="bearishChartPatern" class="form-label">Bearish Chart Pattern</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">9</span>
-      <select class="form-select" aria-label="Select Chart Pattern">
+    <span class="input-group-text steps-input">7</span>
+      <select class="form-select" aria-label="Select Chart Pattern" id="bearishChartPatern">
 	  <option selected>Select Chart Pattern</option>
 	  <option value="Head And Shoulder">Head And Shoulder</option>
 	  <option value="Double Top">Double Top</option>
@@ -145,17 +145,18 @@
 <div class="col-md-6">
 	<label for="fibRetracement" class="form-label">Fib Retracement</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">10</span>
+    <span class="input-group-text steps-input">8</span>
 	<input type="text" class="form-control" id="fibRetracement" >
 	</div>
 	 <small id="fibHelp" class="form-text text-muted">
-	  	Only for continuation pattern
+	  	Only for continuation pattern <br>
+	  	Upto 50% Healthy
 	  </small>
 </div>
 <div class="col-md-6">
 	<label for="divergence" class="form-label">Divergence (Osc.)</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">11</span>
+    <span class="input-group-text steps-input">9</span>
 	<input type="text" class="form-control" id="divergence">
 	</div>
 	 <small id="divergenceHelp" class="form-text text-muted">

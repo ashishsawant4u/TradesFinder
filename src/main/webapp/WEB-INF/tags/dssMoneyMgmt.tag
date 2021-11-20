@@ -24,84 +24,97 @@
     </div>
   </div>
   
-  <div class="col-md-6">
+  <div class="col-md-6 bulls-sections">
     <label for="immediateSupportForStopLoss" class="form-label">Immediate Support for stop loss</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">12</span>
+  	<span class="input-group-text steps-input">10</span>
     <input type="text" class="form-control" id="immediateSupportForStopLoss">
     </div>
      <small id="bslHelp" class="form-text text-muted">
-	  	Bulls- use it for stop loss
+	  	Bulls- use it for stop loss <br>
+	  	It can be weapon candle low <br>
+	  	or below the osc. pco candle <br>
+	  	or the median of most significant candle ie one with heavy volume
 	 </small>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 bulls-sections">
     <label for="majorResistanceForTarget" class="form-label">Major Resistance for target</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">13</span>
+  	<span class="input-group-text steps-input">11</span>
     <input type="text" class="form-control" id="majorResistanceForTarget">
     </div>
     <small id="bTarHelp" class="form-text text-muted">
-	  	Bulls- check for exit target
+	  	Bulls- check for exit target <br>
+	  	Use descending resistance trendline or MAs <br>
+	  	or prev. tops or resistances
 	 </small>
   </div>
   
   
-  <div class="col-md-6">
+  <div class="col-md-6 bears-sections">
     <label for="immediateResistanceForStopLoss" class="form-label">Immediate Resistance for stop loss</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">12</span>
+  	<span class="input-group-text steps-input">10</span>
     <input type="text" class="form-control" id="immediateResistanceForStopLoss">
   	</div>
   	<small id="berSlHelp" class="form-text text-muted">
-	  	Bears- use it for stop loss
+	  	Bears- use it for stop loss <br>
+	  	It can be top of the weapon candle <br>
+	  	or above the osc. nco candle <br>
+	  	or the median of most significant candle ie one with heavy volume
 	 </small>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 bears-sections">
     <label for="majorSupportForTarget" class="form-label">Major Support for target</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">13</span>
+  	<span class="input-group-text steps-input">11</span>
     <input type="text" class="form-control" id="majorSupportForTarget">
   	</div>
   	<small id="berTarHelp" class="form-text text-muted">
 	  	Bears- check for exit target
+	  	Use ascending uptrend trendline or MAs <br>
+	  	prv. bottoms or support
 	 </small>
   </div>
   
   <div class="col-md-4">
     <label for="closePrice" class="form-label">Close Price</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">14</span>
+    <span class="input-group-text steps-input">12</span>
     <input type="text" class="form-control" id="closePrice">
     </div>
   </div>
   <div class="col-md-4">
     <label for="entryPrice" class="form-label">Entry Price</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">15</span>
+    <span class="input-group-text steps-input">13</span>
     <input type="text" class="form-control" id="entryPrice">
     </div>
   </div>
   <div class="col-md-4">
     <label for="stopLossPrice" class="form-label">Stop Loss</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">16</span>
+    <span class="input-group-text steps-input">14</span>
     <input type="text" class="form-control" id="stopLossPrice">
     </div>
   </div>
   
-  <div class="col-md-6">
+  <div class="col-md-4">
     <label for="minTargetPrice" class="form-label">Min. Target Price</label>
     <div class="input-group">
-    <span class="input-group-text steps-input">17</span>
+    <span class="input-group-text steps-input">15</span>
     <input type="text" class="form-control" id="minTargetPrice">
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <label for="maxTargetPrice" class="form-label">Max. Target Price</label>
     <div class="input-group">
-    <span class="input-group-text steps-input">18</span>
+    <span class="input-group-text steps-input">16</span>
     <input type="text" class="form-control" id="maxTargetPrice">
  	</div>
+  </div>
+  <div class="col-md-4 pt-4 ps-5 align-middle">
+  	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeCalBtn">Calculate Trade</button>
   </div>
   
   <div class="col-md-6 theme2 p-1">
@@ -120,22 +133,32 @@
   </div>
   
   
-  <div class="col-md-6 bg-primary bg-gradient p-1">
-    <label for="capitalAmount" class="form-label">Risk Reward Ratio</label>
+  <div class="col-md-4 bg-primary bg-gradient p-1">
+    <label for="capitalAmount" class="form-label text-white">Risk Reward Ratio</label>
     <div class="input-group">
 	<label for="minRR" class="input-group-text">Min</label>
     <input type="text" class="form-control" id="minRR" disabled>
     </div>
-     <small id="minRewHelp" class="">
+     <small id="minRewHelp" class="text-white">
 	  	Should be atleast 3 or above to enter trade
 	 </small>
   </div>
-  <div class="col-md-6 bg-primary bg-gradient p-1">
-    <label for="capitalAmount" class="form-label">Risk Reward Ratio</label>
+  <div class="col-md-4 bg-primary bg-gradient p-1">
+    <label for="capitalAmount" class="form-label text-white">Risk Reward Ratio</label>
     <div class="input-group">
 	<label for="maxRR" class="input-group-text">Max</label>
     <input type="text" class="form-control" id="maxRR" disabled>
     </div>
+  </div>
+  
+  <div class="col-md-4 p-1">
+   <!--  <label for="tradeDecision" class="form-label">Trade Decision</label> -->
+	<h2><span class="d-none badge rounded-pill bg-warning text-dark d-flex justify-content-center mt-4" id="tradeDecisionGood"> 
+	Go for it !!!</span></h2>
+	
+	<h2><span class="d-none badge rounded-pill badge bg-danger text-white d-flex justify-content-center mt-4" id="tradeDecisionBad">
+	Improve your R:R</span></h2>
+	
   </div>
   
 
@@ -201,8 +224,4 @@
   
   
 
-  
-  <div class="col-12">
-    <button type="button" class="btn btn-primary" id="dssTradeCalBtn">Calculate Trade</button>
-  </div>
 </form>

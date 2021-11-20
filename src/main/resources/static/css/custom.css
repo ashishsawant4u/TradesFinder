@@ -18,10 +18,18 @@
 }
 .bullish
 {
-	background-color: #1ddc35!important;
+	background-color: #198754!important;
+	color: white;
 }
 .bearish
 {
-	background-color: #fd0d18!important;
+	background-color: #dc3545!important;
 	color: white;
+}
+
+body{
+    font-family: cambria;
+}
+.cursor-pointer {
+  cursor: pointer!important;
 }
