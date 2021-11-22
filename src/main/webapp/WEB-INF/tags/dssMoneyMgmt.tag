@@ -20,7 +20,7 @@
     <label for="maxRiskPerTrade" class="form-label">Max Risk Per Trade</label>
   	<div class="input-group">
   	<span class="input-group-text">&#8377;</span>
-    <input type="text" class="form-control" id="maxRiskPerTrade">
+    <input type="text" class="form-control" id="maxRiskPerTrade" disabled>
     </div>
   </div>
   
@@ -207,21 +207,23 @@
     </div>
   </div>
   
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-4 theme2 p-1">
     <div class="input-group">
     <label for="minROI" class="input-group-text">Min. ROI</label>
     <input type="text" class="form-control" id="minROI" disabled>
     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">  <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
   	</div>
   </div>
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-4 theme2 p-1">
     <div class="input-group">
     <label for="maxROI" class="input-group-text">Max. ROI</label>
     <input type="text" class="form-control" id="maxROI" disabled>
     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">  <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
   	</div>
   </div>
-  
+  <div class="col-md-4 pt-4 ps-5 align-middle d-none dssTradeLogBtn">
+  	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeLogBtn">Save Trade</button>
+  </div>
   
 
 </form>

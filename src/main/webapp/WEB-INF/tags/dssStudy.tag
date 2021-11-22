@@ -42,10 +42,10 @@
 <div class="col-md-6">
 	<label for="dssDecision" class="form-label">Double Screen Decision</label>
 	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioBuy" autocomplete="off">
+	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioBuy" autocomplete="off" value="BUY">
 	  <label class="btn btn-outline-success cursor-pointer" for="btnradioBuy">BUY</label>
 	
-	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioShortSell" autocomplete="off">
+	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioShortSell" autocomplete="off" value="SELL">
 	  <label class="btn btn-outline-danger cursor-pointer" for="btnradioShortSell">SHORT SELL</label>
 	</div>
 </div>

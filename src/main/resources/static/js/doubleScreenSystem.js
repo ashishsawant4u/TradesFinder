@@ -13,6 +13,9 @@ $('#dssTradeCalBtn').click(function () {
 });
 
 
+$('#dssTradeLogBtn').click(function () {
+	dssTradeLog();
+});
 
 });
 
@@ -96,7 +99,9 @@ function tradeCal()
 	{
 		console.log("SHORT SELL Transaction");
 		shortSellTransactionHandler(tradeData);
-	}  
+	} 
+	
+	$(".dssTradeLogBtn").removeClass("d-none"); 
 }
 
 function buyTransactionHandler(tradeData)
@@ -138,8 +143,6 @@ function buyTransactionHandler(tradeData)
 	$("#maxRR").val(maxRR);
 	
 	tradeDecision(minRR);
-	
-	tradeSummaryTable();
 }
 
 function shortSellTransactionHandler(tradeData)
@@ -197,7 +200,7 @@ function tradeDecision(minRR)
 	}
 }
 
-function tradeSummaryTable()
+function dssTradeLog()
 {
 	let capitalAmount = $("#capitalAmount").val();  
 	let percentageRiskPerTrade = $("#percentageRiskPerTrade").val();  
@@ -210,7 +213,7 @@ function tradeSummaryTable()
 	let entryPrice = $("#entryPrice").val();     
 	let stopLossPrice = $("#stopLossPrice").val();     
 	let minTargetPrice = $("#minTargetPrice").val();     
-	let maxTargetPrice = $("#maxTargetPrices").val();              
+	let maxTargetPrice = $("#maxTargetPrice").val();              
 	let tradeInvestment = $("#tradeInvestment").val();
 	let riskPerUnit = $("#riskPerUnit").val();  
 	let quantity = 	$("#quantity").val(); 
@@ -227,7 +230,7 @@ function tradeSummaryTable()
 	let date =  $("#studyDate").val();
 	let tide =  $("#tideText").val();
 	let wave =  $("#waveText").val();
-	let dssDecision =  $(".btnradioBuySell").val(); 
+	let dssDecision =  $('input[name="btnradioBuySell"]:checked').val();
 	let candleStickpattern;
 	let chartpattern;
 	
@@ -250,6 +253,18 @@ function tradeSummaryTable()
 	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence};
 	
 	console.log('tradeEnrty '+tradeEnrty);
+	
+	let tradeEntryRequest = JSON.stringify(tradeEnrty);
+	
+	 $.ajax({
+            type: "POST",
+            url: "http://localhost:8045/tradesfinder/doublescreen/tradelog",
+            contentType: "application/json;",
+ 			data: tradeEntryRequest,	
+            success: function (response) {
+                console.log(response);
+            }
+ 		});
 
 }
 
