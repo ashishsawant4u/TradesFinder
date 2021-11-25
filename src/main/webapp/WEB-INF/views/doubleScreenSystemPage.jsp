@@ -21,13 +21,13 @@
 </nav>
 
 
-
+<tags:alerts/>
 
 <div class="row container-fluid">
-<div class="col-xs-6 col-lg-6 container-fluid">
+<div class="col-xs-6 col-lg-6 ">
 	<tags:dssStudy/>
 </div>
-<div class="col-xs-6 col-lg-6 container-fluid">
+<div class="col-xs-6 col-lg-6 ">
 	<tags:dssMoneyMgmt/>
 </div>
 </div>

@@ -17,17 +17,39 @@ $('#dssTradeLogBtn').click(function () {
 	dssTradeLog();
 });
 
+$('#capitalAmount,#percentageRiskPerTrade').keyup(function () {
+    let capitalAmount = $("#capitalAmount").val();  
+	let percentageRiskPerTrade = $("#percentageRiskPerTrade").val();  
+	maxRiskPerTrade = Math.round((capitalAmount * percentageRiskPerTrade) / 100);
+	$("#maxRiskPerTrade").val(maxRiskPerTrade);  
+});
+
 });
 
 function defaultInit()
 {
-	$("#capitalAmount").val(100000);  
+	$("#capitalAmount").val(5000);  
 	$("#percentageRiskPerTrade").val(2);
 	let capitalAmount = $("#capitalAmount").val();  
 	let percentageRiskPerTrade = $("#percentageRiskPerTrade").val();  
 	maxRiskPerTrade = Math.round((capitalAmount * percentageRiskPerTrade) / 100);
-	$("#maxRiskPerTrade").val(maxRiskPerTrade);  
+	$("#maxRiskPerTrade").val(maxRiskPerTrade); 
+	
+	initDate();
+	
 }
+
+function initDate()
+{
+	const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	
+	var today = new Date();
+	var day = today.getDate();
+    var month = monthNames[today.getMonth()];
+    var year = today.getFullYear();
+	$("#studyDate").val(day + '-' + month + '-' + year);  
+}
+
 function buySellToggele()
 {
 	if($('#btnradioBuy').is(':checked'))
@@ -190,13 +212,17 @@ function tradeDecision(minRR)
 {
 	if(minRR >= 3)
 	{
-		$("#tradeDecisionGood").removeClass('d-none');
-		$("#tradeDecisionBad").addClass('d-none');
+		$(".riskRewardRatioDiv").addClass('bullish');
+		$(".riskRewardRatioDiv").removeClass('bearish');
+		$("#riskRewardRatioAlert").addClass('d-none');
+		$("#riskRewardRatioAlert").slideUp();
 	}
 	else
 	{
-		$("#tradeDecisionGood").addClass('d-none');
-		$("#tradeDecisionBad").removeClass('d-none');
+		$(".riskRewardRatioDiv").addClass('bearish');
+		$(".riskRewardRatioDiv").removeClass('bullish');
+		$("#riskRewardRatioAlert").removeClass('d-none');
+		$("#riskRewardRatioAlert").slideDown();
 	}
 }
 
@@ -263,6 +289,16 @@ function dssTradeLog()
  			data: tradeEntryRequest,	
             success: function (response) {
                 console.log(response);
+						$('#dssTradeLogBtn').html('Saved'); 
+						$('#dssTradeLogBtn').addClass('btn-success');
+						$('#dssTradeLogBtn').removeClass('btn-primary');
+				window.setTimeout(function() { 
+						$('#dssTradeLogBtn').html('Save Trade'); 
+						$('#dssTradeLogBtn').removeClass('btn-success');
+						$('#dssTradeLogBtn').addClass('btn-primary');
+				}, 2000);
+				
+						
             }
  		});
 

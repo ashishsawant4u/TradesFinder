@@ -117,14 +117,14 @@
   	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeCalBtn">Calculate Trade</button>
   </div>
   
-  <div class="col-md-6 theme2 p-1">
-  	<label for="quantity" class="form-label">Max Quantity allowed to buy</label>
+  <div class="col-md-3 theme2 p-1">
+  	<label for="quantity" class="form-label">Max Quantity</label>
     <div class="input-group">
     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
      <input type="text" class="form-control" id="quantity" disabled>
     </div>
   </div>
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
   	<label for="tradeInvestment" class="form-label">Trade Investment</label>
     <div class="input-group">
 	<span class="input-group-text">&#8377;</span>
@@ -133,7 +133,7 @@
   </div>
   
   
-  <div class="col-md-4 bg-primary bg-gradient p-1">
+  <div class="col-md-3 theme2 p-1 riskRewardRatioDiv">
     <label for="capitalAmount" class="form-label text-white">Risk Reward Ratio</label>
     <div class="input-group">
 	<label for="minRR" class="input-group-text">Min</label>
@@ -143,7 +143,7 @@
 	  	Should be atleast 3 or above to enter trade
 	 </small>
   </div>
-  <div class="col-md-4 bg-primary bg-gradient p-1">
+  <div class="col-md-3 theme2 p-1 riskRewardRatioDiv">
     <label for="capitalAmount" class="form-label text-white">Risk Reward Ratio</label>
     <div class="input-group">
 	<label for="maxRR" class="input-group-text">Max</label>
@@ -151,25 +151,25 @@
     </div>
   </div>
   
-  <div class="col-md-4 p-1">
-   <!--  <label for="tradeDecision" class="form-label">Trade Decision</label> -->
+  <!-- <div class="col-md-4 p-1">
+    <label for="tradeDecision" class="form-label">Trade Decision</label>
 	<h2><span class="d-none badge rounded-pill bg-warning text-dark d-flex justify-content-center mt-4" id="tradeDecisionGood"> 
 	Go for it !!!</span></h2>
 	
 	<h2><span class="d-none badge rounded-pill badge bg-danger text-white d-flex justify-content-center mt-4" id="tradeDecisionBad">
 	Improve your R:R</span></h2>
 	
-  </div>
+  </div> -->
   
 
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
     <label for="minReward" class="form-label">Min. Reward</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
     <input type="text" class="form-control" id="minReward" disabled>
     </div>
   </div>
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
     <label for="maxReward" class="form-label">Max. Reward</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
@@ -177,14 +177,14 @@
     </div>
   </div>
   
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
     <label for="riskPerUnit" class="form-label">Risk per unit</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
     <input type="text" class="form-control" id="riskPerUnit" disabled>
     </div>
   </div>
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
     <label for="totalRisk" class="form-label">Total Risk</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
@@ -192,14 +192,14 @@
     </div>
   </div>
   
-   <div class="col-md-6 theme2 p-1">
+   <div class="col-md-3 theme2 p-1">
     <label for="minProfitPotential" class="form-label">Min. Profit Potential</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
     <input type="text" class="form-control" id="minProfitPotential" disabled>
     </div>
   </div>
-  <div class="col-md-6 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
     <label for="maxProfitPotential" class="form-label">Max. Profit Potential</label>
     <div class="input-group">
     <span class="input-group-text">&#8377;</span>
@@ -207,21 +207,35 @@
     </div>
   </div>
   
-  <div class="col-md-4 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
+    <label for="minROI" class="form-label">Min. ROI</label>
     <div class="input-group">
-    <label for="minROI" class="input-group-text">Min. ROI</label>
     <input type="text" class="form-control" id="minROI" disabled>
     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">  <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
   	</div>
   </div>
-  <div class="col-md-4 theme2 p-1">
+  <div class="col-md-3 theme2 p-1">
+   <label for="maxROI" class="form-label">Max. ROI</label>
     <div class="input-group">
-    <label for="maxROI" class="input-group-text">Max. ROI</label>
     <input type="text" class="form-control" id="maxROI" disabled>
     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">  <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
   	</div>
   </div>
-  <div class="col-md-4 pt-4 ps-5 align-middle d-none dssTradeLogBtn">
+  
+  <div class="col-md-6">
+	<label for="tradeState" class="form-label">Trade State</label>
+	<div class="input-group">
+    <span class="input-group-text steps-input">17</span>
+    <select class="form-select" aria-label="Select Trade State" id="tradeState">
+	  <option selected>Select Trade State</option>
+	  <option value="Watchful">Watchful</option>
+	  <option value="Go for it">Go for it</option>
+	  <option value="Ignore">Ignore</option>
+	  <option value="Executed">Executed</option>
+	  </select>
+    </div>
+	</div>
+  <div class="col-md-4 pt-4 ps-1 align-middle dssTradeLogBtn">
   	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeLogBtn">Save Trade</button>
   </div>
   
