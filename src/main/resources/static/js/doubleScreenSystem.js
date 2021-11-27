@@ -62,9 +62,8 @@ $('[id^="dssTradeDetailModalSaveBtn_"]').click(function() {
 						$('#dssTradeDetailModalSaveBtn_'+tradeId).addClass('btn-success');
 						$('#dssTradeDetailModalSaveBtn_'+tradeId).removeClass('btn-primary');
 				window.setTimeout(function() { 
-						$('#dssTradeDetailModalSaveBtn_'+tradeId).html('Save changes'); 
-						$('#dssTradeDetailModalSaveBtn_'+tradeId).removeClass('btn-success');
-						$('#dssTradeDetailModalSaveBtn_'+tradeId).addClass('btn-primary');
+						$('#dssTradeDetailModal_'+tradeId).hide();
+						location.reload();
 				}, 2000);
 				
 						
@@ -74,7 +73,7 @@ $('[id^="dssTradeDetailModalSaveBtn_"]').click(function() {
 });
 
 $('.modal').on('hide.bs.modal', function () {
-    location.reload();
+    
 });
 
 

@@ -35,10 +35,10 @@
   </thead>
   <tbody class="searchable">
   		<c:forEach var="trade" items="${listOfTrades}">
-  			<tr class="cursor-pointer" id="tradeSummaryRow_${trade.uid}" data-bs-toggle="modal" data-bs-target="#dssTradeDetailModal${trade.uid}">
+  			<tr class="cursor-pointer" id="tradeSummaryRow_${trade.uid}" data-bs-toggle="modal" data-bs-target="#dssTradeDetailModal_${trade.uid}">
   				<td class="border">${trade.stock}</td>
   				<td class="border">${trade.date}</td>
-  				<td class="border">${trade.dssDecision}</td>
+  				<td class="border ${trade.dssDecision eq 'BUY' ? 'bullish-text' : 'bearish-text'}">${trade.dssDecision}</td>
   				<td class="border">${trade.entryPrice}</td>
   				<td class="border">${trade.stopLossPrice}</td>
   				<td class="border">${trade.minTargetPrice}</td>
@@ -58,7 +58,7 @@
 
 
 <c:forEach var="trade" items="${listOfTrades}">
-<div class="modal" tabindex="-1" id="dssTradeDetailModal${trade.uid}">
+<div class="modal" tabindex="-1" id="dssTradeDetailModal_${trade.uid}">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">

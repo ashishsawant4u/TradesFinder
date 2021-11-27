@@ -41,3 +41,13 @@ body{
 .table tr {
     cursor: pointer;
 }
+.bullish-text
+{
+	color: #198754!important;
+	font-weight: bold;
+}
+.bearish-text
+{
+	color: #dc3545!important;
+	font-weight: bold;
+}

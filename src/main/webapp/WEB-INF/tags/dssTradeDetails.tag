@@ -69,13 +69,20 @@
 </table>
 
 
+
 <table class="table table-sm table-bordered" id="tradeMoneyTable">
 	<thead style="position: sticky;top: 0" class="table-primary">
 	    <tr>
+	      <c:if test="${trade.dssDecision eq 'BUY'}">	
 	      <th scope="col">Immediate Support for stop loss</th>
 	      <th scope="col">Major Resistance for target</th>
+	      </c:if>
+	      <c:if test="${trade.dssDecision eq 'SELL'}">
 	      <th scope="col">Immediate Resistance for stop loss</th>
 	      <th scope="col">Major Support for target</th>
+	      </c:if>
+	      <th scope="col">Min Profit Potential</th>
+	      <th scope="col">Max Profit Potential</th>
 	      <th scope="col">Min RR</th>
 	      <th scope="col">Max RR</th>
 	      <th scope="col">Min. Reward</th>
@@ -86,16 +93,22 @@
   </thead>
   <tbody class="searchable">	
   		<tr>
+  		    <c:if test="${trade.dssDecision eq 'BUY'}">	
   			<td>${trade.immediateSupportForStopLoss}</td>
   			<td>${trade.majorResistanceForTarget}</td>
+  			</c:if>
+  			<c:if test="${trade.dssDecision eq 'SELL'}"> 
   			<td>${trade.immediateResistanceForStopLoss}</td>
   			<td>${trade.majorSupportForTarget}</td>
+  			</c:if>
+  			<td>${trade.minProfitPotential}</td>
+  			<td>${trade.maxProfitPotential}</td>
   			<td>${trade.minRR}</td>
   			<td>${trade.maxRR}</td>
   			<td>${trade.minReward}</td>
   			<td>${trade.maxReward}</td>
-  			<td>${trade.minROI}</td>
-  			<td>${trade.maxROI}</td>
+  			<td>${trade.minROI}%</td>
+  			<td>${trade.maxROI}%</td>
   		</tr>
    </tbody>
 </table>
