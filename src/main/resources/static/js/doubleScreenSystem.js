@@ -24,6 +24,60 @@ $('#capitalAmount,#percentageRiskPerTrade').keyup(function () {
 	$("#maxRiskPerTrade").val(maxRiskPerTrade);  
 });
 
+$('.collapse').on('show.bs.collapse', function () {
+    $('.collapse.show').collapse('hide');
+});
+
+
+$('#dssTradeSummaryTable').DataTable({
+		        dom: 'Bfrtip',
+		        buttons: [
+		            'copyHtml5',
+		            'excelHtml5',
+		            'csvHtml5'
+		        ],
+				"targets": [11],
+				"paging":   true,
+				"ordering": false,
+    	});
+
+$('[id^="dssTradeDetailModalSaveBtn_"]').click(function() {
+   let tradeId = $(this).attr('data-uid');
+   let selectedTradeState = $('#changeTradeState_'+tradeId).val();
+   console.log('tradeId '+tradeId);
+   console.log('selectedTradeState '+selectedTradeState);
+   var tradeEnrty = {uid :tradeId,tradeState:selectedTradeState};
+   console.log('tradeEnrty '+tradeEnrty);
+	
+	let tradeEntryRequest = JSON.stringify(tradeEnrty);
+	
+	 $.ajax({
+            type: "POST",
+            url: dssUpdateTradeStateUrl,
+            contentType: "application/json;",
+ 			data: tradeEntryRequest,	
+            success: function (response) {
+                console.log(response);
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).html('Updated'); 
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).addClass('btn-success');
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).removeClass('btn-primary');
+				window.setTimeout(function() { 
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).html('Save changes'); 
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).removeClass('btn-success');
+						$('#dssTradeDetailModalSaveBtn_'+tradeId).addClass('btn-primary');
+				}, 2000);
+				
+						
+            }
+ 		});
+
+});
+
+$('.modal').on('hide.bs.modal', function () {
+    location.reload();
+});
+
+
 });
 
 function defaultInit()
@@ -275,8 +329,9 @@ function dssTradeLog()
 	let ema =  $("#emaState").val();
 	let fibRetracement =  $("#fibRetracement").val();
 	let divergence =  $("#divergence").val();
+	let tradeState = $("#tradeState").val();
 	
-	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence};
+	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState};
 	
 	console.log('tradeEnrty '+tradeEnrty);
 	

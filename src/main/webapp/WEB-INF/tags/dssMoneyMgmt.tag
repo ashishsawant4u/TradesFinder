@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>   
 
 <form class="row g-3">
   <div class="col-md-4 theme2 p-1">
@@ -115,6 +116,10 @@
   </div>
   <div class="col-md-4 pt-4 ps-5 align-middle">
   	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeCalBtn">Calculate Trade</button>
+  </div>
+  
+  <div class="col-md-12">
+	  <tags:alerts/>
   </div>
   
   <div class="col-md-3 theme2 p-1">

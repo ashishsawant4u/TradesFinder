@@ -2,6 +2,7 @@ package com.trades.demo.forms;
 
 public class DoubleScreenTradeForm {
 	
+	public String uid ;
 	public String capitalAmount ;
 	public String percentageRiskPerTrade ;
 	public String maxRiskPerTrade ;
@@ -37,6 +38,8 @@ public class DoubleScreenTradeForm {
 	public String ema ;
 	public String fibRetracement ;
 	public String divergence ;
+	public String tradeState ;
+	
 	public String getCapitalAmount() {
 		return capitalAmount;
 	}
@@ -247,9 +250,21 @@ public class DoubleScreenTradeForm {
 	public void setDivergence(String divergence) {
 		this.divergence = divergence;
 	}
+	public String getTradeState() {
+		return tradeState;
+	}
+	public void setTradeState(String tradeState) {
+		this.tradeState = tradeState;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	@Override
 	public String toString() {
-		return "DoubleScreenTradeForm [capitalAmount=" + capitalAmount + ", percentageRiskPerTrade="
+		return "DoubleScreenTradeForm [uid=" + uid + ", capitalAmount=" + capitalAmount + ", percentageRiskPerTrade="
 				+ percentageRiskPerTrade + ", maxRiskPerTrade=" + maxRiskPerTrade + ", immediateSupportForStopLoss="
 				+ immediateSupportForStopLoss + ", majorResistanceForTarget=" + majorResistanceForTarget
 				+ ", immediateResistanceForStopLoss=" + immediateResistanceForStopLoss + ", majorSupportForTarget="
@@ -262,7 +277,6 @@ public class DoubleScreenTradeForm {
 				+ maxRR + ", stock=" + stock + ", date=" + date + ", tide=" + tide + ", wave=" + wave + ", dssDecision="
 				+ dssDecision + ", candleStickpattern=" + candleStickpattern + ", chartpattern=" + chartpattern
 				+ ", volume=" + volume + ", ema=" + ema + ", fibRetracement=" + fibRetracement + ", divergence="
-				+ divergence + "]";
+				+ divergence + ", tradeState=" + tradeState + "]";
 	}
-
 }

@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>         
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+
 <tags:scripts/>
+<tags:javascriptVariables/>
 
 <div class="container-fluid">
 
-<nav class="navbar navbar-dark bg-primary mb-3">
+<nav class="navbar navbar-dark bg-primary mb-3 navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/tradesfinder/doublescreen/plan">Double Screen Trading System</a>
+    <a class="navbar-brand" href="${dssPlannerUrl}">Double Screen Trading System</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="${dssTradeListUrl}">Trades</a>
+        </li>
+       </ul>
+    </div>    
  	<form class="d-flex">
       <a  id="resetFormLink" href="/tradesfinder/doublescreen/plan" class="text-decoration-none text-white cursor-pointer">
 	                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -21,7 +31,7 @@
 </nav>
 
 
-<tags:alerts/>
+
 
 <div class="row container-fluid">
 <div class="col-xs-6 col-lg-6 ">

@@ -33,3 +33,11 @@ body{
 .cursor-pointer {
   cursor: pointer!important;
 }
+
+.hiddenRow {
+    padding: 0 !important;
+}
+
+.table tr {
+    cursor: pointer;
+}
