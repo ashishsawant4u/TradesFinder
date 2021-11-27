@@ -74,6 +74,36 @@ public class DataHandler
 		  return null;
 	}
 	
+	public static List<CandleModel> getSymbolDailyEODCandlesDSS(String instrument,Date from,Date till)
+	{
+		 File[] files = new File(DAILY_EOD_SYMBOL_CSV_LOCATION).listFiles();
+		  
+		  for (File file : files)
+		  { 
+			  if (file.isFile()) 
+			  {
+				  String symbol = file.getName().replace(".csv", "");
+				
+				  boolean process = (null==instrument || instrument.equalsIgnoreCase("default") || symbol.equalsIgnoreCase(instrument)) ? true  : false;
+				  
+				  if(process)
+				  {
+					  List<CandleModel> candleList = readSymbolDailyEODCandles(symbol);
+					  
+					  List<CandleModel> candleListWithDateRange = candleList.stream().filter(c->!c.getMarketDateTime().before(from) &&  !c.getMarketDateTime().after(till)).collect(Collectors.toList());
+				  
+					  List<CandleModel> candleWithEMA = AverageIndicator.exponentialMovingAverage(candleListWithDateRange);
+					  
+					  TradeConstants.ALL_CANDLES = candleWithEMA;
+					  
+					  return candleWithEMA;
+				  }
+			  }
+		  }
+		  
+		  return null;
+	}
+	
 	
 	
 	public static List<CandleModel> readSymbolDailyEODCandles(String  symbol)

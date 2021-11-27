@@ -61,7 +61,7 @@ public class DoubleScreenSystemController
 	  
 		    String data [] = {String.valueOf(rowCount+1),d.stock,d.date,d.tide,d.wave,d.dssDecision,d.candleStickpattern,d.volume,d.ema,d.chartpattern,d.fibRetracement,d.divergence,
 			   			d.immediateSupportForStopLoss,d.majorResistanceForTarget,d.immediateResistanceForStopLoss,d.majorSupportForTarget,
-			   			d.closePrice,d.entryPrice,d.closePrice,d.minTargetPrice,d.maxTargetPrice,d.quantity,d.tradeInvestment,d.minReward,d.maxReward,
+			   			d.closePrice,d.entryPrice,d.stopLossPrice,d.minTargetPrice,d.maxTargetPrice,d.quantity,d.tradeInvestment,d.minReward,d.maxReward,
 			   			d.riskPerUnit,d.totalRisk,d.minProfitPotential,d.maxProfitPotential,d.minROI,d.maxROI,
 			   			d.minRR,d.maxRR,d.tradeState};
 	    

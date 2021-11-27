@@ -30,6 +30,7 @@
 	      <th scope="col">Investment</th>
 	      <th scope="col">Risk per unit</th>
 	      <th scope="col">Total Risk</th>
+	       <th scope="col">Max Profit Potential</th>
 	      <th scope="col">Trade State</th>
 	    </tr>
   </thead>
@@ -47,6 +48,7 @@
   				<td class="border">${trade.tradeInvestment}</td>
   				<td class="border">${trade.riskPerUnit}</td>
   				<td class="border">${trade.totalRisk}</td>
+  				<td>${trade.maxProfitPotential}</td>
   				<td class="border">${trade.tradeState}
   				</td>
   			</tr>

@@ -73,6 +73,7 @@
 <table class="table table-sm table-bordered" id="tradeMoneyTable">
 	<thead style="position: sticky;top: 0" class="table-primary">
 	    <tr>
+	      <th scope="col">Close Price</th>
 	      <c:if test="${trade.dssDecision eq 'BUY'}">	
 	      <th scope="col">Immediate Support for stop loss</th>
 	      <th scope="col">Major Resistance for target</th>
@@ -93,6 +94,7 @@
   </thead>
   <tbody class="searchable">	
   		<tr>
+  			<td>${trade.closePrice}</td>
   		    <c:if test="${trade.dssDecision eq 'BUY'}">	
   			<td>${trade.immediateSupportForStopLoss}</td>
   			<td>${trade.majorResistanceForTarget}</td>

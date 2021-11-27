@@ -16,7 +16,7 @@ public class AverageIndicator
 {
 	public static List<Integer> SMA_PERIODS = Arrays.asList(12,25,50,75,100);
 	
-	public static List<Integer> EMA_PERIODS = Arrays.asList(20,50);
+	public static List<Integer> EMA_PERIODS = Arrays.asList(5,12,13,26,50);
 
 	public static List<Integer> ATR_PERIODS = Arrays.asList(22);
 	
