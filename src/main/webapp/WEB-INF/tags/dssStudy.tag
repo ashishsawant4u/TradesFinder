@@ -49,7 +49,9 @@
 	  <label class="btn btn-outline-danger cursor-pointer" for="btnradioShortSell">SHORT SELL</label>
 	</div>
 </div>
-<div class="col-md-6">
+<div class="col-md-6 d-flex justify-content-center">
+<img alt="BULL HAT" src="/tradesfinder/images/bull-hat.png" class="d-none w-50 float-start" id="bullHatImg">
+<img alt="BULL HAT" src="/tradesfinder/images/bear-hat.png" class="d-none w-50 float-start" id="bearHatImg">
 </div>
 
 

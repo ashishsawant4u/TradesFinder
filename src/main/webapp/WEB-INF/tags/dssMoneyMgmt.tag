@@ -240,7 +240,7 @@
 	  </select>
     </div>
 	</div>
-  <div class="col-md-4 pt-4 ps-1 align-middle dssTradeLogBtn">
+  <div class="col-md-4 pt-4 ps-1 align-middle dssTradeLogBtn d-none">
   	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeLogBtn">Save Trade</button>
   </div>
   

@@ -115,6 +115,8 @@ function buySellToggele()
 		$(".bullishChartPatern").removeClass('d-none');
 		$(".bearishCandlestickPattern").addClass('d-none');
 		$(".bearishChartPatern").addClass('d-none');
+		$("#bullHatImg").removeClass('d-none');
+		$("#bearHatImg").addClass('d-none');
 	}
 	else if($('#btnradioShortSell').is(':checked'))
 	{
@@ -126,6 +128,8 @@ function buySellToggele()
 		$(".bullishChartPatern").addClass('d-none');
 		$(".bearishCandlestickPattern").removeClass('d-none');
 		$(".bearishChartPatern").removeClass('d-none');
+		$("#bullHatImg").addClass('d-none');
+		$("#bearHatImg").removeClass('d-none');
 	}
 }
 
@@ -185,6 +189,12 @@ function buyTransactionHandler(tradeData)
 	$("#riskPerUnit").val(riskPerUnit);   
 	
 	let quantity = 	Math.round(tradeData.maxRiskPerTrade / riskPerUnit);
+	
+	if((riskPerUnit * quantity) > tradeData.maxRiskPerTrade) //if risk exceeding max risk per trade
+	{
+		quantity = quantity - 1;
+	}
+	
 	$("#quantity").val(quantity);  
 	
 	let tradeInvestment = tradeData.entryPrice * quantity;
@@ -226,7 +236,13 @@ function shortSellTransactionHandler(tradeData)
 	$("#riskPerUnit").val(riskPerUnit);   
 	
 	let quantity = 	Math.abs(Math.round(tradeData.maxRiskPerTrade / riskPerUnit))	;
-	$("#quantity").val(quantity);  
+	
+	if((riskPerUnit * quantity) > tradeData.maxRiskPerTrade) //if risk exceeding max risk per trade
+	{
+		quantity = quantity - 1;
+	}
+	
+	$("#quantity").val(quantity);
 	
 	let tradeInvestment = Math.abs(($("#minTargetPrice").val() * quantity).toFixed(2));
 	$("#tradeInvestment").val(tradeInvestment);

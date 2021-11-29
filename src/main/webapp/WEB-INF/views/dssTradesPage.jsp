@@ -30,7 +30,7 @@
 	      <th scope="col">Investment</th>
 	      <th scope="col">Risk per unit</th>
 	      <th scope="col">Total Risk</th>
-	       <th scope="col">Max Profit Potential</th>
+	       <th scope="col">Min. Profit Potential</th>
 	      <th scope="col">Trade State</th>
 	    </tr>
   </thead>
@@ -48,9 +48,8 @@
   				<td class="border">${trade.tradeInvestment}</td>
   				<td class="border">${trade.riskPerUnit}</td>
   				<td class="border">${trade.totalRisk}</td>
-  				<td>${trade.maxProfitPotential}</td>
-  				<td class="border">${trade.tradeState}
-  				</td>
+  				<td class="border">${trade.minProfitPotential}</td>
+  				<td class="border">${trade.tradeState}</td>
   			</tr>
   		</c:forEach>
   </tbody>
@@ -65,6 +64,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title fw-bold">${trade.stock}</h5>
+         <span class="text-muted mt-1 mx-2">${trade.date}</span>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

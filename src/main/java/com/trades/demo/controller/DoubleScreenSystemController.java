@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class DoubleScreenSystemController
 {
 	Logger logger = LoggerFactory.getLogger(DoubleScreenSystemController.class);
 	
+	public static final String DSS_TRADE_LOG_CSV_FILE = "C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv";
+	
 	@RequestMapping("/plan")
 	public String getLandingPage(Model model)
 	{
@@ -44,7 +47,7 @@ public class DoubleScreenSystemController
 	
 	public static void dssTradeLogHandler(DoubleScreenTradeForm d)
 	{
-		String filePath = "C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv";
+		String filePath = DSS_TRADE_LOG_CSV_FILE;
 		try 
 		{
 		    
@@ -86,7 +89,7 @@ public class DoubleScreenSystemController
 	{
 		try 
 		{
-			String filePath = "C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv";
+			String filePath = DSS_TRADE_LOG_CSV_FILE;
 			
 			FileReader filereader = new FileReader(filePath);
 			
@@ -138,7 +141,7 @@ public class DoubleScreenSystemController
 		    	listOfTrades.add(trade);
 		    }
 		    
-		    model.addAttribute("listOfTrades", listOfTrades);
+		    model.addAttribute("listOfTrades", listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList()));
 			
 		} catch (Exception e) 
 		{
@@ -155,7 +158,7 @@ public class DoubleScreenSystemController
 		
 		try
 		{
-			File inputFile = new File("C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv");
+			File inputFile = new File(DSS_TRADE_LOG_CSV_FILE);
 
 			// Read existing file 
 			CSVReader reader = new CSVReader(new FileReader(inputFile));
