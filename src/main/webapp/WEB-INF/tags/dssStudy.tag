@@ -124,6 +124,7 @@
 	  <option value="Cup And Handle">Cup And Handle</option>
 	  <option value="Breakout Of Flag">Breakout Of Flag</option>
 	  <option value="Fake Breakdown">Fake Breakdown</option>
+	  <option value="Not Found">Not Found</option>
 	  </select>
     </div>
 </div>
@@ -139,6 +140,7 @@
 	  <option value="Rounding Top">Rounding Top</option>
 	  <option value="Breakdown Of Flag">Breakdown Of Flag</option>
 	  <option value="Fake Breakout">Fake Breakout</option>
+	  <option value="Not Found">Not Found</option>
 	  </select>
     </div>
 </div>

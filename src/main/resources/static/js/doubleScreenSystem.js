@@ -190,6 +190,8 @@ function buyTransactionHandler(tradeData)
 	
 	let quantity = 	Math.round(tradeData.maxRiskPerTrade / riskPerUnit);
 	
+	quantity = quantity - 1; // this is cusion,if we do not get exact stoploss as planned as we take SL based on closing basis
+	
 	if((riskPerUnit * quantity) > tradeData.maxRiskPerTrade) //if risk exceeding max risk per trade
 	{
 		quantity = quantity - 1;
@@ -235,7 +237,9 @@ function shortSellTransactionHandler(tradeData)
 	let riskPerUnit = Math.abs((tradeData.stopLossPrice - tradeData.entryPrice).toFixed(2));
 	$("#riskPerUnit").val(riskPerUnit);   
 	
-	let quantity = 	Math.abs(Math.round(tradeData.maxRiskPerTrade / riskPerUnit))	;
+	let quantity = 	Math.abs(Math.round(tradeData.maxRiskPerTrade / riskPerUnit));
+	
+	quantity = quantity - 1; // this is cusion,if we do not get exact stoploss as planned as we take SL based on closing basis
 	
 	if((riskPerUnit * quantity) > tradeData.maxRiskPerTrade) //if risk exceeding max risk per trade
 	{

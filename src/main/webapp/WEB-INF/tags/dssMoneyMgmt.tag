@@ -236,7 +236,8 @@
 	  <option value="Watchful">Watchful</option>
 	  <option value="Go for it">Go for it</option>
 	  <option value="Ignore">Ignore</option>
-	  <option value="Executed">Executed</option>
+	  <option value="In Progress">In Progress</option>
+	  <option value="Completed">Completed</option>
 	  </select>
     </div>
 	</div>
