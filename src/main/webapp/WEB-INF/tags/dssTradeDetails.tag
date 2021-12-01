@@ -8,6 +8,7 @@
 <table class="table table-sm table-bordered" id="tradeStudyTable">
 	<thead style="position: sticky;top: 0" class="table-primary">
 	    <tr>
+	      <th scope="col">Trade ID</th>
 	      <th scope="col">Tide</th>
 	      <th scope="col">Wave</th>
 	      <th scope="col">Candle Pattern</th>
@@ -20,6 +21,7 @@
   </thead>
   <tbody class="searchable">	
   		<tr>
+  			<td>${trade.uid}</td>
   			<td>${trade.tide}</td>
   			<td>${trade.wave}</td>
   			<td>${trade.candleStickpattern}</td>

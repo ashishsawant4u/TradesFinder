@@ -98,6 +98,11 @@
     <span class="input-group-text steps-input">14</span>
     <input type="text" class="form-control" id="stopLossPrice">
     </div>
+    <small id="stopLossHelp" class="form-text text-muted">
+	  	Immediate Support/Resistance (high/low of the candle) <br>
+	  	Median of weapon candle, when volume is huge <br>
+	  	Stochastic Crossovers or Ema Crossovers
+	 </small>
   </div>
   
   <div class="col-md-4">
