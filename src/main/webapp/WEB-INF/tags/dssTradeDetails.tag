@@ -6,7 +6,7 @@
 <%@ attribute name="trade" required="true" type="com.trades.demo.forms.DoubleScreenTradeForm" %>
 
 <table class="table table-sm table-bordered" id="tradeStudyTable">
-	<thead style="position: sticky;top: 0" class="table-primary">
+	<thead style="position: sticky;top: 0" class="${trade.dssDecision eq 'BUY' ? 'bullish nm-th' : 'bearish nm-th'}">
 	    <tr>
 	      <th scope="col">Trade ID</th>
 	      <th scope="col">Tide</th>
@@ -35,7 +35,7 @@
 </table>
 
 <table class="table table-sm table-bordered" id="tradeEntryTable">
-	<thead style="position: sticky;top: 0" class="table-primary">
+	<thead style="position: sticky;top: 0" class="${trade.dssDecision eq 'BUY' ? 'bullish nm-th' : 'bearish nm-th'}">
 	    <tr>
 	      <th scope="col">Stock</th>
 	      <th scope="col">Date</th>
@@ -71,7 +71,7 @@
 
 
 <table class="table table-sm table-bordered" id="tradeMoneyTable">
-	<thead style="position: sticky;top: 0" class="table-primary">
+	<thead style="position: sticky;top: 0" class="${trade.dssDecision eq 'BUY' ? 'bullish nm-th' : 'bearish nm-th'}">
 	    <tr>
 	      <th scope="col">Close Price</th>
 	      <c:if test="${trade.dssDecision eq 'BUY'}">	
@@ -114,6 +114,11 @@
   		</tr>
    </tbody>
 </table>
+
+<div class="col-md-3 float-start">
+<label for="trdeComment${trade.uid}" class="form-label fw-bold">Comment</label>
+<div class="input-group"><span>${trade.tradeComment}</span></div>
+</div>
 
 <div class="col-md-3 float-end">
 <label for="changeTradeState${trade.uid}" class="form-label fw-bold">Change Trade State</label>

@@ -66,7 +66,7 @@ public class DoubleScreenSystemController
 			   			d.immediateSupportForStopLoss,d.majorResistanceForTarget,d.immediateResistanceForStopLoss,d.majorSupportForTarget,
 			   			d.closePrice,d.entryPrice,d.stopLossPrice,d.minTargetPrice,d.maxTargetPrice,d.quantity,d.tradeInvestment,d.minReward,d.maxReward,
 			   			d.riskPerUnit,d.totalRisk,d.minProfitPotential,d.maxProfitPotential,d.minROI,d.maxROI,
-			   			d.minRR,d.maxRR,d.tradeState};
+			   			d.minRR,d.maxRR,d.tradeState,d.tradeComment};
 	    
 	   		File file = new File(filePath);
 	        
@@ -137,7 +137,7 @@ public class DoubleScreenSystemController
 		    	trade.setMinRR(row[31]);
 		    	trade.setMaxRR(row[32]);
 		    	trade.setTradeState(row[33]);
-		    	
+		    	trade.setTradeComment(""!=row[34] ? row[34] : "NA");
 		    	listOfTrades.add(trade);
 		    }
 		    

@@ -103,6 +103,8 @@
 	  <option value="NCO">Negative Crossover State</option>
 	  <option value="Golden Crossover PCO">Golden Crossover PCO</option>
 	  <option value="Golden Crossover NCO">Golden Crossover NCO</option>
+	  <option value="Partial PCO">Partial PCO</option>
+	  <option value="Partial NCO">Partial NCO</option>
 	  <option value="Not Applicable">Not Applicable</option>
 	  </select>
     </div>
@@ -166,6 +168,13 @@
 	 <small id="divergenceHelp" class="form-text text-muted">
 	  	Specially for top and bottom fishing
 	  </small>
+</div>
+
+<div class="col-md-12">
+	<label for="tradeComment" class="form-label">Comment</label>
+	<div class="input-group">
+	<textarea class="form-control" rows="3" id="tradeComment"></textarea>
+	</div>
 </div>
 
 </form>

@@ -51,3 +51,7 @@ body{
 	color: #dc3545!important;
 	font-weight: bold;
 }
+.nm-th th
+{
+	font-weight: normal!important;
+}
