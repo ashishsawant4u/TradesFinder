@@ -130,6 +130,8 @@
   <option value="Ignore">Ignore</option>
   <option value="In Progress">In Progress</option>
   <option value="Completed">Completed</option>
+   <option value="Target Exit">Target Exit</option>
+    <option value="SL Exit">SL Exit</option>
   </select>
 </div>
 </div>

@@ -20,7 +20,7 @@
 	<label for="tide" class="form-label">Tide</label>
 	<div class="input-group">
     <span class="input-group-text steps-input">1</span>
-	<input type="text" class="form-control" id="tideText" >
+	<input type="text" class="form-control" id="tideText">
 	</div>
 	  <small id="tideHelp" class="form-text text-muted">
 	  	MACD Uptick or Flat after down (ie Trend is Up) BUY SIGNAL <br>

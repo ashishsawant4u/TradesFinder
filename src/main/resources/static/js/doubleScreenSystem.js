@@ -76,6 +76,18 @@ $('.modal').on('hide.bs.modal', function () {
     
 });
 
+$(".only-num").on("keyup change", function(e) {
+	
+	
+	let validNumber = new RegExp(/^\d*\.?\d*$/);
+	
+	 if (!validNumber.test(this.value)) 
+	 {
+	 	this.value='';
+	 }
+	
+ });
+
 
 });
 
