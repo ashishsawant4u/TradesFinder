@@ -46,14 +46,14 @@
 
 <div class="col-md-4">
 	<label for="adxUngli" class="form-label">ADX/Ungli</label>
-	<input type="text" class="form-control" id="adxUngli" >
+	<input type="text" class="form-control" id="adxUngli" value="ADX/Ungli ">
 	 <small id="adxUngliHelp" class="form-text text-muted">
 	  	Should be above 12-15 and less tha 50-55	  
 	 </small>
 </div>
 <div class="col-md-4">
 	<label for="rsiLevelMomentum" class="form-label">RSI</label>
-	<input type="text" class="form-control" id="rsiLevelMomentum">
+	<input type="text" class="form-control" id="rsiLevelMomentum" value="RSI ">
 	 <small id="rsiLevelMomentumHelp" class="form-text text-muted">
 	  	RSI > 60 (for bulls) and RSI < 40 (for bears)
 	  </small>
@@ -61,7 +61,7 @@
 
 <div class="col-md-4">
 	<label for="shakoutMomentum" class="form-label">Shakeout</label>
-	<input type="text" class="form-control" id="shakoutMomentum">
+	<input type="text" class="form-control" id="shakoutMomentum" value="Shakeout">
 </div>
 </div>
 </div>

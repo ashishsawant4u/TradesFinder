@@ -41,6 +41,8 @@ public class DoubleScreenTradeForm {
 	public String tradeState ;
 	public String tradeComment ;
 	public String tradeSetupDetails ;
+	public String tradingStyle ;
+	public String papaTradeSetup ;
 	
 	public String getCapitalAmount() {
 		return capitalAmount;
@@ -276,6 +278,18 @@ public class DoubleScreenTradeForm {
 	public void setTradeSetupDetails(String tradeSetupDetails) {
 		this.tradeSetupDetails = tradeSetupDetails;
 	}
+	public String getTradingStyle() {
+		return tradingStyle;
+	}
+	public void setTradingStyle(String tradingStyle) {
+		this.tradingStyle = tradingStyle;
+	}
+	public String getPapaTradeSetup() {
+		return papaTradeSetup;
+	}
+	public void setPapaTradeSetup(String papaTradeSetup) {
+		this.papaTradeSetup = papaTradeSetup;
+	}
 	@Override
 	public String toString() {
 		return "DoubleScreenTradeForm [uid=" + uid + ", capitalAmount=" + capitalAmount + ", percentageRiskPerTrade="
@@ -292,7 +306,9 @@ public class DoubleScreenTradeForm {
 				+ dssDecision + ", candleStickpattern=" + candleStickpattern + ", chartpattern=" + chartpattern
 				+ ", volume=" + volume + ", ema=" + ema + ", fibRetracement=" + fibRetracement + ", divergence="
 				+ divergence + ", tradeState=" + tradeState + ", tradeComment=" + tradeComment + ", tradeSetupDetails="
-				+ tradeSetupDetails + "]";
+				+ tradeSetupDetails + ", tradingStyle=" + tradingStyle + ", papaTradeSetup=" + papaTradeSetup + "]";
 	}
+	
+	
 	
 }

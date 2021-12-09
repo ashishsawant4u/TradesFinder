@@ -417,8 +417,10 @@ function dssTradeLog()
 	
 	let tradeSetupDetails = tradingSetupDetails();
 		
+	let tradingStyle = $("#tradingStyle").val();  	
+	let papaTradeSetup = $("#papaTradeSetup").val();  	
 	
-	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment,tradeSetupDetails:tradeSetupDetails};
+	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment,tradeSetupDetails:tradeSetupDetails,tradingStyle:tradingStyle,papaTradeSetup:papaTradeSetup};
 	
 	console.log('tradeEnrty '+tradeEnrty);
 	
@@ -457,30 +459,30 @@ function tradingSetupDetails()
 	{
 		if($('#btnradioBuy').is(':checked'))
 		{
-			trdingSetup = $('#noImmediateResistanceChekbox').val();
-			trdingSetup = trdingSetup + $('#bbChallangedUpside').val();
+			trdingSetup = $('#noImmediateResistanceChekbox').val() + "|";
+			trdingSetup = trdingSetup + $('#bbChallangedUpside').val() + "|";
 		}
 		else
 		{
-			trdingSetup = $('#noImmediateSupportChekbox').val();
-			trdingSetup = trdingSetup + $('#bbChallangedDownside').val();
+			trdingSetup = $('#noImmediateSupportChekbox').val() + "|";
+			trdingSetup = trdingSetup + $('#bbChallangedDownside').val() + "|";
 		}
-		trdingSetup = trdingSetup + $('#adxUngli').val();
-		trdingSetup = trdingSetup + $('#rsiLevelMomentum').val();
-		trdingSetup = trdingSetup + $('#shakoutMomentum').val();
+		trdingSetup = trdingSetup + $('#adxUngli').val() + "|";
+		trdingSetup = trdingSetup + $('#rsiLevelMomentum').val() + "|";
+		trdingSetup = trdingSetup + $('#shakoutMomentum').val() + "|";
 	}
 	else if(tradingStyle === 'Swing Trading')
 	{
 		if($('#btnradioBuy').is(':checked'))
 		{
-			trdingSetup = $('#bkpChekbox').val();
+			trdingSetup = $('#bkpChekbox').val() + "|";
 		}
 		else
 		{
-			trdingSetup = $('#bktChekbox').val();
+			trdingSetup = $('#bktChekbox').val() + "|";
 		}
-		trdingSetup = trdingSetup + $('#DIChekbox').val();
-		trdingSetup = trdingSetup + $('#rsiLevelSwing').val();
+		trdingSetup = trdingSetup + $('#DIChekbox').val() + "|";
+		trdingSetup = trdingSetup + $('#rsiLevelSwing').val() + "|";
 	}
 	
 	return trdingSetup;	

@@ -188,7 +188,7 @@
 	<label for="papaTradeSetup" class="form-label">PAPA Trade Setup</label>
 	<div class="input-group">
     <span class="input-group-text steps-input">11</span>
-      <select class="form-select" aria-label="Select PAPA Trade Setup" id=""papaTradeSetup"">
+      <select class="form-select" aria-label="Select PAPA Trade Setup" id="papaTradeSetup">
 	  <option selected>Select PAPA Trade Setup</option>
 	  <option value="Double Top">Double Top</option>
 	  <option value="Double Bottom">Double Bottom</option>

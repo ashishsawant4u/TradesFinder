@@ -17,6 +17,7 @@
 	      <th scope="col">Chart Pattern</th>
 	      <th scope="col">Fib. Retracement</th>
 	      <th scope="col">Divergence</th>
+	      <th scope="col">PAPA Trade Setup</th>
 	    </tr>
   </thead>
   <tbody class="searchable">	
@@ -30,6 +31,7 @@
   			<td>${trade.chartpattern}</td>
   			<td>${trade.fibRetracement}</td>
   			<td>${trade.divergence}</td>
+  			<td>${trade.papaTradeSetup}</td>
   		</tr>
    </tbody>
 </table>
@@ -114,6 +116,15 @@
   		</tr>
    </tbody>
 </table>
+
+<div class="col-md-3 float-start">
+<label for="tradeSetup${trade.uid}" class="form-label fw-bold">Trade Setup</label>
+<div class="input-group">
+	<span> <b>${trade.tradingStyle}</b> <br> 
+			${fn:replace(trade.tradeSetupDetails, '|', '<br>')}
+	</span>
+</div>
+</div>
 
 <div class="col-md-3 float-start">
 <label for="trdeComment${trade.uid}" class="form-label fw-bold">Comment</label>

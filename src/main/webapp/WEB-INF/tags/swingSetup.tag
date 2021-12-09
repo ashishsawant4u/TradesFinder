@@ -38,7 +38,7 @@
 
 <div class="col-md-4">
 	<label for="rsiLevelSwing" class="form-label">RSI</label>
-	<input type="text" class="form-control" id="rsiLevelSwing">
+	<input type="text" class="form-control" id="rsiLevelSwing" value="RSI ">
 	 <small id="rsiLevelMomentumHelp" class="form-text text-muted">
 	  	RSI > 40 (for bulls) and RSI < 60 (for bears)
 	  </small>
