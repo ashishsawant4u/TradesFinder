@@ -29,7 +29,7 @@
 
 <div class="col-md-4">
 <div class="form-check">
-	  <input class="form-check-input" type="checkbox" value="+DI and -DI Contracting or in the favour of the trade" id="DIChekbox">
+	  <input class="form-check-input" type="checkbox" value="+DI and -DI in the favour of the trade" id="DIChekbox">
 	  <label class="form-check-label" for="DIChekbox">
 	    +DI and -DI Contracting or in the favour of the trade
 	  </label>
@@ -38,7 +38,7 @@
 
 <div class="col-md-4">
 	<label for="rsiLevelSwing" class="form-label">RSI</label>
-	<input type="text" class="form-control" id="rsiLevelSwing" value="RSI ">
+	<input type="text" class="form-control" id="rsiLevelSwing">
 	 <small id="rsiLevelMomentumHelp" class="form-text text-muted">
 	  	RSI > 40 (for bulls) and RSI < 60 (for bears)
 	  </small>

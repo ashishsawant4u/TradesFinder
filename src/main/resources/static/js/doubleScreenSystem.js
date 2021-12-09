@@ -467,9 +467,9 @@ function tradingSetupDetails()
 			trdingSetup = $('#noImmediateSupportChekbox').val() + "|";
 			trdingSetup = trdingSetup + $('#bbChallangedDownside').val() + "|";
 		}
-		trdingSetup = trdingSetup + $('#adxUngli').val() + "|";
-		trdingSetup = trdingSetup + $('#rsiLevelMomentum').val() + "|";
-		trdingSetup = trdingSetup + $('#shakoutMomentum').val() + "|";
+		trdingSetup = trdingSetup + 'ADC Ungli ' + $('#adxUngli').val() + "|";
+		trdingSetup = trdingSetup + 'RSI level '+ $('#rsiLevelMomentum').val() + "|";
+		trdingSetup = trdingSetup + $('#shakoutMomentum').val() + " Shakeout |";
 	}
 	else if(tradingStyle === 'Swing Trading')
 	{
@@ -482,7 +482,7 @@ function tradingSetupDetails()
 			trdingSetup = $('#bktChekbox').val() + "|";
 		}
 		trdingSetup = trdingSetup + $('#DIChekbox').val() + "|";
-		trdingSetup = trdingSetup + $('#rsiLevelSwing').val() + "|";
+		trdingSetup = trdingSetup + 'RSI level ' + $('#rsiLevelSwing').val() + "|";
 	}
 	
 	return trdingSetup;	
