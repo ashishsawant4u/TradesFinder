@@ -41,6 +41,10 @@ $('#dssTradeSummaryTable').DataTable({
 				"ordering": false,
     	});
 
+
+
+
+
 $('[id^="dssTradeDetailModalSaveBtn_"]').click(function() {
    let tradeId = $(this).attr('data-uid');
    let selectedTradeState = $('#changeTradeState_'+tradeId).val();
@@ -130,6 +134,7 @@ $('#tradingStyle').change(function () {
 	}
 });
 
+getIndices();
 
 });
 
@@ -490,8 +495,81 @@ function tradingSetupDetails()
 
 
 
+function getIndices()
+{
+	
+	$.ajax({
+	  type: "GET",
+	  url: indicesUrl,
+	  cache: false,
+	  success: function(data){
+		    console.log('done');
+	
+			const sizes = [];
+			for (let i = 0; i < data.length; i++) 
+			{
+				sizes.push(data[i].length);
+			}	
+			
+			const maxSize = Math.max.apply(Math, sizes);
+		
+			console.log("maxSize "+maxSize);
+			
+			for (let r = 0; r < maxSize; r++) 
+			{
+			  let row = '';
+			  if(r===0)
+			  {
+				row = $("<tr class='fw-bold'>");
+			  }
+			  else
+			  {		
+				row = $('<tr>');
+			  }
+	
+			
+			  for (let i = 0; i < data.length; i++) 
+		      {
+				let temp = data[i];
+				row.append($('<td>').html(temp[r]));
+			  }
+			  
+			  $('#table-content').append(row);
+			}
 
+		}
+	});
+}
 
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'export_index' +  '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 
 

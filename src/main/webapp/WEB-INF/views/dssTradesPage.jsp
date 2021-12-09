@@ -9,11 +9,7 @@
 
 <div class="container-fluid">
 
-<nav class="navbar navbar-dark bg-primary mb-3">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/tradesfinder/doublescreen/plan">Double Screen Trading System</a>
-  </div>
-</nav>
+<tags:navigation/>
 
 
 <table class="table table-hover border" id="dssTradeSummaryTable">
