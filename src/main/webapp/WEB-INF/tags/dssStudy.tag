@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>   
 
 <form class="row g-3">
 
@@ -169,6 +170,51 @@
 	  	Specially for top and bottom fishing
 	  </small>
 </div>
+
+<div class="col-md-6 ">
+	<label for="tradingStyle" class="form-label">Trading Style</label>
+	<div class="input-group">
+    <span class="input-group-text steps-input">10</span>
+      <select class="form-select" aria-label="Select Trading Style" id="tradingStyle">
+	  <option selected>Select Trading Style</option>
+	  <option value="Momentum Trading">Momentum Trading</option>
+	  <option value="Swing Trading">Swing Trading</option>
+	  </select>
+    </div>
+</div>
+
+
+<div class="col-md-6 ">
+	<label for="papaTradeSetup" class="form-label">PAPA Trade Setup</label>
+	<div class="input-group">
+    <span class="input-group-text steps-input">11</span>
+      <select class="form-select" aria-label="Select PAPA Trade Setup" id=""papaTradeSetup"">
+	  <option selected>Select PAPA Trade Setup</option>
+	  <option value="Double Top">Double Top</option>
+	  <option value="Double Bottom">Double Bottom</option>
+	  <option value="Three White Soldiers">Three White Soldiers</option>
+	  <option value="Three Black Crows">Three Black Crows</option>
+	  <option value="Bulls Counter Attack">Bulls Counter Attack</option>
+	  <option value="Bears Counter Attack">Bears Counter Attack</option>
+	  <option value="Sandwich Pattern">Sandwich Pattern</option>
+	  <option value="Rounding Bottom">Rounding Bottom</option>
+	  <option value="Rounding Top">Rounding Top</option>
+	  <option value="Genuine Breakout">Genuine Breakout</option>
+	  <option value="Genuine Breakdown">Genuine Breakdown</option>
+	  <option value="Fake Breakout">Fake Breakout</option>
+	  <option value="Fake Breakdown">Fake Breakdown</option>
+	  <option value="Gap Up">Gap Up</option>
+	  <option value="Gap Down">Gap Down</option>
+	  <option value="Not Found">Not Found</option>
+	  </select>
+    </div>
+</div>
+
+
+<tags:momentumSetup/>
+
+<tags:swingSetup/>
+
 
 <div class="col-md-12">
 	<label for="tradeComment" class="form-label">Comment</label>

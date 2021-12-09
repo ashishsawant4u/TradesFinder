@@ -66,7 +66,7 @@ public class DoubleScreenSystemController
 			   			d.immediateSupportForStopLoss,d.majorResistanceForTarget,d.immediateResistanceForStopLoss,d.majorSupportForTarget,
 			   			d.closePrice,d.entryPrice,d.stopLossPrice,d.minTargetPrice,d.maxTargetPrice,d.quantity,d.tradeInvestment,d.minReward,d.maxReward,
 			   			d.riskPerUnit,d.totalRisk,d.minProfitPotential,d.maxProfitPotential,d.minROI,d.maxROI,
-			   			d.minRR,d.maxRR,d.tradeState,d.tradeComment};
+			   			d.minRR,d.maxRR,d.tradeState,d.tradeComment,d.tradeSetupDetails};
 	    
 	   		File file = new File(filePath);
 	        

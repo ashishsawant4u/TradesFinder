@@ -89,6 +89,48 @@ $(".only-num").on("keyup change", function(e) {
  });
 
 
+$('#tradingStyle').change(function () {
+    let tradingStyle = $("#tradingStyle").val();  
+
+	if(tradingStyle === 'Momentum Trading')
+	{
+		$('#momentumSetupComponent').removeClass('d-none');
+		$('#swingSetupComponent').addClass('d-none');
+		
+		if($('#btnradioBuy').is(':checked'))
+		{
+			$('#noImmediateSupportChekboxDiv').addClass('d-none');
+			$('#noImmediateResistanceChekboxDiv').removeClass('d-none');
+			$('#bbChallangedDownsideDiv').addClass('d-none');
+			$('#bbChallangedUpsideDiv').removeClass('d-none');
+		}
+		else
+		{
+			$('#noImmediateSupportChekboxDiv').removeClass('d-none');
+			$('#noImmediateResistanceChekboxDiv').addClass('d-none');
+			$('#bbChallangedDownsideDiv').removeClass('d-none');
+			$('#bbChallangedUpsideDiv').addClass('d-none');
+		}
+	}
+	else if(tradingStyle === 'Swing Trading')
+	{
+		$('#momentumSetupComponent').addClass('d-none');
+		$('#swingSetupComponent').removeClass('d-none');
+		
+		if($('#btnradioBuy').is(':checked'))
+		{
+			$('#bktChekboxDiv').addClass('d-none');
+			$('#bkpChekboxDiv').removeClass('d-none');
+		}
+		else
+		{
+			$('#bktChekboxDiv').removeClass('d-none');
+			$('#bkpChekboxDiv').addClass('d-none');
+		}
+	}
+});
+
+
 });
 
 function defaultInit()
@@ -129,6 +171,12 @@ function buySellToggele()
 		$(".bearishChartPatern").addClass('d-none');
 		$("#bullHatImg").removeClass('d-none');
 		$("#bearHatImg").addClass('d-none');
+		$('#noImmediateSupportChekboxDiv').addClass('d-none');
+		$('#noImmediateResistanceChekboxDiv').removeClass('d-none');
+		$('#bktChekboxDiv').addClass('d-none');
+		$('#bkpChekboxDiv').removeClass('d-none');
+		$('#bbChallangedDownsideDiv').addClass('d-none');
+		$('#bbChallangedUpsideDiv').removeClass('d-none');
 	}
 	else if($('#btnradioShortSell').is(':checked'))
 	{
@@ -142,6 +190,10 @@ function buySellToggele()
 		$(".bearishChartPatern").removeClass('d-none');
 		$("#bullHatImg").addClass('d-none');
 		$("#bearHatImg").removeClass('d-none');
+		$('#noImmediateSupportChekboxDiv').removeClass('d-none');
+		$('#noImmediateResistanceChekboxDiv').addClass('d-none');
+		$('#bbChallangedDownsideDiv').removeClass('d-none');
+		$('#bbChallangedUpsideDiv').addClass('d-none');
 	}
 }
 
@@ -363,7 +415,10 @@ function dssTradeLog()
 	let tradeState = $("#tradeState").val();
 	let tradeComment =  $("#tradeComment").val();
 	
-	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment};
+	let tradeSetupDetails = tradingSetupDetails();
+		
+	
+	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment,tradeSetupDetails:tradeSetupDetails};
 	
 	console.log('tradeEnrty '+tradeEnrty);
 	
@@ -391,7 +446,45 @@ function dssTradeLog()
 
 }
 
+function tradingSetupDetails()
+{
+	let tradingStyle = $("#tradingStyle").val();  
+	
+	let trdingSetup = '';
+	
 
+	if(tradingStyle === 'Momentum Trading')
+	{
+		if($('#btnradioBuy').is(':checked'))
+		{
+			trdingSetup = $('#noImmediateResistanceChekbox').val();
+			trdingSetup = trdingSetup + $('#bbChallangedUpside').val();
+		}
+		else
+		{
+			trdingSetup = $('#noImmediateSupportChekbox').val();
+			trdingSetup = trdingSetup + $('#bbChallangedDownside').val();
+		}
+		trdingSetup = trdingSetup + $('#adxUngli').val();
+		trdingSetup = trdingSetup + $('#rsiLevelMomentum').val();
+		trdingSetup = trdingSetup + $('#shakoutMomentum').val();
+	}
+	else if(tradingStyle === 'Swing Trading')
+	{
+		if($('#btnradioBuy').is(':checked'))
+		{
+			trdingSetup = $('#bkpChekbox').val();
+		}
+		else
+		{
+			trdingSetup = $('#bktChekbox').val();
+		}
+		trdingSetup = trdingSetup + $('#DIChekbox').val();
+		trdingSetup = trdingSetup + $('#rsiLevelSwing').val();
+	}
+	
+	return trdingSetup;	
+}
 
 
 

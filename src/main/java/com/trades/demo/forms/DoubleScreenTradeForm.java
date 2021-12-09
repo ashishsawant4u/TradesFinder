@@ -40,6 +40,7 @@ public class DoubleScreenTradeForm {
 	public String divergence ;
 	public String tradeState ;
 	public String tradeComment ;
+	public String tradeSetupDetails ;
 	
 	public String getCapitalAmount() {
 		return capitalAmount;
@@ -269,6 +270,12 @@ public class DoubleScreenTradeForm {
 	public void setTradeComment(String tradeComment) {
 		this.tradeComment = tradeComment;
 	}
+	public String getTradeSetupDetails() {
+		return tradeSetupDetails;
+	}
+	public void setTradeSetupDetails(String tradeSetupDetails) {
+		this.tradeSetupDetails = tradeSetupDetails;
+	}
 	@Override
 	public String toString() {
 		return "DoubleScreenTradeForm [uid=" + uid + ", capitalAmount=" + capitalAmount + ", percentageRiskPerTrade="
@@ -284,7 +291,8 @@ public class DoubleScreenTradeForm {
 				+ maxRR + ", stock=" + stock + ", date=" + date + ", tide=" + tide + ", wave=" + wave + ", dssDecision="
 				+ dssDecision + ", candleStickpattern=" + candleStickpattern + ", chartpattern=" + chartpattern
 				+ ", volume=" + volume + ", ema=" + ema + ", fibRetracement=" + fibRetracement + ", divergence="
-				+ divergence + ", tradeState=" + tradeState + ", tradeComment=" + tradeComment + "]";
+				+ divergence + ", tradeState=" + tradeState + ", tradeComment=" + tradeComment + ", tradeSetupDetails="
+				+ tradeSetupDetails + "]";
 	}
 	
 }

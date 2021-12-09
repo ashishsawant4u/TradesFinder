@@ -28,7 +28,7 @@
   <div class="col-md-6 bulls-sections">
     <label for="immediateSupportForStopLoss" class="form-label">Immediate Support for stop loss</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">10</span>
+  	<span class="input-group-text steps-input">13</span>
     <input type="text" class="form-control only-num" id="immediateSupportForStopLoss">
     </div>
      <small id="bslHelp" class="form-text text-muted">
@@ -41,7 +41,7 @@
   <div class="col-md-6 bulls-sections">
     <label for="majorResistanceForTarget" class="form-label">Major Resistance for target</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">11</span>
+  	<span class="input-group-text steps-input">13</span>
     <input type="text" class="form-control only-num" id="majorResistanceForTarget">
     </div>
     <small id="bTarHelp" class="form-text text-muted">
@@ -55,7 +55,7 @@
   <div class="col-md-6 bears-sections">
     <label for="immediateResistanceForStopLoss" class="form-label">Immediate Resistance for stop loss</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">10</span>
+  	<span class="input-group-text steps-input">13</span>
     <input type="text" class="form-control only-num" id="immediateResistanceForStopLoss">
   	</div>
   	<small id="berSlHelp" class="form-text text-muted">
@@ -68,7 +68,7 @@
   <div class="col-md-6 bears-sections">
     <label for="majorSupportForTarget" class="form-label">Major Support for target</label>
     <div class="input-group">
-  	<span class="input-group-text steps-input">11</span>
+  	<span class="input-group-text steps-input">14</span>
     <input type="text" class="form-control only-num" id="majorSupportForTarget">
   	</div>
   	<small id="berTarHelp" class="form-text text-muted">
@@ -81,21 +81,21 @@
   <div class="col-md-4">
     <label for="closePrice" class="form-label">Close Price</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">12</span>
+    <span class="input-group-text steps-input">15</span>
     <input type="text" class="form-control only-num" id="closePrice">
     </div>
   </div>
   <div class="col-md-4">
     <label for="entryPrice" class="form-label">Entry Price</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">13</span>
+    <span class="input-group-text steps-input">16</span>
     <input type="text" class="form-control only-num" id="entryPrice">
     </div>
   </div>
   <div class="col-md-4">
     <label for="stopLossPrice" class="form-label">Stop Loss</label>
      <div class="input-group">
-    <span class="input-group-text steps-input">14</span>
+    <span class="input-group-text steps-input">17</span>
     <input type="text" class="form-control only-num" id="stopLossPrice">
     </div>
     <small id="stopLossHelp" class="form-text text-muted">
@@ -108,14 +108,14 @@
   <div class="col-md-4">
     <label for="minTargetPrice" class="form-label">Min. Target Price</label>
     <div class="input-group">
-    <span class="input-group-text steps-input">15</span>
+    <span class="input-group-text steps-input">18</span>
     <input type="text" class="form-control only-num" id="minTargetPrice">
     </div>
   </div>
   <div class="col-md-4">
     <label for="maxTargetPrice" class="form-label">Max. Target Price</label>
     <div class="input-group">
-    <span class="input-group-text steps-input">16</span>
+    <span class="input-group-text steps-input">19</span>
     <input type="text" class="form-control only-num" id="maxTargetPrice">
  	</div>
   </div>
@@ -235,7 +235,7 @@
   <div class="col-md-6">
 	<label for="tradeState" class="form-label">Trade State</label>
 	<div class="input-group">
-    <span class="input-group-text steps-input">17</span>
+    <span class="input-group-text steps-input">20</span>
     <select class="form-select" aria-label="Select Trade State" id="tradeState">
 	  <option selected>Select Trade State</option>
 	  <option value="Watchful">Watchful</option>
