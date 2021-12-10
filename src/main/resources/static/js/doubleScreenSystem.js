@@ -543,6 +543,9 @@ function getIndices()
 			  }
 			  
 			  $('#table-content').append(row);
+			  $('#sectorIndexDownloadBtn').html('Download as CSV');
+			  $('#sectorIndexDownloadBtn.span').addClass('d-none');
+	
 			}
 
 		}
@@ -568,7 +571,7 @@ function download_table_as_csv(table_id, separator = ',') {
     }
     var csv_string = csv.join('\n');
     // Download it
-    var filename = 'export_index' +  '_' + new Date().toLocaleDateString() + '.csv';
+    var filename = 'sector_index' +  '_' + new Date().toLocaleDateString() + '.csv';
     var link = document.createElement('a');
     link.style.display = 'none';
     link.setAttribute('target', '_blank');

@@ -19,8 +19,6 @@ public class TabelaScannerController
 	@RequestMapping("/nifty-indices")
 	public String downloadIndices(Model model)
 	{	
-		//StockIndicesHelper.downloadAllIndices();
-		
 		return "sectorSymbols";
 	}
 	
@@ -29,7 +27,7 @@ public class TabelaScannerController
 	@ResponseBody
 	public List<List<String>> indices()
 	{	
-		//StockIndicesHelper.downloadAllIndices();
+		StockIndicesHelper.downloadAllIndices();
 		
 		List<List<String>> columns = new ArrayList<>();
 		

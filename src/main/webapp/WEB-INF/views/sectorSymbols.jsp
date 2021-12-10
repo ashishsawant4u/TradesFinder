@@ -21,7 +21,10 @@
 
 <tags:navigation/>
 
-<a href="#" class="btn btn-primary mb-2" onclick="download_table_as_csv('indicesTable');">Download as CSV</a>
+<a href="#" class="btn btn-primary mb-2" onclick="download_table_as_csv('indicesTable');" id="sectorIndexDownloadBtn">
+<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+Loading sector index
+</a>
 
 <table class="table table-hover table-bordered table-sm" id="indicesTable">
      <tbody id="table-content">

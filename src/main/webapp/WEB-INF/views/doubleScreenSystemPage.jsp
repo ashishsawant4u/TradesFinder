@@ -9,10 +9,7 @@
 <div class="container-fluid">
 
 <tags:navigation/>
-
-
-
-
+    
 <div class="row container-fluid">
 <div class="col-xs-6 col-lg-6 ">
 	<tags:dssStudy/>

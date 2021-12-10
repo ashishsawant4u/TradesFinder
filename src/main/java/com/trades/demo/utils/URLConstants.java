@@ -41,4 +41,6 @@ public class URLConstants
 
 	
 	public static String INDICES_BASE_DIR_LOC = "C:\\Users\\ashis\\Pictures\\nse_bhavcopy\\indices\\";
+	
+	public static final String DSS_TRADE_LOG_CSV_FILE = "C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv";
 }

@@ -20,6 +20,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.trades.demo.forms.DoubleScreenTradeForm;
+import com.trades.demo.utils.URLConstants;
 
 @Controller
 @RequestMapping("/doublescreen")
@@ -27,7 +28,6 @@ public class DoubleScreenSystemController
 {
 	Logger logger = LoggerFactory.getLogger(DoubleScreenSystemController.class);
 	
-	public static final String DSS_TRADE_LOG_CSV_FILE = "C:\\Users\\ashis\\Documents\\DSS-TradeLogs.csv";
 	
 	@RequestMapping("/plan")
 	public String getLandingPage(Model model)
@@ -47,7 +47,7 @@ public class DoubleScreenSystemController
 	
 	public static void dssTradeLogHandler(DoubleScreenTradeForm d)
 	{
-		String filePath = DSS_TRADE_LOG_CSV_FILE;
+		String filePath = URLConstants.DSS_TRADE_LOG_CSV_FILE;
 		try 
 		{
 		    
@@ -89,7 +89,7 @@ public class DoubleScreenSystemController
 	{
 		try 
 		{
-			String filePath = DSS_TRADE_LOG_CSV_FILE;
+			String filePath = URLConstants.DSS_TRADE_LOG_CSV_FILE;
 			
 			FileReader filereader = new FileReader(filePath);
 			
@@ -161,7 +161,7 @@ public class DoubleScreenSystemController
 		
 		try
 		{
-			File inputFile = new File(DSS_TRADE_LOG_CSV_FILE);
+			File inputFile = new File(URLConstants.DSS_TRADE_LOG_CSV_FILE);
 
 			// Read existing file 
 			CSVReader reader = new CSVReader(new FileReader(inputFile));
