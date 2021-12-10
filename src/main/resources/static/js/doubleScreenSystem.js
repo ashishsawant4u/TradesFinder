@@ -531,7 +531,15 @@ function getIndices()
 			  for (let i = 0; i < data.length; i++) 
 		      {
 				let temp = data[i];
-				row.append($('<td>').html(temp[r]));
+				if(typeof temp[r] !== "undefined")
+				{
+					row.append($('<td>').html(temp[r].replace('Nifty_','').replace('_Index','')));
+				}
+				else
+				{
+					row.append($('<td>').html(temp[r]));
+				}
+				
 			  }
 			  
 			  $('#table-content').append(row);

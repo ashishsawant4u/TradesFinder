@@ -23,7 +23,7 @@
 
 <a href="#" class="btn btn-primary mb-2" onclick="download_table_as_csv('indicesTable');">Download as CSV</a>
 
-<table class="table table-hover table-bordered" id="indicesTable">
+<table class="table table-hover table-bordered table-sm" id="indicesTable">
      <tbody id="table-content">
      </tbody>
 </table>

@@ -41,9 +41,9 @@ public class IndicesConstants
 	public static String Nifty_PSU_Bank_Index = "Nifty_PSU_Bank_Index";
 	public static String Nifty_Realty_Index = "Nifty_Realty_Index";
 	
-	public static List<String> All_SECTOR_INDICES = Arrays.asList(Nifty_Auto_Index,Nifty_Bank_Index,Nifty_Consumer_Durables_Index,Nifty_Financial_Services_Index,
-			Nifty_Financial_Services_25_50_Index,Nifty_FMCG_Index,Nifty_Healthcare_Index,Nifty_IT_Index,Nifty_Media_Index,Nifty_Metal_Index,Nifty_Oil_And_Gas_Index,
-			Nifty_Pharma_Index,Nifty_Private_Bank_Index,Nifty_PSU_Bank_Index,Nifty_Realty_Index);
+	public static List<String> All_SECTOR_INDICES = Arrays.asList(Nifty_Auto_Index,Nifty_Consumer_Durables_Index,Nifty_Financial_Services_Index,
+			Nifty_FMCG_Index,Nifty_IT_Index,Nifty_Media_Index,Nifty_Metal_Index,Nifty_Oil_And_Gas_Index,
+			Nifty_Pharma_Index,Nifty_PSU_Bank_Index,Nifty_Realty_Index);
 
 	
 }
