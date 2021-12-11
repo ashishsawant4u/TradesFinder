@@ -15,6 +15,7 @@
 <table class="table table-hover border" id="dssTradeSummaryTable">
 	<thead style="position: sticky;top: 0" class="table-dark">
 	    <tr>
+	      <th scope="col">ID</th>
 	      <th scope="col">Stock</th>
 	      <th scope="col">Date</th>
 	      <th scope="col">DSS Decision</th>
@@ -24,7 +25,6 @@
 	      <th scope="col">Target 2 Price</th>
 	      <th scope="col">Quantity</th>
 	      <th scope="col">Investment</th>
-	      <th scope="col">Risk per unit</th>
 	      <th scope="col">Total Risk</th>
 	       <th scope="col">Min. Profit Potential</th>
 	      <th scope="col">Trade State</th>
@@ -33,6 +33,7 @@
   <tbody class="searchable">
   		<c:forEach var="trade" items="${listOfTrades}">
   			<tr class="cursor-pointer" id="tradeSummaryRow_${trade.uid}" data-bs-toggle="modal" data-bs-target="#dssTradeDetailModal_${trade.uid}">
+  				<td class="border">T_${trade.uid}</td>
   				<td class="border">${trade.stock}</td>
   				<td class="border">${trade.date}</td>
   				<td class="border ${trade.dssDecision eq 'BUY' ? 'bullish-text' : 'bearish-text'}">${trade.dssDecision}</td>
@@ -42,7 +43,6 @@
   				<td class="border">${trade.maxTargetPrice}</td>
   				<td class="border">${trade.quantity}</td>
   				<td class="border">${trade.tradeInvestment}</td>
-  				<td class="border">${trade.riskPerUnit}</td>
   				<td class="border">${trade.totalRisk}</td>
   				<td class="border">${trade.minProfitPotential}</td>
   				<td class="border">${trade.tradeState}</td>

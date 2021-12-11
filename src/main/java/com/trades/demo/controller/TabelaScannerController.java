@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trades.demo.utils.IndicesConstants;
@@ -25,9 +26,12 @@ public class TabelaScannerController
 	
 	@RequestMapping("/indices")
 	@ResponseBody
-	public List<List<String>> indices()
+	public List<List<String>> indices(@RequestParam(name="refresh",defaultValue = "false")String refresh)
 	{	
-		StockIndicesHelper.downloadAllIndices();
+		if(null!=refresh && refresh == "true")
+		{
+			StockIndicesHelper.downloadAllIndices();
+		}
 		
 		List<List<String>> columns = new ArrayList<>();
 		

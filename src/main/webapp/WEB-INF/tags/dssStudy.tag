@@ -18,12 +18,23 @@
      </a>
 	
  </div>
- <div class="col-md-6">
-    <label for="studyDate" class="form-label">Date</label>
-    <div class="input-group">
+ <div class="col-md-6 border">
+    <!-- <label for="studyDate" class="form-label">Date</label> -->
+    <div class="input-group pt-2">
     <span class="input-group-text steps-input"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week-fill" viewBox="0 0 16 16">  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM8.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM3 10.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/></svg></span>
     <input type="text" class="form-control datepicker" id="studyDate">
   	</div>
+  	
+  	<div class="pt-3 d-flex justify-content-center ">
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check btnradioGadhaGhoda" name="btnradioGadhaGhoda" id="btnradioGhoda" autocomplete="off" value="BUY">
+		  <label class="btn btn-outline-success cursor-pointer" for="btnradioGhoda">GHODA</label>
+		
+		  <input type="radio" class="btn-check btnradioGadhaGhoda" name="btnradioGadhaGhoda" id="btnradioGadha" autocomplete="off" value="SELL">
+		  <label class="btn btn-outline-danger cursor-pointer" for="btnradioGadha">GADHA</label>
+		</div>
+  	</div>
+  	
 </div>
 
 <div class="col-md-6">
@@ -49,7 +60,7 @@
 	 </small>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6" id="buySellToggleDiv">
 	<label for="dssDecision" class="form-label">Double Screen Decision</label>
 	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioBuy" autocomplete="off" value="BUY">
@@ -58,6 +69,7 @@
 	  <input type="radio" class="btn-check btnradioBuySell" name="btnradioBuySell" id="btnradioShortSell" autocomplete="off" value="SELL">
 	  <label class="btn btn-outline-danger cursor-pointer" for="btnradioShortSell">SHORT SELL</label>
 	</div>
+	<p id="buySellMsg" class="text-danger fw-bold"></p>
 </div>
 <div class="col-md-6 d-flex justify-content-center">
 <img alt="BULL HAT" src="/tradesfinder/images/bull-hat.png" class="d-none w-50 float-start" id="bullHatImg">
@@ -76,6 +88,9 @@
 	  <option value="Bullish Engulf">Bullish Engulf</option>
 	  <option value="Hammer">Hammer (Strong Signal if at Bottom)</option>
 	  <option value="Morning Star">Morning Star</option>
+	  <option value="Doji">Doji</option>
+	  <option value="High Wave">High Wave</option>
+	  <option value="Tweezers">Tweezers</option>
 	  </select>
   </div>
 </div>
@@ -91,6 +106,10 @@
 	  <option value="Bearish Engulf">Bearish Engulf</option>
 	  <option value="Inverted Hammer">Inverted Hammer (Strong Signal if at Top)</option>
 	  <option value="Evening Star">Evening Star</option>
+	  <option value="Dark Cloud Cover">Dark Cloud Cover</option>
+	  <option value="Doji">Doji</option>
+	  <option value="High Wave">High Wave</option>
+	  <option value="Tweezers">Tweezers</option>
   </select>
   </div>
 </div>
@@ -217,6 +236,9 @@
 	  <option value="Not Found">Not Found</option>
 	  </select>
     </div>
+	<a href="#" class="float-end"  data-bs-toggle="modal" data-bs-target="#papaDecisionSheetModal">
+	  PAPA Decision Sheet
+	</a>
 </div>
 
 

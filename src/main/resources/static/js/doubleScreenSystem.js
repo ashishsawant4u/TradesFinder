@@ -4,6 +4,10 @@ defaultInit();
 
 buySellToggele();
 
+$('.btnradioGadhaGhoda').click(function () {
+	gadhaGodhaToggle();
+});	
+
 $('.btnradioBuySell').click(function () {
 	buySellToggele();
 });
@@ -39,7 +43,17 @@ $('#dssTradeSummaryTable').DataTable({
 				"targets": [11],
 				"paging":   true,
 				"ordering": false,
-    	});
+});
+
+$('#papaDecisionSheetTable').DataTable({
+		        dom: 'Bfrtip',
+		        buttons: [
+		            'csvHtml5'
+		        ],
+				"paging":   true,
+				"ordering": false,
+				"pageLength": 5
+});
 
 
 
@@ -136,6 +150,8 @@ $('#tradingStyle').change(function () {
 
 getIndices();
 
+//papaGuide();
+
 });
 
 function defaultInit()
@@ -160,6 +176,37 @@ function initDate()
     var month = monthNames[today.getMonth()];
     var year = today.getFullYear();
 	$("#studyDate").val(day + '-' + month + '-' + year);  
+}
+
+function gadhaGodhaToggle()
+{
+	if($('#btnradioGhoda').is(':checked'))
+	{
+		if($('#btnradioBuy').is(':checked'))
+		{
+			$("#buySellMsg").text("");
+			$("#buySellToggleDiv").removeClass("border border-danger");
+		}
+		else
+		{
+			$("#buySellMsg").text("DO NOT SELL GHODA");
+			$("#buySellToggleDiv").addClass("border border-danger");
+		}
+		
+	}
+	else
+	{
+		if($('#btnradioBuy').is(':checked'))
+		{
+			$("#buySellMsg").text("DO NOT BUY GADHA");
+			$("#buySellToggleDiv").addClass("border border-danger");
+		}
+		else
+		{
+			$("#buySellMsg").text("");
+			$("#buySellToggleDiv").removeClass("border border-danger");
+		}
+	}
 }
 
 function buySellToggele()
@@ -200,6 +247,8 @@ function buySellToggele()
 		$('#bbChallangedDownsideDiv').removeClass('d-none');
 		$('#bbChallangedUpsideDiv').addClass('d-none');
 	}
+	
+	gadhaGodhaToggle();
 }
 
 function tradeCal()
@@ -583,6 +632,37 @@ function download_table_as_csv(table_id, separator = ',') {
 }
 
 
+function papaGuide()
+{
+	$('#bullishCandlestickPattern, #bearishCandlestickPattern, #bullishChartPatern, #bearishChartPatern').change(function() {
+		
+		let candleStickpattern;
+		let chartpattern;
+		
+		if($('#btnradioBuy').is(':checked'))
+		{
+			candleStickpattern =  $("#bullishCandlestickPattern").val();
+			chartpattern =  $("#bullishChartPatern").val();
+		}
+		else
+		{
+			candleStickpattern =  $("#bearishCandlestickPattern").val();
+			chartpattern =  $("#bearishChartPatern").val();
+		}  		
+		
+		$.ajax({
+		  type: "GET",
+		  url: papaGuideUrl+"?chartpattern="+chartpattern+"&candleStickpattern="+candleStickpattern,
+		  cache: false,
+		  success: function(data){
+			    console.log(data);
+				$("#papaAccordianBody").html(data);
+			}
+		});
+	
+	
+	});
+}
 
 
 

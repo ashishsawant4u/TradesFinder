@@ -8,6 +8,7 @@
 <c:url scope="session" var="dssUpdateTradeStateUrl" value="/doublescreen/updateTradeState"/>
 <c:url scope="session" var="indicesUrl" value="/tabela/indices"/>
 <c:url scope="session" var="indicesPageUrl" value="/tabela/nifty-indices"/>
+<c:url scope="session" var="papaGuideUrl" value="/doublescreen/papaGuide"/>
 
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
@@ -16,4 +17,5 @@
 	var dssUpdateTradeStateUrl = "${dssUpdateTradeStateUrl}";
 	var indicesUrl = "${indicesUrl}";
 	var indicesPageUrl = "${indicesPageUrl}";
+	var papaGuideUrl = "${papaGuideUrl}";
 </script>

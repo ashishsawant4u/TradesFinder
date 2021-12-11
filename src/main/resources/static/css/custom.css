@@ -55,3 +55,17 @@ body{
 {
 	font-weight: normal!important;
 }
+
+.form-control:focus,.form-select:focus,.accordion-button:focus,.btnradioBuySell:focus
+{
+	-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {  
+  50% { opacity: 0; }
+}

@@ -1,10 +1,14 @@
 package com.trades.demo.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.opencsv.CSVReader;
@@ -181,5 +186,65 @@ public class DoubleScreenSystemController
 			e.printStackTrace();
 		}
 		return "OK";
+	}
+	
+
+	@RequestMapping(value = "/papaGuide")
+	public @ResponseBody Map<String,String> papaGuide(@RequestParam(name="candleStickpattern",required = false)String candleStickpattern,
+			@RequestParam(name="chartpattern",required = false)String chartpattern)
+	{
+		logger.info("papaGuide candleStickpattern "+candleStickpattern);
+		logger.info("papaGuide chartpattern "+chartpattern);
+		
+		 Map<String,String> papaMap = new HashMap<String, String>();
+		
+		Map<String, String> studyMap = new HashMap();
+		studyMap.put("Bullish Green Candle", "Bullish Green Candle");
+		studyMap.put("Bullish Piercing", "Bullish Piercing,Hammer");
+		studyMap.put("Bullish Engulf", "Bullish Engulf,Hammer");
+		studyMap.put("Morning Star", "Morning Star,Hammer");
+		studyMap.put("Hammer", "Hammer");
+		studyMap.put("Bearish Red Candle", "Bearish Red Candle");
+		studyMap.put("Bearish Piercing", "Bearish Piercing,Inverted Hammer");
+		studyMap.put("Bearish Engulf", "Bearish Engulf,Inverted Hammer");
+		studyMap.put("Inverted Hammer", "Inverted Hammer");
+		studyMap.put("Evening Star", "Evening Star,Inverted Hammer");
+		studyMap.put("Cup And Handle", "Cup And Handle");
+		studyMap.put("Breakout Of Flag", "Flag,Genuine Breakout,Fake Breakout,Shakeout");
+		studyMap.put("Fake Breakdown", "Fake Breakdown,Genuine Breakdown,Shakeout");
+		studyMap.put("Breakdown Of Flag", "Flag,Genuine Breakdown,Fake Breakdown,Shakeout");
+		studyMap.put("Fake Breakout", "Fake Breakout,Genuine Breakout,Shakeout");
+		studyMap.put("Dark Cloud Cover", "Dark Cloud Cover");
+		studyMap.put("Tweezers", "Tweezers");
+		studyMap.put("High Wave", "High Wave");
+		studyMap.put("Doji", "Doji");
+		
+		try
+		{
+			String concepts = studyMap.get(candleStickpattern);
+			concepts.concat(",").concat(studyMap.get(chartpattern));
+			
+			List<String> conceptList = new ArrayList<String>(Arrays.asList(concepts.split(" , ")));
+			
+			String filePath = URLConstants.PAPA_GUIDE_CSV_FILE;
+			
+			BufferedReader br = new BufferedReader(new FileReader(filePath));  
+			String line = "";  
+			while ((line = br.readLine()) != null)   //returns a Boolean value  
+			{
+				String[] row = line.split(",");  
+				if(conceptList.contains(row[0]))
+		    	{
+		    		papaMap.put(row[0], row[1]);
+		    	}
+			}  
+			
+		}
+		catch (Exception e) 
+		{
+			 e.printStackTrace();
+		}
+		
+		return papaMap;
 	}
 }
