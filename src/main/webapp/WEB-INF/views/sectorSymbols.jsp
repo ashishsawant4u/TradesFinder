@@ -21,7 +21,7 @@
 
 <tags:navigation/>
 
-<a href="#" class="btn btn-primary mb-2" onclick="download_table_as_csv('indicesTable');" id="sectorIndexDownloadBtn">
+<a href="#" class="btn btn-primary mb-2" onclick="exportTableToExcel('indicesTable','sector-index');" id="sectorIndexDownloadBtn">
 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 Loading sector index
 </a>

@@ -243,10 +243,11 @@
 	  <option value="Ignore">Ignore</option>
 	  <option value="In Progress">In Progress</option>
 	  <option value="Completed">Completed</option>
+	  <option value="Practice">Practice</option>
 	  </select>
     </div>
 	</div>	
-  <div class="col-md-4 pt-4 ps-1 align-middle dssTradeLogBtn d-none">
+  <div class="col-md-4 pt-4 ps-1 align-middle dssTradeLogBtn">
   	 <button type="button" class="btn btn-primary btn-lg" id="dssTradeLogBtn">Save Trade</button>
   </div>
   

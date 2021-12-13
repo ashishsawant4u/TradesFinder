@@ -28,7 +28,7 @@
 			      <td>Double Top</td>
 			      <td>Neutral or Bearish candle patterns at previous Resistance levels</td>
 			      <td>Weapon of the bulls is taken out</td>
-			      <td>Divergence with BKT, High Volume</td>
+			      <td>Divergence with <b>BKT</b>, High Volume</td>
 			      <td>High Of Weapon</td>
 			      <td>Same as Double Top Rules</td>
 			    </tr>
@@ -37,7 +37,7 @@
 			    	<td>Double Bottom</td>
 			    	<td>Neutral or Bullish candle patterns at previous Support levels</td>
 			    	<td>Weapon of the bear is taken out</td>
-			    	<td>Divergence with BKP, High Volume</td>
+			    	<td>Divergence with <b>BKP</b>, High Volume</td>
 			    	<td>Same as Double Bottom Rules</td>
 			    	<td></td>
 			    </tr>
@@ -142,7 +142,7 @@
 			    </tr>
 			     <tr>
 			    	<td>14</td>
-			    	<td>gap Up</td>
+			    	<td>Gap Up</td>
 			    	<td>Price opens directly above the major resistance levels and sustains the gap</td>
 			    	<td>One can enter after follow-up</td>
 			    	<td><b>Ungli Setup</b></td>

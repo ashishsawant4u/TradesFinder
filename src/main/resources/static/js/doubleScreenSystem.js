@@ -482,7 +482,7 @@ function dssTradeLog()
 	
 	 $.ajax({
             type: "POST",
-            url: "http://localhost:8045/tradesfinder/doublescreen/tradelog",
+            url: dssSaveTradeLogUrl,
             contentType: "application/json;",
  			data: tradeEntryRequest,	
             success: function (response) {
@@ -592,9 +592,9 @@ function getIndices()
 			  }
 			  
 			  $('#table-content').append(row);
-			  $('#sectorIndexDownloadBtn').html('Download as CSV');
+			  $('#sectorIndexDownloadBtn').html('Download as Excel');
 			  $('#sectorIndexDownloadBtn.span').addClass('d-none');
-	
+			
 			}
 
 		}
@@ -629,6 +629,37 @@ function download_table_as_csv(table_id, separator = ',') {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
 }
 
 
