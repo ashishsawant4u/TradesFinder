@@ -4,6 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %> 
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Trade Log</title>
+</head>
+<body>
 
 
 
@@ -79,3 +85,6 @@
 
 <tags:scripts/>
 <tags:javascriptVariables/>
+
+</body>
+</html>
