@@ -43,6 +43,8 @@ public class DoubleScreenTradeForm {
 	public String tradeSetupDetails ;
 	public String tradingStyle ;
 	public String papaTradeSetup ;
+	public String futureOptionsOIDetails ;
+	public String whatIfAnalysis ;
 	
 	public String getCapitalAmount() {
 		return capitalAmount;
@@ -290,6 +292,18 @@ public class DoubleScreenTradeForm {
 	public void setPapaTradeSetup(String papaTradeSetup) {
 		this.papaTradeSetup = papaTradeSetup;
 	}
+	public String getFutureOptionsOIDetails() {
+		return futureOptionsOIDetails;
+	}
+	public void setFutureOptionsOIDetails(String futureOptionsOIDetails) {
+		this.futureOptionsOIDetails = futureOptionsOIDetails;
+	}
+	public String getWhatIfAnalysis() {
+		return whatIfAnalysis;
+	}
+	public void setWhatIfAnalysis(String whatIfAnalysis) {
+		this.whatIfAnalysis = whatIfAnalysis;
+	}
 	@Override
 	public String toString() {
 		return "DoubleScreenTradeForm [uid=" + uid + ", capitalAmount=" + capitalAmount + ", percentageRiskPerTrade="
@@ -306,7 +320,8 @@ public class DoubleScreenTradeForm {
 				+ dssDecision + ", candleStickpattern=" + candleStickpattern + ", chartpattern=" + chartpattern
 				+ ", volume=" + volume + ", ema=" + ema + ", fibRetracement=" + fibRetracement + ", divergence="
 				+ divergence + ", tradeState=" + tradeState + ", tradeComment=" + tradeComment + ", tradeSetupDetails="
-				+ tradeSetupDetails + ", tradingStyle=" + tradingStyle + ", papaTradeSetup=" + papaTradeSetup + "]";
+				+ tradeSetupDetails + ", tradingStyle=" + tradingStyle + ", papaTradeSetup=" + papaTradeSetup
+				+ ", futureOptionsOIDetails=" + futureOptionsOIDetails + ", whatIfAnalysis=" + whatIfAnalysis + "]";
 	}
 	
 	

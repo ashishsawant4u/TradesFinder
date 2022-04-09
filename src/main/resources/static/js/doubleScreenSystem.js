@@ -62,9 +62,16 @@ $('#papaDecisionSheetTable').DataTable({
 $('[id^="dssTradeDetailModalSaveBtn_"]').click(function() {
    let tradeId = $(this).attr('data-uid');
    let selectedTradeState = $('#changeTradeState_'+tradeId).val();
+	
+   if(selectedTradeState === 'Select Trade State')
+	{
+		selectedTradeState = $('#initialSelectionState_'+tradeId).text();
+	}
    console.log('tradeId '+tradeId);
    console.log('selectedTradeState '+selectedTradeState);
-   var tradeEnrty = {uid :tradeId,tradeState:selectedTradeState};
+   let tradeComment =  $("#tradeComment_"+tradeId).val();
+
+   var tradeEnrty = {uid :tradeId,tradeState:selectedTradeState,tradeComment:tradeComment};
    console.log('tradeEnrty '+tradeEnrty);
 	
 	let tradeEntryRequest = JSON.stringify(tradeEnrty);
@@ -149,8 +156,8 @@ $('#tradingStyle').change(function () {
 });
 
 getIndices();
-
-//papaGuide();
+futuresAnalysis();
+OIAnalysis();
 
 });
 
@@ -417,6 +424,8 @@ function tradeDecision(minRR)
 	}
 }
 
+
+
 function dssTradeLog()
 {
 	let capitalAmount = $("#capitalAmount").val();  
@@ -470,11 +479,13 @@ function dssTradeLog()
 	let tradeComment =  $("#tradeComment").val();
 	
 	let tradeSetupDetails = tradingSetupDetails();
-		
-	let tradingStyle = $("#tradingStyle").val();  	
-	let papaTradeSetup = $("#papaTradeSetup").val();  	
 	
-	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment,tradeSetupDetails:tradeSetupDetails,tradingStyle:tradingStyle,papaTradeSetup:papaTradeSetup};
+	let tradingStyle = $("#tradingStyle").val();  	
+	let papaTradeSetup = $("#papaTradeSetup").val();  
+	let futureOptionsOIAnalysis = futureOptionsOIDetails();		
+	let whatIfAnalysis = $("#whatIfAnalysis").val(); 
+	
+	var tradeEnrty = {capitalAmount :capitalAmount ,percentageRiskPerTrade :percentageRiskPerTrade ,maxRiskPerTrade :maxRiskPerTrade ,immediateSupportForStopLoss :immediateSupportForStopLoss ,majorResistanceForTarget :majorResistanceForTarget ,immediateResistanceForStopLoss :immediateResistanceForStopLoss ,majorSupportForTarget :majorSupportForTarget ,closePrice :closePrice ,entryPrice :entryPrice ,stopLossPrice :stopLossPrice ,minTargetPrice :minTargetPrice ,maxTargetPrice :maxTargetPrice ,tradeInvestment :tradeInvestment ,riskPerUnit :riskPerUnit ,quantity :quantity ,tradeInvestment :tradeInvestment ,totalRisk :totalRisk ,minReward :minReward ,maxReward :maxReward ,minProfitPotential :minProfitPotential ,maxProfitPotential :maxProfitPotential ,minROI :minROI ,maxROI :maxROI ,minRR :minRR ,maxRR :maxRR ,stock :stock ,date :date ,tide :tide ,wave :wave ,dssDecision :dssDecision ,candleStickpattern:candleStickpattern,chartpattern:chartpattern,volume :volume ,ema :ema ,fibRetracement :fibRetracement ,divergence :divergence,tradeState:tradeState,tradeComment:tradeComment,tradeSetupDetails:tradeSetupDetails,tradingStyle:tradingStyle,papaTradeSetup:papaTradeSetup,futureOptionsOIDetails:futureOptionsOIAnalysis,whatIfAnalysis:whatIfAnalysis};
 	
 	console.log('tradeEnrty '+tradeEnrty);
 	
@@ -542,6 +553,18 @@ function tradingSetupDetails()
 	return trdingSetup;	
 }
 
+
+function futureOptionsOIDetails()
+{
+	let OIdetails = '';
+	
+	OIdetails = OIdetails + $("#futuresBuildUpCovering").text() + "|";
+	OIdetails = OIdetails + $("#callBuildUpCovering").text() + "|"; 
+	OIdetails = OIdetails + $("#putBuildUpCovering").text() + "|";
+	OIdetails = OIdetails + $("#volatilitySelect").val();  
+	
+	return OIdetails;
+}
 
 
 function getIndices()
@@ -632,7 +655,7 @@ function download_table_as_csv(table_id, separator = ',') {
 }
 
 function exportTableToExcel(tableID, filename = ''){
-    var downloadLink;
+    /*var downloadLink;
     var dataType = 'application/vnd.ms-excel';
     var tableSelect = document.getElementById(tableID);
     var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
@@ -659,7 +682,8 @@ function exportTableToExcel(tableID, filename = ''){
         
         //triggering the function
         downloadLink.click();
-    }
+    }*/
+	 $('#indicesTable').tblToExcel();
 }
 
 
@@ -694,6 +718,113 @@ function papaGuide()
 	
 	});
 }
+
+function futuresAnalysis()
+{
+	$('#futurePriceDirection,#futureOI').change(function () {
+		 let futurePriceDirection = $("#futurePriceDirection").val();  
+	     let futureOI = $("#futureOI").val();  
+		
+		 if(futurePriceDirection == "Future Price UP" && futureOI == "Future OI UP")
+		 {
+				$("#futuresBuildUpCovering").text("Futures Long Build Up");
+		 }
+		 else if(futurePriceDirection == "Future Price UP" && futureOI == "Future OI DOWN")
+		 {
+				$("#futuresBuildUpCovering").text("Futures Short Covering");
+		 }
+		 else if(futurePriceDirection == "Future Price DOWN" && futureOI == "Future OI UP")
+		 {
+				$("#futuresBuildUpCovering").text("Futures Short Build Up");
+		 }
+		 else if(futurePriceDirection == "Future Price DOWN" && futureOI == "Future OI DOWN")
+		 {
+				$("#futuresBuildUpCovering").text("Futures Long Covering");
+		 }
+		 else
+		 {
+			$("#futuresBuildUpCovering").text("");  
+		 }
+		
+		
+	});
+}
+
+function OIAnalysis()
+{
+	$('#callPriceDirection,#callOI').change(function () {
+		 let callPriceDirection = $("#callPriceDirection").val();  
+	     let callOI = $("#callOI").val();  
+		
+		 if(callPriceDirection == "Call Price UP" && callOI == "Call OI UP")
+		 {
+				$("#callBuildUpCovering").text("Call Long Build Up - Bullish / Watchful");
+		 }
+		 else if(callPriceDirection == "Call Price UP" && callOI == "Call OI DOWN")
+		 {
+				$("#callBuildUpCovering").text("Call Short Covering - Strong Bullish (TMG)");
+		 }
+		 else if(callPriceDirection == "Call Price DOWN" && callOI == "Call OI UP")
+		 {
+				$("#callBuildUpCovering").text("Call Short Build Up - Strong Bearish (TMJ)");
+		 }
+		 else if(callPriceDirection == "Call Price DOWN" && callOI == "Call OI DOWN")
+		 {
+				$("#callBuildUpCovering").text("Call Long Covering - Bearish");
+		 }
+		 else
+		 {
+			$("#callBuildUpCovering").text("");  
+		 }
+		
+		
+	});
+	
+	$('#putPriceDirection,#putOI').change(function () {
+		 let putPriceDirection = $("#putPriceDirection").val();  
+	     let putOI = $("#putOI").val();  
+		
+		 if(putPriceDirection == "Put Price UP" && putOI == "Put OI UP")
+		 {
+				$("#putBuildUpCovering").text("Put Long Build Up - Bearish / Watchful");
+		 }
+		 else if(putPriceDirection == "Put Price UP" && putOI == "Put OI DOWN")
+		 {
+				$("#putBuildUpCovering").text("Put Short Covering - Strong Bearish (TMG) ");
+		 }
+		 else if(putPriceDirection == "Put Price DOWN" && putOI == "Put OI UP")
+		 {
+				$("#putBuildUpCovering").text("Put Short Build Up - Strong Bullish (TMJ)");
+		 }
+		 else if(putPriceDirection == "Put Price DOWN" && putOI == "Put OI DOWN")
+		 {
+				$("#putBuildUpCovering").text("Put Long Covering - Bullish");
+		 }
+		 else
+		 {
+			$("#putBuildUpCovering").text("");  
+		 }
+		
+		
+	});
+	
+	$('#volatilitySelect').change(function () {
+			 let volatilitySelect = $("#volatilitySelect").val();  
+			 if(volatilitySelect == "High Volatility")
+			 {
+					$("#volaitilityDecision").text("SELL OPTION");
+			 }
+			 else if(volatilitySelect == "Low Volatility")
+			 {
+					$("#volaitilityDecision").text("BUY OPTION");
+			 }
+			 else
+		     {
+					$("#volaitilityDecision").text("");
+		     }
+	});
+}
+
 
 
 

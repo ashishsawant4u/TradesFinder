@@ -18,6 +18,10 @@
 
 <script src="/tradesfinder/js/custom.js"></script>
 <script src="/tradesfinder/js/doubleScreenSystem.js"></script>
+<script src="/tradesfinder/js/currencyPage.js"></script>
 <link href="/tradesfinder/css/custom.css" rel="stylesheet">
+
+<script src="/tradesfinder/plugins/jquery.tableToExcel.js"></script>
+
 
 

@@ -71,7 +71,7 @@ public class DoubleScreenSystemController
 			   			d.immediateSupportForStopLoss,d.majorResistanceForTarget,d.immediateResistanceForStopLoss,d.majorSupportForTarget,
 			   			d.closePrice,d.entryPrice,d.stopLossPrice,d.minTargetPrice,d.maxTargetPrice,d.quantity,d.tradeInvestment,d.minReward,d.maxReward,
 			   			d.riskPerUnit,d.totalRisk,d.minProfitPotential,d.maxProfitPotential,d.minROI,d.maxROI,
-			   			d.minRR,d.maxRR,d.tradeState,d.tradeComment,d.tradeSetupDetails,d.tradingStyle,d.papaTradeSetup};
+			   			d.minRR,d.maxRR,d.tradeState,d.tradeComment,d.tradeSetupDetails,d.tradingStyle,d.papaTradeSetup,d.futureOptionsOIDetails,d.whatIfAnalysis};
 	    
 	   		File file = new File(filePath);
 	        
@@ -146,6 +146,8 @@ public class DoubleScreenSystemController
 		    	trade.setTradeSetupDetails(row[35]);
 		    	trade.setTradingStyle(row[36]);
 		    	trade.setPapaTradeSetup(row[37]);
+		    	trade.setFutureOptionsOIDetails(row[38]);
+		    	trade.setWhatIfAnalysis(row[39]);
 		    	listOfTrades.add(trade);
 		    }
 		    
@@ -173,6 +175,7 @@ public class DoubleScreenSystemController
 			List<String[]> csvBody = reader.readAll();
 			// get CSV row column  and replace with by using row and column
 			csvBody.get(Integer.parseInt(doubleScreenTradeForm.uid))[33] = doubleScreenTradeForm.tradeState;
+			csvBody.get(Integer.parseInt(doubleScreenTradeForm.uid))[34] = doubleScreenTradeForm.tradeComment;
 			reader.close();
 
 			// Write to CSV file which is open

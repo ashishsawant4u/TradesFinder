@@ -247,7 +247,16 @@
 <tags:swingSetup/>
 
 
-<div class="col-md-12">
+<tags:futuresAnalysis/>
+<tags:openInterestAnalysis/>
+
+<div class="col-md-6">
+	<label for="whatIfAnalysis" class="form-label">What IF Analysis</label>
+	<div class="input-group">
+	<textarea class="form-control" rows="3" id="whatIfAnalysis"></textarea>
+	</div>
+</div>
+<div class="col-md-6">
 	<label for="tradeComment" class="form-label">Comment</label>
 	<div class="input-group">
 	<textarea class="form-control" rows="3" id="tradeComment"></textarea>

@@ -66,7 +66,7 @@
 			<td class="border">${trade.tradeInvestment}</td>
 			<td class="border">${trade.riskPerUnit}</td>
 			<td class="border">${trade.totalRisk}</td>
-			<td class="border">${trade.tradeState}
+			<td class="border" id="initialSelectionState_${trade.uid}">${trade.tradeState}</td>
   		</tr>
    </tbody>
 </table>
@@ -122,7 +122,22 @@
 <div class="input-group">
 	<span> <b>${trade.tradingStyle}</b> <br> 
 			<%-- ${fn:replace(trade.tradeSetupDetails, '|', '<br>')} --%>
-			<c:forTokens items="${trade.tradeSetupDetails}" delims="|" var="checklist">
+			<c:forTokens items="${trade.tradeSetupDetails}" delims="|" var="setupChecks">
+			   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+				  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+			   </svg>
+			   <c:out value="${setupChecks}"/> </br>
+			</c:forTokens>
+	</span>
+</div>
+</div>
+
+<div class="col-md-3 float-start">
+<label for="futureOptionsOIDetails${trade.uid}" class="form-label fw-bold">OI Analysis</label>
+<div class="input-group">
+	<span>
+			<%-- ${fn:replace(trade.tradeSetupDetails, '|', '<br>')} --%>
+			<c:forTokens items="${trade.futureOptionsOIDetails}" delims="|" var="checklist">
 			   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
 				  <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
 			   </svg>
@@ -132,23 +147,31 @@
 </div>
 </div>
 
+
 <div class="col-md-3 float-start">
-<label for="trdeComment${trade.uid}" class="form-label fw-bold">Comment</label>
-<div class="input-group"><span>${trade.tradeComment}</span></div>
+<label for="whatIFAnalysis${trade.uid}" class="form-label fw-bold">What IF Analysis</label>
+<div class="input-group"><span>${trade.whatIfAnalysis}</span></div>
 </div>
 
-<div class="col-md-3 float-end">
-<label for="changeTradeState${trade.uid}" class="form-label fw-bold">Change Trade State</label>
-<div class="input-group">
-   <select class="form-select" aria-label="Select Trade State" id="changeTradeState_${trade.uid}">
-  <option selected>Select Trade State</option>
-  <option value="Watchful">Watchful</option>
-  <option value="Go for it">Go for it</option>
-  <option value="Ignore">Ignore</option>
-  <option value="In Progress">In Progress</option>
-  <option value="Completed">Completed</option>
-   <option value="Target Exit">Target Exit</option>
-    <option value="SL Exit">SL Exit</option>
-  </select>
+<div class="col-md-3 float-start">
+<label for="tradeComment_${trade.uid}" class="form-label fw-bold">Comment</label>
+<div class="input-group"><textarea id="tradeComment_${trade.uid}" class="form-control" rows="5">${trade.tradeComment}</textarea></div>
 </div>
+
+<div class="col-md-12 float-end">
+	<div class="col-md-3 float-end">
+		<label for="changeTradeState${trade.uid}" class="form-label fw-bold">Change Trade State</label>
+		<div class="input-group">
+		   <select class="form-select" aria-label="Select Trade State" id="changeTradeState_${trade.uid}">
+		  <option selected>Select Trade State</option>
+		  <option value="Watchful">Watchful</option>
+		  <option value="Go for it">Go for it</option>
+		  <option value="Ignore">Ignore</option>
+		  <option value="In Progress">In Progress</option>
+		  <option value="Completed">Completed</option>
+		   <option value="Target Exit">Target Exit</option>
+		    <option value="SL Exit">SL Exit</option>
+		  </select>
+		</div>
+	</div>
 </div>
