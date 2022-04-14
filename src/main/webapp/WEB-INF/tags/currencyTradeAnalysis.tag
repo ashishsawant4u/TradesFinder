@@ -58,3 +58,7 @@
  	</div>
 </div>
 </div>
+
+<div class="row pt-1 pb-1">
+	<img src="#" class="img-fluid" id="cur_chartImage" alt="chart image">
+</div>

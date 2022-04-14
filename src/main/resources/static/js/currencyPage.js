@@ -53,7 +53,9 @@ $( document ).ready(function() {
 		cur_saveTrade();
 	});
 	
-	
+	$("#cur_chartImageUrl").change(function(){
+			$('#cur_chartImage').attr('src',$("#cur_chartImageUrl").val());
+	});	
 });	
 
 function cur_buySellToggle()
