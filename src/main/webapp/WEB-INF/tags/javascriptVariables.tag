@@ -13,6 +13,8 @@
 <c:url scope="session" var="calculateCapitalRiskUrl" value="/currency/capitalrisk"/>
 <c:url scope="session" var="currencyPairInfoUrl" value="/currency/currencyPairInfo"/>
 <c:url scope="session" var="calculateCurrencyTradeUrl" value="/currency/calculateCurrencyTrade"/>
+<c:url scope="session" var="saveCurrencyTradeUrl" value="/currency/saveTrade"/>
+
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
 	var dssTradeListUrl = "${dssTradeListUrl}";
@@ -24,4 +26,5 @@
 	var calculateCapitalRiskUrl = "${calculateCapitalRiskUrl}";
 	var currencyPairInfoUrl = "${currencyPairInfoUrl}";
 	var calculateCurrencyTradeUrl = "${calculateCurrencyTradeUrl}";
+	var saveCurrencyTradeUrl = "${saveCurrencyTradeUrl}";
 </script>

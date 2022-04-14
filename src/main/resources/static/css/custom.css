@@ -69,3 +69,8 @@ body{
 @keyframes blinker {  
   50% { opacity: 0; }
 }
+button.theme1:hover
+{
+	color: white;
+	opacity: 0.9;
+}

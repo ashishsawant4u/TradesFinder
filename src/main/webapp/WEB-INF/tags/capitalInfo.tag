@@ -1,6 +1,6 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 
-<div class="row">
+<div class="row pt-1">
   <div class="col-md-4 theme2 p-1">
     <label for="cur_capitalAmount" class="form-label">Capital</label>
     <div class="input-group">

@@ -23,7 +23,7 @@
 	<td id="cur_MaxProfitAllLots"></td>
 </tr>
 <tr>
-	<td>P&L PercentageAsPerAllLotsForTarget</td>
+	<td>P&L % All Lots For Target</td>
 	<td id="cur_PnlPercentageAsPerAllLotsForTarget"></td>
 </tr>
 </table>
@@ -50,7 +50,7 @@
 	<td id="cur_MaxLossAllLots"></td>
 </tr>
 <tr>
-	<td>P&L PercentageAsPerAllLotsForSL</td>
+	<td>P&L % All Lots For SL</td>
 	<td id="cur_PnlPercentageAsPerAllLotsForSL"></td>
 </tr>
 </table>

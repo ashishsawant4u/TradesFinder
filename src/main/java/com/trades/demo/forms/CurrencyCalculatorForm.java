@@ -50,6 +50,8 @@ public class CurrencyCalculatorForm
 	
 	private String tradeDecision;
 
+	private double rewardRatio;
+	
 	public String getInstrument() {
 		return instrument;
 	}
@@ -241,6 +243,16 @@ public class CurrencyCalculatorForm
 	public void setTradeDecision(String tradeDecision) {
 		this.tradeDecision = tradeDecision;
 	}
+
+	public double getRewardRatio() {
+		return rewardRatio;
+	}
+
+	public void setRewardRatio(double rewardRatio) {
+		this.rewardRatio = rewardRatio;
+	}
+	
+	
 	
 	
 }
