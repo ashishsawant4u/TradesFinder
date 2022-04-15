@@ -14,6 +14,12 @@
 <c:url scope="session" var="currencyPairInfoUrl" value="/currency/currencyPairInfo"/>
 <c:url scope="session" var="calculateCurrencyTradeUrl" value="/currency/calculateCurrencyTrade"/>
 <c:url scope="session" var="saveCurrencyTradeUrl" value="/currency/saveTrade"/>
+<c:url scope="session" var="currencyTradesUrl" value="/currency/trades"/>
+<c:url scope="session" var="getTradeSummaryUrl" value="/currency/getTradeSummary"/>
+<c:url scope="session" var="getTradeDetailsUrl" value="/currency/getTradeDetails"/>
+<c:url scope="session" var="updateCurrencyTradeUrl" value="/currency/updateTrade"/>
+
+
 
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
@@ -27,4 +33,8 @@
 	var currencyPairInfoUrl = "${currencyPairInfoUrl}";
 	var calculateCurrencyTradeUrl = "${calculateCurrencyTradeUrl}";
 	var saveCurrencyTradeUrl = "${saveCurrencyTradeUrl}";
+	var currencyTradesUrl = "${currencyTradesUrl}";
+	var getTradeSummaryUrl = "${getTradeSummaryUrl}";
+	var getTradeDetailsUrl = "${getTradeDetailsUrl}";
+	var updateCurrencyTradeUrl = "${updateCurrencyTradeUrl}";
 </script>

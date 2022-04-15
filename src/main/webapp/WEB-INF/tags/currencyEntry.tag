@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 
 <div class="row pt-1 pb-1">
-<div class="row ps-0" id="cur_buySellToggleDiv">
+<div class="row ps-5" id="cur_buySellToggleDiv">
 	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 	  <input type="radio" class="btn-check cur_btnradioBuySell" name="cur_btnradioBuySell" id="cur_btnradioBuy" autocomplete="off" value="BUY">
 	  <label class="btn btn-outline-success cursor-pointer" for="cur_btnradioBuy">BUY</label>
@@ -57,7 +57,13 @@
 
 	
 </div>
-
+<div class="row">
+	<div class="text-end">
+	 <small id="marginHelp" class="form-text text-danger">
+	  	Take margin amount from broker as per number of lots
+	 </small>
+	 </div>
+</div>
 <div class="row pt-1 pb-1">
  <div class="col-md-8 ps-0">
  		<button type="button" class="btn theme1" id="cur_TradeCalBtn">Calculate Trade</button>

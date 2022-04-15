@@ -56,7 +56,143 @@ $( document ).ready(function() {
 	$("#cur_chartImageUrl").change(function(){
 			$('#cur_chartImage').attr('src',$("#cur_chartImageUrl").val());
 	});	
+	
+	$('#cur_updateTradeBtn').click(function () {
+		cur_updateTrade();
+	});
+	
+	if ($("body").hasClass("cur_tradespage")) 
+	{
+			var cur_TradeSummaryTable = $('#cur_TradeSummaryTable').DataTable({
+			    ajax: getTradeSummaryUrl,
+				dataSrc:"",
+				columns: [
+					  { data: 'uid' },
+					  { data: 'calculations.instrument' },
+					  { data: 'date' },
+					  { data: 'calculations.tradeDecision' },
+					  { data: 'calculations.entry' },
+					  { data: 'calculations.stopLoss' },
+					  { data: 'calculations.target' },
+					  { data: 'calculations.numberOfLots' },
+					  { data: 'tradeState' }
+				
+				]
+			});
+			
+			
+			
+			$('#cur_TradeSummaryTable tbody').on( 'click', 'tr', function () {
+				
+				$('#cur_TradeAnalysisTable').dataTable().fnDestroy();
+				$('#cur_TradeEntryTable').dataTable().fnDestroy();
+				
+			    let rowData = cur_TradeSummaryTable.row( this ).data();
+				let $tradeDetailsModal = $('#cur_TradeDetailsModal');	
+				$('#cur_TradeAnalysisTable').attr('data-tradeid',rowData.uid);
+				$tradeDetailsModal.find('#cur_trade_instrument').text(rowData.calculations.instrument);	
+				$tradeDetailsModal.find('#cur_trade_date').text(rowData.date);
+				$tradeDetailsModal.find('#cur_trade_decision').text(rowData.calculations.tradeDecision);
+				$tradeDetailsModal.find('#cur_trade_reward').val(rowData.calculations.rewardRatio);	
+				$tradeDetailsModal.find('#cur_trade_snapshot').attr('href',rowData.chartImageUrl);
+				$tradeDetailsModal.find('#cur_Confirmation').val(rowData.confirmation);
+				$tradeDetailsModal.find('#cur_Learnings').val(rowData.learnings);
+				$tradeDetailsModal.find('#cur_comment').val(rowData.comment);
+				$tradeDetailsModal.find('#cur_tradeDuration').val(rowData.tradeDuration);
+				$tradeDetailsModal.find('#cur_tradeState').val(rowData.tradeState).change();
+				
+				
+				
+				let tradeData = [];
+				tradeData.push(rowData);
+				
+				$('#cur_TradeAnalysisTable').DataTable({
+				    data: tradeData,
+					paging: false,
+					searching: false,
+					ordering: false,
+					info: false,
+					columns: [
+							{ data: 'storyAndViewBuilding' },
+							{ data: 'tradeBias' },
+							{ data: 'opportunity' },
+							{ data: 'whatIfAnalysis' }
+						]
+				});
+				
+				$('#cur_TradeEntryTable').DataTable({
+				    data: tradeData,
+					paging: false,
+					searching: false,
+					ordering: false,
+					info: false,
+					columns: [
+							  { data: 'calculations.entry' },
+							  { data: 'calculations.stopLoss' },
+							  { data: 'calculations.target' },
+							  { data: 'calculations.numberOfLots' },
+							  { data: 'calculations.marginAmountForAllLots' }
+						]
+				});
+				
+				let tradeCalc = rowData.calculations;
+				
+				$tradeDetailsModal.find('#cur_TargetPriceMovement').text(tradeCalc.targetPriceMovement);
+				$tradeDetailsModal.find('#cur_TargetPipMovenment').text(tradeCalc.targetPipMovenment);
+				$tradeDetailsModal.find('#cur_MaxProfitPerLot').text(tradeCalc.maxProfitPerLot);
+				$tradeDetailsModal.find('#cur_MaxProfitAllLots').text(tradeCalc.maxProfitAllLots);
+				$tradeDetailsModal.find('#cur_PnlPercentageAsPerAllLotsForTarget').text(tradeCalc.pnlPercentageAsPerAllLotsForTarget+' %');
+				
+				$tradeDetailsModal.find('#cur_SlPriceMovement').text(tradeCalc.slPriceMovement);
+				$tradeDetailsModal.find('#cur_SlPipMovenment').text(tradeCalc.slPipMovenment);
+				$tradeDetailsModal.find('#cur_MaxLossPerLot').text(tradeCalc.maxLossPerLot);
+				$tradeDetailsModal.find('#cur_MaxLossAllLots').text(tradeCalc.maxLossAllLots);
+				$tradeDetailsModal.find('#cur_PnlPercentageAsPerAllLotsForSL').text(tradeCalc.pnlPercentageAsPerAllLotsForSL+' %');
+				
+				
+								
+				
+				$tradeDetailsModal.modal('show');
+			});
+	}
+	
+	
 });	
+
+function cur_updateTrade()
+{
+	let tradeData = {
+		confirmation: $('#cur_Confirmation').val(),
+		learnings: $('#cur_Learnings').val(),
+		comment: $('#cur_comment').val(),
+		tradeDuration: $('#cur_tradeDuration').val(),
+		tradeState: $('#cur_tradeState').val(),
+		uid: $('#cur_TradeAnalysisTable').attr('data-tradeid')
+	}
+	
+	
+	
+	let tradeEntryRequest = JSON.stringify(tradeData);
+	
+		 $.ajax({
+	            type: "POST",
+	            url: updateCurrencyTradeUrl,
+	            contentType: "application/json;",
+	 			data: tradeEntryRequest,	
+	            success: function (response) {
+	                console.log(response);
+							$('#cur_updateTradeBtn').html('Saved'); 
+							$('#cur_updateTradeBtn').addClass('btn-success');
+							$('#cur_updateTradeBtn').removeClass('btn-primary');
+					window.setTimeout(function() { 
+							$('#cur_updateTradeBtn').html('Save Trade'); 
+							$('#cur_updateTradeBtn').removeClass('btn-success');
+							$('#cur_updateTradeBtn').addClass('btn-primary');
+					}, 2000);
+							
+	            }
+	 		});
+}
 
 function cur_buySellToggle()
 {
@@ -152,26 +288,37 @@ function cur_saveTrade()
 	
 	console.log('tradeData',tradeData);
 	
+	if(!isNull($('#cur_StoryandViewBuilding').val()))
+	{
+		let tradeEntryRequest = JSON.stringify(tradeData);
 	
+		 $.ajax({
+	            type: "POST",
+	            url: saveCurrencyTradeUrl,
+	            contentType: "application/json;",
+	 			data: tradeEntryRequest,	
+	            success: function (response) {
+	                console.log(response);
+							$('#cur_saveTradeBtn').html('Saved'); 
+							$('#cur_saveTradeBtn').addClass('btn-success');
+							$('#cur_saveTradeBtn').removeClass('btn-primary');
+					window.setTimeout(function() { 
+							$('#cur_saveTradeBtn').html('Save Trade'); 
+							$('#cur_saveTradeBtn').removeClass('btn-success');
+							$('#cur_saveTradeBtn').addClass('btn-primary');
+					}, 2000);
+							
+	            }
+	 		});
+	}
 	
-	let tradeEntryRequest = JSON.stringify(tradeData);
-	
-	 $.ajax({
-            type: "POST",
-            url: saveCurrencyTradeUrl,
-            contentType: "application/json;",
- 			data: tradeEntryRequest,	
-            success: function (response) {
-                console.log(response);
-						$('#cur_saveTradeBtn').html('Saved'); 
-						$('#cur_saveTradeBtn').addClass('btn-success');
-						$('#cur_saveTradeBtn').removeClass('btn-primary');
-				window.setTimeout(function() { 
-						$('#cur_saveTradeBtn').html('Save Trade'); 
-						$('#cur_saveTradeBtn').removeClass('btn-success');
-						$('#cur_saveTradeBtn').addClass('btn-primary');
-				}, 2000);
-						
-            }
- 		});
 }	
+
+function isNull(value)
+{
+	if(typeof value === "undefined" || value === null || value === ""  || value.length==0){
+		return true;
+	}else{
+		return false;
+	}
+}

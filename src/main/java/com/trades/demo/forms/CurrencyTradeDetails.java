@@ -2,6 +2,8 @@ package com.trades.demo.forms;
 
 public class CurrencyTradeDetails 
 {
+	private String uid;
+	
 	private String storyAndViewBuilding;
 	
 	private String tradeBias;
@@ -25,6 +27,34 @@ public class CurrencyTradeDetails
 	private String learnings;
 	
 	private String tradeState;
+	
+	private String date;
+	
+	private int tradeDuration;
+
+	public int getTradeDuration() {
+		return tradeDuration;
+	}
+
+	public void setTradeDuration(int tradeDuration) {
+		this.tradeDuration = tradeDuration;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 
 	public String getStoryAndViewBuilding() {
 		return storyAndViewBuilding;

@@ -1,12 +1,18 @@
 package com.trades.demo.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.text.DecimalFormat;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.util.Precision;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import com.trades.demo.forms.CurrencyCalculatorForm;
 import com.trades.demo.forms.CurrencyTradeDetails;
-import com.trades.demo.forms.DoubleScreenTradeForm;
 import com.trades.demo.models.CurrencyPairModel;
 import com.trades.demo.utils.CurrencyPairMaster;
 import com.trades.demo.utils.TradeCapitalPlan;
@@ -89,6 +95,139 @@ public class CurrencyTradeController
 		return "OK";
 	}
 	
+	@RequestMapping("/trades")
+	public String getTrades(Model model)
+	{
+		return "currencyTradesPage";
+	}
+	
+	
+	@RequestMapping("/getTradeSummary")
+	@ResponseBody
+	public Map<String, List<CurrencyTradeDetails>> getTradeSummary()
+	{
+		try 
+		{
+			List<CurrencyTradeDetails> listOfTrades = readCurrencyTradesCSV();
+		    
+		    //model.addAttribute("listOfTrades", listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList()));
+			
+		    Map<String, List<CurrencyTradeDetails>> data = new HashMap<String, List<CurrencyTradeDetails>>();
+		    
+		    data.put("data", listOfTrades);
+		    
+		    return data;
+		    //return listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList());
+		} 
+		catch (Exception e) 
+		{
+			 e.printStackTrace();
+			 return null;
+		}
+		
+	}
+
+	private List<CurrencyTradeDetails> readCurrencyTradesCSV() throws FileNotFoundException, IOException, CsvException 
+	{
+		String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
+		
+		FileReader filereader = new FileReader(filePath);
+		
+		CSVReader csvReader = new CSVReaderBuilder(filereader)
+		        .withSkipLines(1)
+		        .build();
+		List<String[]> allData = csvReader.readAll();
+		
+		List<CurrencyTradeDetails> listOfTrades = new ArrayList<CurrencyTradeDetails>();
+		
+		for(String [] row :allData)
+		{
+			CurrencyTradeDetails trade = new CurrencyTradeDetails();
+			trade.setUid(row[0]);
+			CurrencyCalculatorForm calc = new CurrencyCalculatorForm();
+			calc.setInstrument(row[1]);
+			trade.setDate(row[2]);
+			calc.setTradeDecision(row[3]);
+			trade.setStoryAndViewBuilding(row[4]);
+			trade.setTradeBias(row[5]);
+			trade.setOpportunity(row[6]);
+			trade.setWhatIfAnalysis(row[7]);
+			trade.setConfirmation(row[8]);
+			trade.setExecuted(Boolean.parseBoolean(row[9]));
+			trade.setOutcome(row[10]);
+			trade.setLearnings(row[11]);
+			calc.setRiskPerTrade(Double.parseDouble(row[12]));
+			calc.setPipSize(Double.parseDouble(row[13]));
+			calc.setLotSize(Double.parseDouble(row[14]));
+			calc.setEntry(Double.parseDouble(row[15]));
+			calc.setStopLoss(Double.parseDouble(row[16]));
+			calc.setTarget(Double.parseDouble(row[17]));
+			calc.setNumberOfLots(Integer.parseInt(row[18]));
+			calc.setTotalAmountForAllLots(Double.parseDouble(row[19]));
+			calc.setMarginAmountForAllLots(Double.parseDouble(row[20]));
+			calc.setRewardRatio(Double.parseDouble(row[21]));
+			calc.setTargetPriceMovement(Double.parseDouble(row[22]));
+			calc.setTargetPipMovenment(Double.parseDouble(row[23]));
+			calc.setMaxProfitPerLot(Double.parseDouble(row[24]));
+			calc.setMaxProfitAllLots(Double.parseDouble(row[25]));
+			calc.setPnlPercentageAsPerAllLotsForTarget(Double.parseDouble(row[26]));
+			calc.setSlPriceMovement(Double.parseDouble(row[27]));
+			calc.setSlPriceMovement(Double.parseDouble(row[28]));
+			calc.setMaxLossPerLot(Double.parseDouble(row[29]));
+			calc.setMaxLossAllLots(Double.parseDouble(row[30]));
+			calc.setPnlPercentageAsPerAllLotsForSL(Double.parseDouble(row[31]));
+			trade.setTradeState(row[32]);
+			trade.setTradeDuration(StringUtils.isNotBlank(row[33]) ? Integer.parseInt(row[33]) : 0);
+			trade.setChartImageUrl(row[34]);
+			trade.setComment(row[35]);
+			trade.setCalculations(calc);		    	
+			listOfTrades.add(trade);
+		}
+		return listOfTrades;
+	}
+	
+	@RequestMapping("/getTradeDetails/{tradeid}")
+	@ResponseBody
+	public CurrencyTradeDetails getTradeDetails(@PathVariable("tradeid") String tradeid) throws Exception
+	{
+		List<CurrencyTradeDetails> listOfTrades = readCurrencyTradesCSV();
+		
+	    return listOfTrades.stream().filter(t->t.getUid().equals(tradeid)).findFirst().get();
+	}
+	
+	@RequestMapping(value = "/updateTrade" , method = RequestMethod.POST)
+	public @ResponseBody String updateTrade(@RequestBody CurrencyTradeDetails currencyTradeDetails)
+	{
+		logger.info("currencyTradeDetails "+currencyTradeDetails);
+		
+		try
+		{
+			File inputFile = new File(URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE);
+
+			// Read existing file 
+			CSVReader reader = new CSVReader(new FileReader(inputFile));
+			List<String[]> csvBody = reader.readAll();
+			// get CSV row column  and replace with by using row and column
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[8] = currencyTradeDetails.getConfirmation();
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[11] = currencyTradeDetails.getLearnings();
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[32] = currencyTradeDetails.getTradeState();
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[33] = String.valueOf(currencyTradeDetails.getTradeDuration());
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[35] = currencyTradeDetails.getComment();
+			reader.close();
+
+			// Write to CSV file which is open
+			CSVWriter writer = new CSVWriter(new FileWriter(inputFile));
+			writer.writeAll(csvBody);
+			writer.flush();
+			writer.close();
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return "OK";
+	}
+	
 	public void currencyTradeDetailsHandler(CurrencyTradeDetails d)
 	{
 		String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
@@ -117,7 +256,9 @@ public class CurrencyTradeController
 		    			     String.valueOf(calc.getTargetPriceMovement()),String.valueOf(calc.getTargetPipMovenment()),
 		    			     String.valueOf(calc.getMaxProfitPerLot()),String.valueOf(calc.getMaxProfitAllLots()),String.valueOf(calc.getPnlPercentageAsPerAllLotsForTarget()),
 		    			     String.valueOf(calc.getSlPriceMovement()),String.valueOf(calc.getSlPipMovenment()),
-		    			     String.valueOf(calc.getMaxLossPerLot()),String.valueOf(calc.getMaxLossAllLots()),String.valueOf(calc.getPnlPercentageAsPerAllLotsForSL())};
+		    			     String.valueOf(calc.getMaxLossPerLot()),String.valueOf(calc.getMaxLossAllLots()),String.valueOf(calc.getPnlPercentageAsPerAllLotsForSL()),
+		    			     d.getTradeState(),String.valueOf(d.getTradeDuration()),d.getChartImageUrl(),
+		    			     d.getComment()};
 	    
 	   		File file = new File(filePath);
 	        
