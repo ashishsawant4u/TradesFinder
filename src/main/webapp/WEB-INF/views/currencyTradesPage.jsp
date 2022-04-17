@@ -14,6 +14,7 @@
 <tags:javascriptVariables/>
 </head>
 <body class="cur_tradespage">
+<tags:navigation-currency/>
 
 <div class="container-fluid">
 
@@ -43,16 +44,13 @@
       <div class="modal-header">
         <div class="row w-100">
         	<div class="col-xs-6 col-lg-6">
-        			<span class="modal-title text-uppercase" id="cur_trade_instrument"></span>
+        			<span>(<span class="" id="cur_trade_id"></span>)</span>
+        			<span class="modal-title text-uppercase fw-bold" id="cur_trade_instrument"></span>
        			    <span class="text-muted" id="cur_trade_date"></span>
         	</div>
         	<div class="col-xs-6 col-lg-6">
-        			<span class="modal-title text-uppercase fw-bold" id="cur_trade_decision"></span>
 		       		 <div class="float-end col-md-4">
-					    <div class="input-group">
-					    <span class="input-group-text">R:R</span>
-					     <input type="text" class="form-control" id="cur_trade_reward" disabled>
-					    </div>
+					    	<span class="modal-title text-uppercase fw-bold float-end fs-5" id="cur_trade_decision"></span>
 					  </div>
         	</div>
         </div>

@@ -10,6 +10,7 @@
 <c:url scope="session" var="indicesPageUrl" value="/tabela/nifty-indices"/>
 <c:url scope="session" var="papaGuideUrl" value="/doublescreen/papaGuide"/>
 
+<c:url scope="session" var="currencyCalcUrl" value="/currency/calculator"/>
 <c:url scope="session" var="calculateCapitalRiskUrl" value="/currency/capitalrisk"/>
 <c:url scope="session" var="currencyPairInfoUrl" value="/currency/currencyPairInfo"/>
 <c:url scope="session" var="calculateCurrencyTradeUrl" value="/currency/calculateCurrencyTrade"/>
@@ -37,4 +38,5 @@
 	var getTradeSummaryUrl = "${getTradeSummaryUrl}";
 	var getTradeDetailsUrl = "${getTradeDetailsUrl}";
 	var updateCurrencyTradeUrl = "${updateCurrencyTradeUrl}";
+	var currencyCalcUrl = "${currencyCalcUrl}";
 </script>

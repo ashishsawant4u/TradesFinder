@@ -5,8 +5,8 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <div class="row">
-	<table class="table table-sm table-bordered w-100" id="cur_TradeAnalysisTable">
-		<thead style="position: sticky;top: 0" class="theme1">
+	<table class="table table-sm table-borderless w-100" id="cur_TradeAnalysisTable">
+		<thead style="position: sticky;top: 0" class="theme1 nm-th">
 		    <tr>
 		      <th scope="col">Story and View Building</th>
 		      <th scope="col">Trade Bias</th>
@@ -17,14 +17,15 @@
 	</table> 
 </div>
 <div class="row">
-	<table class="table table-sm table-bordered w-100" id="cur_TradeEntryTable">
-		<thead style="position: sticky;top: 0" class="theme1">
+	<table class="table table-sm table-bordered table-hover w-100" id="cur_TradeEntryTable">
+		<thead style="position: sticky;top: 0" class="theme1 nm-th">
 		    <tr>
 		      <th scope="col">Entry Price</th>
 		      <th scope="col">Stop Loss</th>
 		      <th scope="col">Target</th>
 		      <th scope="col">Nos. Lots</th>
 		      <th scope="col">Margin Paid</th>
+		      <th scope="col">Reward Ratio</th>
 		    </tr>
 	  	</thead>
 	</table> 
@@ -33,9 +34,9 @@
 
 <div class="row">
 	<div class="w-50"> 
-		<tags:currencyTradeCalculations/>
+		<tags:currencyTradeDetailCalculations/>
 	</div>
-	<div class="w-50"> 
+	<div class="w-50 bg-light"> 
 		<div class="row">
 			<div class="col-md-4">
 				<label for="cur_Confirmation" class="form-label">Confirmation</label>
@@ -68,6 +69,8 @@
 				  <option value="In Progress">In Progress</option>
 				  <option value="Completed">Completed</option>
 				  <option value="Practice">Practice</option>
+				  <option value="Target Exit">Target Exit</option>
+		 		  <option value="SL Exit">SL Exit</option>
 				  </select>
 			    </div>
 			    </div>

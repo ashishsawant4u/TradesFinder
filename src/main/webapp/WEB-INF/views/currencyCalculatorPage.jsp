@@ -15,6 +15,7 @@
 <tags:javascriptVariables/>
 
 <div class="row container-fluid">
+<tags:navigation-currency/>
  
 <div class="col-xs-6 col-lg-6 ">
 	<tags:currencyTradeAnalysis/>

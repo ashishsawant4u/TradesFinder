@@ -309,7 +309,7 @@ public class CurrencyTradeController
 		
 		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0));
 		
-		form.setRewardRatio(Math.round(form.getMaxLossPerLot()/form.getMaxLossPerLot()));
+		form.setRewardRatio(Math.abs(Math.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot())));
 	}
 
 	private void currencyLongCalculation(CurrencyCalculatorForm form) 
@@ -345,6 +345,6 @@ public class CurrencyTradeController
 		
 		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0));
 		
-		form.setRewardRatio(Math.round(form.getMaxLossPerLot()/form.getMaxLossPerLot()));
+		form.setRewardRatio(Math.abs(Math.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot())));
 	}
 }

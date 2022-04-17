@@ -12,7 +12,11 @@ $( document ).ready(function() {
 				$('#cur_capitalAmount').val(response.capital);
 				$('#cur_percentageRiskPerTrade').val(response.riskPercentage);
 			    $('#cur_maxRiskPerTrade').val(response.riskPerTrade);		
-            }
+            },
+			error: function (jqXHR) {
+				$('#cur_alert_status').text(jqXHR.status);
+				$('#cur_alert_msg').text(jqXHR.responseText);
+			}	
  		});
 	});
 	
@@ -27,7 +31,11 @@ $( document ).ready(function() {
 				$('#cur_pipSize').val(response.pipSize);
 				$('#cur_lotSize').val(response.lotSize);
 			    $('#cur_profitAndLossPerLotPerPip').val(response.profitAndLossPerLotPerPip);		
-            }
+            },
+			error: function (jqXHR) {
+				$('#cur_alert_status').text(jqXHR.status);
+				$('#cur_alert_msg').text(jqXHR.responseText);
+			}
  		});
 	});
 	
@@ -66,6 +74,19 @@ $( document ).ready(function() {
 			var cur_TradeSummaryTable = $('#cur_TradeSummaryTable').DataTable({
 			    ajax: getTradeSummaryUrl,
 				dataSrc:"",
+				ordering: false,
+				columnDefs: [
+				  {
+				    className: "text-uppercase",
+				    targets: [1]
+				  },
+				  {
+						"render": function ( data, type, row ) {
+		                    return 'T_'+data;
+		                },
+						targets: [0]
+				  }
+				],
 				columns: [
 					  { data: 'uid' },
 					  { data: 'calculations.instrument' },
@@ -84,16 +105,29 @@ $( document ).ready(function() {
 			
 			$('#cur_TradeSummaryTable tbody').on( 'click', 'tr', function () {
 				
-				$('#cur_TradeAnalysisTable').dataTable().fnDestroy();
-				$('#cur_TradeEntryTable').dataTable().fnDestroy();
-				
-			    let rowData = cur_TradeSummaryTable.row( this ).data();
 				let $tradeDetailsModal = $('#cur_TradeDetailsModal');	
+				
+				$tradeDetailsModal.find('#cur_TradeAnalysisTable').dataTable().fnDestroy();
+				$tradeDetailsModal.find('#cur_TradeEntryTable').dataTable().fnDestroy();
+				
+				 let rowData = cur_TradeSummaryTable.row( this ).data();
+				
+				if(rowData.calculations.tradeDecision === 'Buy')
+				{
+					$tradeDetailsModal.find('table thead').addClass('bullish').removeClass('theme1').removeClass('bearish');
+				}
+				else
+				{
+					$tradeDetailsModal.find('table thead').addClass('bearish').removeClass('theme1').removeClass('bullish');
+				}
+				
+			   
+				
 				$('#cur_TradeAnalysisTable').attr('data-tradeid',rowData.uid);
 				$tradeDetailsModal.find('#cur_trade_instrument').text(rowData.calculations.instrument);	
 				$tradeDetailsModal.find('#cur_trade_date').text(rowData.date);
+				$tradeDetailsModal.find('#cur_trade_id').text('T_'+rowData.uid);
 				$tradeDetailsModal.find('#cur_trade_decision').text(rowData.calculations.tradeDecision);
-				$tradeDetailsModal.find('#cur_trade_reward').val(rowData.calculations.rewardRatio);	
 				$tradeDetailsModal.find('#cur_trade_snapshot').attr('href',rowData.chartImageUrl);
 				$tradeDetailsModal.find('#cur_Confirmation').val(rowData.confirmation);
 				$tradeDetailsModal.find('#cur_Learnings').val(rowData.learnings);
@@ -131,7 +165,8 @@ $( document ).ready(function() {
 							  { data: 'calculations.stopLoss' },
 							  { data: 'calculations.target' },
 							  { data: 'calculations.numberOfLots' },
-							  { data: 'calculations.marginAmountForAllLots' }
+							  { data: 'calculations.marginAmountForAllLots' },
+							   { data: 'calculations.rewardRatio' }
 						]
 				});
 				
@@ -189,8 +224,12 @@ function cur_updateTrade()
 							$('#cur_updateTradeBtn').removeClass('btn-success');
 							$('#cur_updateTradeBtn').addClass('btn-primary');
 					}, 2000);
-							
-	            }
+					window.location.href = currencyTradesUrl;			
+	            },
+				error: function (jqXHR) {
+					$('#cur_alert_status').text(jqXHR.status);
+					$('#cur_alert_msg').text(jqXHR.responseText);
+				}
 	 		});
 }
 
@@ -226,7 +265,11 @@ function calculateCurrencyTrade(entryForm)
             success: function (response) {
                 console.log(response);
 				renderTradeCalculations(response);
-            }
+            },
+			error: function (jqXHR) {
+				$('#cur_alert_status').text(jqXHR.status);
+				$('#cur_alert_msg').text(jqXHR.responseText);
+			}
  		});
 }
 
@@ -250,6 +293,8 @@ function renderTradeCalculations(resp)
 		
 		$('#cur_riskReward').val(resp.rewardRatio);
 		
+		
+		$('#tradeCalculationFormData').remove();
 		$('<input>').attr({ type: 'hidden', id: 'tradeCalculationFormData',value: JSON.stringify(resp)}).appendTo('body');
 	}
 }
@@ -308,7 +353,11 @@ function cur_saveTrade()
 							$('#cur_saveTradeBtn').addClass('btn-primary');
 					}, 2000);
 							
-	            }
+	            },
+				error: function (jqXHR) {
+					$('#cur_alert_status').text(jqXHR.status);
+					$('#cur_alert_msg').text(jqXHR.responseText);
+				}
 	 		});
 	}
 	
