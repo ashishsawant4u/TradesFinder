@@ -85,6 +85,19 @@ $( document ).ready(function() {
 		                    return 'T_'+data;
 		                },
 						targets: [0]
+				  },
+				  {
+						"createdCell": function (td, cellData, rowData, row, col) {
+		                    if(cellData === 'Buy')
+							{
+						        $(td).addClass('bullish-text');
+						    }
+							else
+							{
+								$(td).addClass('bearish-text');
+							}
+		                },
+						targets: [3]
 				  }
 				],
 				columns: [
@@ -95,6 +108,7 @@ $( document ).ready(function() {
 					  { data: 'calculations.entry' },
 					  { data: 'calculations.stopLoss' },
 					  { data: 'calculations.target' },
+				 	  { data: 'calculations.maxLossAllLots' },
 					  { data: 'calculations.numberOfLots' },
 					  { data: 'tradeState' }
 				
@@ -128,7 +142,14 @@ $( document ).ready(function() {
 				$tradeDetailsModal.find('#cur_trade_date').text(rowData.date);
 				$tradeDetailsModal.find('#cur_trade_id').text('T_'+rowData.uid);
 				$tradeDetailsModal.find('#cur_trade_decision').text(rowData.calculations.tradeDecision);
-				$tradeDetailsModal.find('#cur_trade_snapshot').attr('href',rowData.chartImageUrl);
+				if(!isNull(rowData.chartImageUrl))
+				{
+					$tradeDetailsModal.find('#cur_trade_snapshot').attr('href',rowData.chartImageUrl);
+				}
+				else
+				{
+					$tradeDetailsModal.find('#cur_trade_snapshot').addClass('d-none');
+				}
 				$tradeDetailsModal.find('#cur_Confirmation').val(rowData.confirmation);
 				$tradeDetailsModal.find('#cur_Learnings').val(rowData.learnings);
 				$tradeDetailsModal.find('#cur_comment').val(rowData.comment);

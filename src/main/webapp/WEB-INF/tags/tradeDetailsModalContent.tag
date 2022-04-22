@@ -71,6 +71,10 @@
 				  <option value="Practice">Practice</option>
 				  <option value="Target Exit">Target Exit</option>
 		 		  <option value="SL Exit">SL Exit</option>
+		 		  <option value="Trade Missed">Trade Missed</option>
+		 		  <option value="No Confirmation">No Confirmation</option>
+		 		  <option value="Target Early Exit">Target Early Exit</option>
+		 		  <option value="SL Early Exit">SL Early Exit</option>
 				  </select>
 			    </div>
 			    </div>

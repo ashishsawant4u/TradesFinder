@@ -20,7 +20,7 @@
 
 
 
-<table class="table table-hover border" id="cur_TradeSummaryTable">
+<table class="table table-hover text-center table-bordered" id="cur_TradeSummaryTable">
 	<thead style="position: sticky;top: 0" class="theme1">
 	    <tr>
 	      <th scope="col">ID</th>
@@ -30,6 +30,7 @@
 	      <th scope="col">Entry Price</th>
 	      <th scope="col">Stop Loss Price</th>
 	      <th scope="col">Target Price</th>
+	      <th scope="col">Risk</th>
 	      <th scope="col">Quantity</th>
 	      <th scope="col">Trade State</th>
 	    </tr>

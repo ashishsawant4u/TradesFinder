@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +110,8 @@ public class CurrencyTradeController
 		try 
 		{
 			List<CurrencyTradeDetails> listOfTrades = readCurrencyTradesCSV();
+			
+			Collections.reverse(listOfTrades);
 		    
 		    //model.addAttribute("listOfTrades", listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList()));
 			
@@ -172,7 +175,7 @@ public class CurrencyTradeController
 			calc.setMaxProfitAllLots(Double.parseDouble(row[25]));
 			calc.setPnlPercentageAsPerAllLotsForTarget(Double.parseDouble(row[26]));
 			calc.setSlPriceMovement(Double.parseDouble(row[27]));
-			calc.setSlPriceMovement(Double.parseDouble(row[28]));
+			calc.setSlPipMovenment(Double.parseDouble(row[28]));
 			calc.setMaxLossPerLot(Double.parseDouble(row[29]));
 			calc.setMaxLossAllLots(Double.parseDouble(row[30]));
 			calc.setPnlPercentageAsPerAllLotsForSL(Double.parseDouble(row[31]));
