@@ -19,7 +19,7 @@
 <c:url scope="session" var="getTradeSummaryUrl" value="/currency/getTradeSummary"/>
 <c:url scope="session" var="getTradeDetailsUrl" value="/currency/getTradeDetails"/>
 <c:url scope="session" var="updateCurrencyTradeUrl" value="/currency/updateTrade"/>
-
+<c:url scope="session" var="currencyPerformanceStatsUrl" value="/currency/performanceStats"/>
 
 
 <script type="text/javascript">
@@ -39,4 +39,5 @@
 	var getTradeDetailsUrl = "${getTradeDetailsUrl}";
 	var updateCurrencyTradeUrl = "${updateCurrencyTradeUrl}";
 	var currencyCalcUrl = "${currencyCalcUrl}";
+	var currencyPerformanceStatsUrl = "${currencyPerformanceStatsUrl}";
 </script>

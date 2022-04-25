@@ -20,7 +20,7 @@
 
 
 
-<table class="table table-hover text-center table-bordered" id="cur_TradeSummaryTable">
+<table class="table table-hover text-center table-bordered pt-1" id="cur_TradeSummaryTable">
 	<thead style="position: sticky;top: 0" class="theme1">
 	    <tr>
 	      <th scope="col">ID</th>
@@ -38,6 +38,8 @@
 </table>  
 
 </div>
+
+<tags:performanceStats/>
 
 <div class="modal fade" id="cur_TradeDetailsModal" tabindex="-1" aria-labelledby="cur_trade_instrument" aria-hidden="true">
   <div class="modal-dialog modal-xl">

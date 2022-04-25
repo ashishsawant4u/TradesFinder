@@ -27,7 +27,8 @@
   <tags:currencyEntry/>
   <tags:currencyTradeCalculations/>
   
-</div>  
+</div> 
+
 </div>
 
 <tags:scripts/>

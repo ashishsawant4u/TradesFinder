@@ -96,6 +96,7 @@ $( document ).ready(function() {
 							{
 								$(td).addClass('bearish-text');
 							}
+							$(td).addClass('text-uppercase');
 		                },
 						targets: [3]
 				  }
@@ -145,6 +146,7 @@ $( document ).ready(function() {
 				if(!isNull(rowData.chartImageUrl))
 				{
 					$tradeDetailsModal.find('#cur_trade_snapshot').attr('href',rowData.chartImageUrl);
+					$tradeDetailsModal.find('#cur_trade_snapshot').removeClass('d-none');
 				}
 				else
 				{
@@ -210,10 +212,32 @@ $( document ).ready(function() {
 				
 				$tradeDetailsModal.modal('show');
 			});
+			
+			cur_PerformanceStats();
 	}
 	
 	
 });	
+
+function cur_PerformanceStats()
+{
+	$.ajax({
+            type: "GET",
+            url: currencyPerformanceStatsUrl,	
+            success: function (response) {
+                console.log(response);	
+				$('#cur_performance_wins').text(response.winningTradesCount);
+				$('#cur_performance_loss').text(response.loosingTradesCount);
+				$('#cur_performance_trades').text(response.numberOfTrades);
+				$('#cur_performance_hitratio').text(response.hitRatio+'%');
+			
+            },
+			error: function (jqXHR) {
+				$('#cur_alert_status').text(jqXHR.status);
+				$('#cur_alert_msg').text(jqXHR.responseText);
+			}
+ 		});
+}
 
 function cur_updateTrade()
 {

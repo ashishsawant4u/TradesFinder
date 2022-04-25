@@ -2,7 +2,7 @@ package com.trades.demo.utils;
 
 public class TradeCapitalPlan 
 {
-	public double capital = 50000;
+	public double capital = 20000;
 	
 	public double riskPercentage = 2.0;
 	

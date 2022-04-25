@@ -32,7 +32,9 @@ import com.opencsv.exceptions.CsvException;
 import com.trades.demo.forms.CurrencyCalculatorForm;
 import com.trades.demo.forms.CurrencyTradeDetails;
 import com.trades.demo.models.CurrencyPairModel;
+import com.trades.demo.models.PerformanceStats;
 import com.trades.demo.utils.CurrencyPairMaster;
+import com.trades.demo.utils.PerformanceTracker;
 import com.trades.demo.utils.TradeCapitalPlan;
 import com.trades.demo.utils.URLConstants;
 
@@ -100,6 +102,13 @@ public class CurrencyTradeController
 	public String getTrades(Model model)
 	{
 		return "currencyTradesPage";
+	}
+	
+	@RequestMapping("/performanceStats")
+	@ResponseBody
+	public PerformanceStats getPerformanceStats() throws Exception
+	{
+		return PerformanceTracker.getPerformanceStats(readCurrencyTradesCSV());
 	}
 	
 	
@@ -186,7 +195,9 @@ public class CurrencyTradeController
 			trade.setCalculations(calc);		    	
 			listOfTrades.add(trade);
 		}
-		return listOfTrades;
+		
+		
+		return listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList());
 	}
 	
 	@RequestMapping("/getTradeDetails/{tradeid}")
