@@ -25,6 +25,15 @@ TRADES
 HIT RATIO
 </span>
 
+<span class="badge bg-info text-dark  m-2">
+	<h4 id="cur_performance_avgRewardRatio"></h4>
+AVG REWARD
+</span>
+
+<span class="badge bg-dark  m-2">
+	<h4 id="cur_performance_totalPnL"></h4>
+TOTAL P&L
+</span>
 
 
 </div>

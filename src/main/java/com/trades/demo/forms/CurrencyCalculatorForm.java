@@ -52,6 +52,10 @@ public class CurrencyCalculatorForm
 
 	private double rewardRatio;
 	
+	private double actualRewardRatio;
+	
+	private double actualPnL;
+	
 	public String getInstrument() {
 		return instrument;
 	}
@@ -251,8 +255,22 @@ public class CurrencyCalculatorForm
 	public void setRewardRatio(double rewardRatio) {
 		this.rewardRatio = rewardRatio;
 	}
-	
-	
+
+	public double getActualRewardRatio() {
+		return actualRewardRatio;
+	}
+
+	public void setActualRewardRatio(double actualRewardRatio) {
+		this.actualRewardRatio = actualRewardRatio;
+	}
+
+	public double getActualPnL() {
+		return actualPnL;
+	}
+
+	public void setActualPnL(double actualPnL) {
+		this.actualPnL = actualPnL;
+	}
 	
 	
 }

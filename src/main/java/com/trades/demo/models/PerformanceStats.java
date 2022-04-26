@@ -9,6 +9,10 @@ public class PerformanceStats
 	private int numberOfTrades;
 	
 	private double hitRatio;
+	
+	private double avgRewardRation;
+	
+	private double totalPnL;
 
 	public int getWinningTradesCount() {
 		return winningTradesCount;
@@ -41,5 +45,22 @@ public class PerformanceStats
 	public void setHitRatio(double hitRatio) {
 		this.hitRatio = hitRatio;
 	}
+
+	public double getAvgRewardRation() {
+		return avgRewardRation;
+	}
+
+	public void setAvgRewardRation(double avgRewardRation) {
+		this.avgRewardRation = avgRewardRation;
+	}
+
+	public double getTotalPnL() {
+		return totalPnL;
+	}
+
+	public void setTotalPnL(double totalPnL) {
+		this.totalPnL = totalPnL;
+	}
+	
 	
 }

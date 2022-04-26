@@ -192,6 +192,9 @@ public class CurrencyTradeController
 			trade.setTradeDuration(StringUtils.isNotBlank(row[33]) ? Integer.parseInt(row[33]) : 0);
 			trade.setChartImageUrl(row[34]);
 			trade.setComment(row[35]);
+			
+			calc.setActualRewardRatio(StringUtils.isNotBlank(row[36]) ?   Double.parseDouble(row[36]) : 0);
+			calc.setActualPnL(StringUtils.isNotBlank(row[37]) ?   Double.parseDouble(row[37]) : 0);
 			trade.setCalculations(calc);		    	
 			listOfTrades.add(trade);
 		}
@@ -227,6 +230,8 @@ public class CurrencyTradeController
 			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[32] = currencyTradeDetails.getTradeState();
 			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[33] = String.valueOf(currencyTradeDetails.getTradeDuration());
 			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[35] = currencyTradeDetails.getComment();
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[36] = String.valueOf(currencyTradeDetails.getCalculations().getActualRewardRatio());
+			csvBody.get(Integer.parseInt(currencyTradeDetails.getUid()))[37] = String.valueOf(currencyTradeDetails.getCalculations().getActualPnL());
 			reader.close();
 
 			// Write to CSV file which is open

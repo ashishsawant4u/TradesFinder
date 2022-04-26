@@ -58,6 +58,20 @@
 			</div>
 		</div>
 		<div class="row p-1">
+			 	<div class="col-md-4">
+			    	<label for="cur_actualRewardRatio" class="form-label">Actual Reward</label>
+			    	<input type="text" class="form-control" id="cur_actualRewardRatio"/>
+			    </div>
+			    <div class="col-md-4">
+			    	<label for="cur_actualPnL" class="form-label">Actual P&L</label>
+			    	<input type="text" class="form-control" id="cur_actualPnL"/>
+			    </div>
+			    <div class="col-md-4">
+			    	<label for="cur_tradeDuration" class="form-label">Trade Duration</label>
+			    	<input type="text" class="form-control" id="cur_tradeDuration"/>
+			    </div>
+		</div>
+		<div class="row p-1">
 				<div class="col-md-6">
 				<label for="cur_tradeState" class="form-label">Trade State</label>
 				<div class="input-group">
@@ -78,11 +92,7 @@
 				  </select>
 			    </div>
 			    </div>
-			    <div class="col-md-6">
-			    	<label for="cur_tradeDuration" class="form-label">Trade Duration</label>
-			    	<input type="text" class="form-control" id="cur_tradeDuration"/>
-			    </div>
 		</div>
-	
+		
 	</div>
 </div>

@@ -157,7 +157,8 @@ $( document ).ready(function() {
 				$tradeDetailsModal.find('#cur_comment').val(rowData.comment);
 				$tradeDetailsModal.find('#cur_tradeDuration').val(rowData.tradeDuration);
 				$tradeDetailsModal.find('#cur_tradeState').val(rowData.tradeState).change();
-				
+				$tradeDetailsModal.find('#cur_actualRewardRatio').val(rowData.calculations.actualRewardRatio);
+				$tradeDetailsModal.find('#cur_actualPnL').val(rowData.calculations.actualPnL);
 				
 				
 				let tradeData = [];
@@ -230,7 +231,8 @@ function cur_PerformanceStats()
 				$('#cur_performance_loss').text(response.loosingTradesCount);
 				$('#cur_performance_trades').text(response.numberOfTrades);
 				$('#cur_performance_hitratio').text(response.hitRatio+'%');
-			
+				$('#cur_performance_avgRewardRatio').text(response.avgRewardRation);
+				$('#cur_performance_totalPnL').text(response.totalPnL);
             },
 			error: function (jqXHR) {
 				$('#cur_alert_status').text(jqXHR.status);
@@ -241,13 +243,16 @@ function cur_PerformanceStats()
 
 function cur_updateTrade()
 {
+	let calculations = {actualRewardRatio:$('#cur_actualRewardRatio').val(),actualPnL:$('#cur_actualPnL').val()};
+	
 	let tradeData = {
 		confirmation: $('#cur_Confirmation').val(),
 		learnings: $('#cur_Learnings').val(),
 		comment: $('#cur_comment').val(),
 		tradeDuration: $('#cur_tradeDuration').val(),
 		tradeState: $('#cur_tradeState').val(),
-		uid: $('#cur_TradeAnalysisTable').attr('data-tradeid')
+		uid: $('#cur_TradeAnalysisTable').attr('data-tradeid'),
+		calculations : calculations
 	}
 	
 	
