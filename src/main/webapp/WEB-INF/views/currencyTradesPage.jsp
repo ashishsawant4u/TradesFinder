@@ -20,7 +20,7 @@
 
 
 
-<table class="table table-hover text-center table-bordered pt-1" id="cur_TradeSummaryTable">
+<table class="table table-sm table-hover text-center table-bordered pt-1" id="cur_TradeSummaryTable">
 	<thead style="position: sticky;top: 0" class="theme1">
 	    <tr>
 	      <th scope="col">ID</th>

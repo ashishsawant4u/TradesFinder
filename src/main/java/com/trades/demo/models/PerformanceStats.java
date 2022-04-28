@@ -13,6 +13,10 @@ public class PerformanceStats
 	private double avgRewardRation;
 	
 	private double totalPnL;
+	
+	private double expectancy;
+	
+	private double capitalGain;
 
 	public int getWinningTradesCount() {
 		return winningTradesCount;
@@ -61,6 +65,21 @@ public class PerformanceStats
 	public void setTotalPnL(double totalPnL) {
 		this.totalPnL = totalPnL;
 	}
-	
+
+	public double getExpectancy() {
+		return expectancy;
+	}
+
+	public void setExpectancy(double expectancy) {
+		this.expectancy = expectancy;
+	}
+
+	public double getCapitalGain() {
+		return capitalGain;
+	}
+
+	public void setCapitalGain(double capitalGain) {
+		this.capitalGain = capitalGain;
+	}
 	
 }

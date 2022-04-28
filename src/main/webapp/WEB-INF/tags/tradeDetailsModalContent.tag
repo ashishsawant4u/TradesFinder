@@ -89,6 +89,7 @@
 		 		  <option value="No Confirmation">No Confirmation</option>
 		 		  <option value="Target Early Exit">Target Early Exit</option>
 		 		  <option value="SL Early Exit">SL Early Exit</option>
+		 		  <option value="Breakeven Exit">Breakeven Exit</option>
 				  </select>
 			    </div>
 			    </div>

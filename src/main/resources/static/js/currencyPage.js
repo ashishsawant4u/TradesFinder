@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 	
+	$("[rel='tooltip']").tooltip();
+	
 	$("#cur_capitalAmount,#cur_percentageRiskPerTrade").keyup(function(){
 		
 		let urlPath = "/"+$('#cur_capitalAmount').val()+"/"+$('#cur_percentageRiskPerTrade').val();
@@ -231,8 +233,10 @@ function cur_PerformanceStats()
 				$('#cur_performance_loss').text(response.loosingTradesCount);
 				$('#cur_performance_trades').text(response.numberOfTrades);
 				$('#cur_performance_hitratio').text(response.hitRatio+'%');
-				$('#cur_performance_avgRewardRatio').text(response.avgRewardRation);
+				$('#cur_performance_avgRewardRatio').text('1:'+response.avgRewardRation);
 				$('#cur_performance_totalPnL').text(response.totalPnL);
+				$('#cur_performance_expectancy').html(response.expectancy+'R');
+				$('#cur_performance_capitalgain').html(response.capitalGain+'%');	
             },
 			error: function (jqXHR) {
 				$('#cur_alert_status').text(jqXHR.status);

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -158,7 +159,7 @@ public class CurrencyTradeController
 			trade.setUid(row[0]);
 			CurrencyCalculatorForm calc = new CurrencyCalculatorForm();
 			calc.setInstrument(row[1]);
-			trade.setDate(row[2]);
+			trade.setDate(convDate(row[2]));
 			calc.setTradeDecision(row[3]);
 			trade.setStoryAndViewBuilding(row[4]);
 			trade.setTradeBias(row[5]);
@@ -277,7 +278,7 @@ public class CurrencyTradeController
 		    			     String.valueOf(calc.getSlPriceMovement()),String.valueOf(calc.getSlPipMovenment()),
 		    			     String.valueOf(calc.getMaxLossPerLot()),String.valueOf(calc.getMaxLossAllLots()),String.valueOf(calc.getPnlPercentageAsPerAllLotsForSL()),
 		    			     d.getTradeState(),String.valueOf(d.getTradeDuration()),d.getChartImageUrl(),
-		    			     d.getComment()};
+		    			     d.getComment(),"0","0"};
 	    
 	   		File file = new File(filePath);
 	        
@@ -365,5 +366,22 @@ public class CurrencyTradeController
 		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0));
 		
 		form.setRewardRatio(Math.abs(Math.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot())));
+	}
+	
+	private String convDate(String dateStr) 
+	{
+		try 
+		{
+			Date dateConv = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy").parse(dateStr);  
+
+			String convStr = new SimpleDateFormat("E dd-MMM-yyyy HH:mm:ss").format(dateConv);
+			
+			return convStr;
+		} 
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+		}
+		return dateStr;
 	}
 }
