@@ -15,7 +15,10 @@ $( document ).ready(function() {
 		});
 	}
 	
-	
+	$('#cur_globalalert').on( "close.bs.alert", function(e) {
+			e.preventDefault();
+			$('#cur_globalalert').removeClass('show');
+	});
 	
 });	
 

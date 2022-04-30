@@ -431,9 +431,9 @@ public class CurrencyTradeController
 		
 		form.setPnlPercentageAsPerAllLotsForSL(Precision.round((form.getMaxLossAllLots() / form.getMarginAmountForAllLots()) * 100 , 2));
 		
-		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0));
+		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0) - 1);
 		
-		form.setRewardRatio(Math.abs(Math.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot())));
+		form.setRewardRatio(Math.abs(Precision.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot(),2)));
 	}
 
 	private void currencyLongCalculation(CurrencyCalculatorForm form) 
@@ -467,9 +467,9 @@ public class CurrencyTradeController
 		
 		form.setPnlPercentageAsPerAllLotsForSL(Precision.round( (form.getMaxLossAllLots() / form.getMarginAmountForAllLots()) * 100 , 2));
 		
-		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0));
+		form.setNumberOfLotsCanBeTraded(Precision.round( Math.round(Math.abs(form.getRiskPerTrade() / form.getMaxLossPerLot())) , 0) - 1);
 		
-		form.setRewardRatio(Math.abs(Math.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot())));
+		form.setRewardRatio(Math.abs(Precision.round(form.getMaxProfitPerLot()/form.getMaxLossPerLot(),2)));
 	}
 	
 	private String convDate(String dateStr) 

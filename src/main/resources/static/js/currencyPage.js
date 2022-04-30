@@ -16,6 +16,7 @@ $( document ).ready(function() {
 			    $('#cur_maxRiskPerTrade').val(response.riskPerTrade);		
             },
 			error: function (jqXHR) {
+				$('#cur_globalalert').addClass('show');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}	
@@ -35,6 +36,7 @@ $( document ).ready(function() {
 			    $('#cur_profitAndLossPerLotPerPip').val(response.profitAndLossPerLotPerPip);		
             },
 			error: function (jqXHR) {
+				$('#cur_globalalert').addClass('show');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}
@@ -239,6 +241,7 @@ function cur_PerformanceStats()
 				$('#cur_performance_capitalgain').html(response.capitalGain+'%');	
             },
 			error: function (jqXHR) {
+				$('#cur_globalalert').addClass('show');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}
@@ -281,6 +284,7 @@ function cur_updateTrade()
 					window.location.href = currencyTradesUrl;			
 	            },
 				error: function (jqXHR) {
+					$('#cur_globalalert').addClass('show');
 					$('#cur_alert_status').text(jqXHR.status);
 					$('#cur_alert_msg').text(jqXHR.responseText);
 				}
@@ -321,6 +325,7 @@ function calculateCurrencyTrade(entryForm)
 				renderTradeCalculations(response);
             },
 			error: function (jqXHR) {
+				$('#cur_globalalert').addClass('show');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}
@@ -342,10 +347,19 @@ function renderTradeCalculations(resp)
 		$('#cur_MaxLossPerLot').text(resp.maxLossPerLot);
 		$('#cur_MaxLossAllLots').text(resp.maxLossAllLots);
 		$('#cur_PnlPercentageAsPerAllLotsForSL').text(resp.pnlPercentageAsPerAllLotsForSL+' %');
-		
 		$('#cur_quantity').val(resp.numberOfLotsCanBeTraded);
-		
 		$('#cur_riskReward').val(resp.rewardRatio);
+		
+		if(Math.abs(resp.maxLossAllLots) > resp.riskPerTrade)
+		{
+			$('#cur_globalalert').addClass('show');
+			$('#cur_alert_status').text('Your risking more than your trade limit!!');
+			$('#cur_alert_msg').html('');
+		}
+		else
+		{
+			$('#cur_globalalert').removeClass('show');
+		}
 		
 		
 		$('#tradeCalculationFormData').remove();
@@ -409,6 +423,7 @@ function cur_saveTrade()
 							
 	            },
 				error: function (jqXHR) {
+					$('#cur_globalalert').addClass('show');
 					$('#cur_alert_status').text(jqXHR.status);
 					$('#cur_alert_msg').text(jqXHR.responseText);
 				}
