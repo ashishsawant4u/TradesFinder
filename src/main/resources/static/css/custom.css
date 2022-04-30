@@ -17,6 +17,12 @@
 	background-color: Tomato!important;
 	color: white;
 }
+
+.theme1-gradient
+{
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(37,37,157,1) 0%, rgba(0,212,255,1) 100%);
+}
 .steps-input
 {
 	/* background-color: #fdd40d!important; */
@@ -79,4 +85,8 @@ button.theme1:hover
 {
 	color: white;
 	opacity: 0.9;
+}
+#cur_TradeLearningsTable.dataTable tbody td
+{
+	padding: 0!important;
 }

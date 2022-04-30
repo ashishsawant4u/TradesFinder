@@ -31,6 +31,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import com.trades.demo.forms.CurrencyCalculatorForm;
+import com.trades.demo.forms.CurrencyRulesData;
 import com.trades.demo.forms.CurrencyTradeDetails;
 import com.trades.demo.models.CurrencyPairModel;
 import com.trades.demo.models.PerformanceStats;
@@ -52,6 +53,39 @@ public class CurrencyTradeController
 		
 		
 		return "currencyCalculatorPage";
+	}
+	
+	@RequestMapping("/learnings")
+	public String currencyLearningsPage(Model model)
+	{	
+		return "currencyLearnings";
+	}
+	
+	@RequestMapping("/rules")
+	public String currencyRulesPage(Model model)
+	{
+		return "currencyRules";
+	}
+	
+	@RequestMapping("/getAllRules")
+	@ResponseBody
+	public Map<String, List<CurrencyRulesData>> getAllRules()
+	{
+		try 
+		{
+			List<CurrencyRulesData> listOfRules = readCurrencyRulesCSV();
+		    
+		    Map<String, List<CurrencyRulesData>> data = new HashMap<String, List<CurrencyRulesData>>();
+		    
+		    data.put("data", listOfRules);
+		    
+		    return data;
+		} 
+		catch (Exception e) 
+		{
+			 e.printStackTrace();
+			 return null;
+		}
 	}
 	
 	@RequestMapping("/capitalrisk/{capital}/{risk}")
@@ -99,6 +133,16 @@ public class CurrencyTradeController
 		return "OK";
 	}
 	
+	@RequestMapping(value = "/saveRule/{rulestr}")
+	public @ResponseBody String saveRule(@PathVariable("rulestr") String rulestr)
+	{
+		logger.info("rulestr "+rulestr);
+		
+		saveRuleHandler(rulestr);
+		
+		return "OK";
+	}
+	
 	@RequestMapping("/trades")
 	public String getTrades(Model model)
 	{
@@ -138,6 +182,30 @@ public class CurrencyTradeController
 			 return null;
 		}
 		
+	}
+	
+	private List<CurrencyRulesData> readCurrencyRulesCSV() throws FileNotFoundException, IOException, CsvException 
+	{
+		String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
+		
+		FileReader filereader = new FileReader(filePath);
+		
+		CSVReader csvReader = new CSVReaderBuilder(filereader)
+		        .withSkipLines(1)
+		        .build();
+		List<String[]> allData = csvReader.readAll();
+		
+		List<CurrencyRulesData> listOfRules = new ArrayList<CurrencyRulesData>();
+		
+		for(String [] row :allData)
+		{
+			CurrencyRulesData rule = new CurrencyRulesData();
+			rule.setUid(row[0]);
+			rule.setRule(row[1]);
+			listOfRules.add(rule);
+		}
+		
+		return listOfRules;
 	}
 
 	private List<CurrencyTradeDetails> readCurrencyTradesCSV() throws FileNotFoundException, IOException, CsvException 
@@ -246,6 +314,42 @@ public class CurrencyTradeController
 			e.printStackTrace();
 		}
 		return "OK";
+	}
+	
+	public void saveRuleHandler(String ruleStr)
+	{
+		String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
+		
+		try 
+		{
+		    
+			FileReader filereader = new FileReader(filePath);
+			
+		    CSVReader csvReader = new CSVReaderBuilder(filereader)
+	                .withSkipLines(1)
+	                .build();
+		    List<String[]> allData = csvReader.readAll();
+		    
+		    int rowCount = allData.size();
+		    
+		    allData.removeAll(allData);
+	  
+		    String data [] = {String.valueOf(rowCount+1),ruleStr};
+	    
+	   		File file = new File(filePath);
+	        
+	        FileWriter outputfile = new FileWriter(file,true);
+	  
+	        CSVWriter writer = new CSVWriter(outputfile);
+			
+	        writer.writeNext(data);
+			 
+	        writer.close();
+	    }
+	    catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
 	}
 	
 	public void currencyTradeDetailsHandler(CurrencyTradeDetails d)

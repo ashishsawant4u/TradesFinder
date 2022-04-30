@@ -17,11 +17,14 @@
 <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 <script src="/tradesfinder/js/custom.js"></script>
+<script src="/tradesfinder/js/currencyLearningsPage.js"></script>
 <script src="/tradesfinder/js/doubleScreenSystem.js"></script>
 <script src="/tradesfinder/js/currencyPage.js"></script>
 <link href="/tradesfinder/css/custom.css" rel="stylesheet">
 
 <script src="/tradesfinder/plugins/jquery.tableToExcel.js"></script>
+
+
 
 
 

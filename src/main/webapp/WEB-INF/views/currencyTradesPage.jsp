@@ -15,13 +15,14 @@
 </head>
 <body class="cur_tradespage">
 <tags:navigation-currency/>
+<tags:currencyGlobalError/>
 
 <div class="container-fluid">
 
 
 
 <table class="table table-sm table-hover text-center table-bordered pt-1" id="cur_TradeSummaryTable">
-	<thead style="position: sticky;top: 0" class="theme1">
+	<thead style="position: sticky;top: 0" class="bg-light">
 	    <tr>
 	      <th scope="col">ID</th>
 	      <th scope="col">Instrument</th>
@@ -37,9 +38,11 @@
   </thead>
 </table>  
 
-</div>
 
 <tags:performanceStats/>
+</div>
+
+
 
 <div class="modal fade" id="cur_TradeDetailsModal" tabindex="-1" aria-labelledby="cur_trade_instrument" aria-hidden="true">
   <div class="modal-dialog modal-xl">

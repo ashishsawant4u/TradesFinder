@@ -20,7 +20,10 @@
 <c:url scope="session" var="getTradeDetailsUrl" value="/currency/getTradeDetails"/>
 <c:url scope="session" var="updateCurrencyTradeUrl" value="/currency/updateTrade"/>
 <c:url scope="session" var="currencyPerformanceStatsUrl" value="/currency/performanceStats"/>
-
+<c:url scope="session" var="currencyLearningsUrl" value="/currency/learnings"/>
+<c:url scope="session" var="currencyRulesUrl" value="/currency/rules"/>
+<c:url scope="session" var="saveRuleUrl" value="/currency/saveRule"/>
+<c:url scope="session" var="getAllRulesUrl" value="/currency/getAllRules"/>
 
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
@@ -40,4 +43,8 @@
 	var updateCurrencyTradeUrl = "${updateCurrencyTradeUrl}";
 	var currencyCalcUrl = "${currencyCalcUrl}";
 	var currencyPerformanceStatsUrl = "${currencyPerformanceStatsUrl}";
+	var currencyLearningsUrl = "${currencyLearningsUrl}";
+	var currencyRulesUrl = "${currencyRulesUrl}";
+	var getAllRulesUrl = "${getAllRulesUrl}";
+	var saveRuleUrl = "${saveRuleUrl}";
 </script>

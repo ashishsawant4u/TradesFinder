@@ -16,6 +16,7 @@
 
 <div class="row container-fluid">
 <tags:navigation-currency/>
+<tags:currencyGlobalError/>
  
 <div class="col-xs-6 col-lg-6 ">
 	<tags:currencyTradeAnalysis/>
