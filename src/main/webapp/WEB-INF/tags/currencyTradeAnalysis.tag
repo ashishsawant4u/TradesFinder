@@ -61,7 +61,7 @@
 	<textarea class="form-control" rows="2" id="cur_tradeComment"></textarea>
 	</div>
 	<div class="pt-2">
-  	 <button type="button" class="btn theme5 w-100" id="cur_saveTradeBtn">Save Trade</button>
+  	 <button type="button" class="btn theme1 w-100 content-grp1" id="cur_saveTradeBtn">Save Trade</button>
  	</div>
 </div>
 </div>

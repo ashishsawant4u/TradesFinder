@@ -62,4 +62,5 @@ function cur_activateDarkMode()
 	$('#cur_tradeModelCommentsDiv label').addClass('text-white');
 	$('#cur_chartImage').attr('src','https://beeimg.com/images/f21989410552.png');
 	$('#marginHelp').removeClass('text-danger').addClass('text-white');
+	$('.content-grp1').removeClass('theme1').addClass('theme5');
 }
