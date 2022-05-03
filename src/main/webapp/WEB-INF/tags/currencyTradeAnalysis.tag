@@ -32,6 +32,7 @@
 <div class="row pt-1 pb-1">
 <div class="col-md-6">
 	<label for="cur_chartImageUrl" class="form-label">Chart Snapshot Url</label>
+	<a class="link-primary float-end" href="https://beeimg.com/upload" target="_blank">upload</a>
  	<div class="input-group">
  	<span class="input-group-text">
 		    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
@@ -60,7 +61,7 @@
 	<textarea class="form-control" rows="2" id="cur_tradeComment"></textarea>
 	</div>
 	<div class="pt-2">
-  	 <button type="button" class="btn theme1 w-100" id="cur_saveTradeBtn">Save Trade</button>
+  	 <button type="button" class="btn theme5 w-100" id="cur_saveTradeBtn">Save Trade</button>
  	</div>
 </div>
 </div>

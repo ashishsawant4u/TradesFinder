@@ -1,6 +1,6 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 
-<div class="row pt-1  pb-1">
+<div class="row pt-1  pb-1" id="cur_tradeModelCalculationsRow">
 
 <div class="col-xs-6 col-lg-6 ">
 

@@ -1,11 +1,11 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 
-<div class="row pt-1  pb-1">
+<div class="row pt-1  pb-1" id="cur_tradeCalculationsRow">
 
 <div class="col-xs-6 col-lg-6 border-end border-3">
 
 
-<table class="table table-hover">
+<table class="table">
 <tr>
 	<td>Target PriceMovement</td>
 	<td id="cur_TargetPriceMovement"></td>
@@ -32,7 +32,7 @@
 
 <div class="col-xs-6 col-lg-6 ">
 
-<table class="table table-hover">
+<table class="table">
 <tr>
 	<td>SL PriceMovement</td>
 	<td id="cur_SlPriceMovement"></td>

@@ -18,11 +18,11 @@
 <tags:navigation-currency/>
 <tags:currencyGlobalError/>
  
-<div class="col-xs-6 col-lg-6 ">
+<div class="col-xs-6 col-lg-6 mt-1">
 	<tags:currencyTradeAnalysis/>
 </div>
  
-<div class="col-xs-6 col-lg-6 ">  
+<div class="col-xs-6 col-lg-6 mt-1">  
   <tags:capitalInfo />
   <tags:currencyPairInfo/>
   <tags:currencyEntry/>
@@ -31,7 +31,7 @@
 </div> 
 
 </div>
-
+<tags:performanceStats/>
 <tags:scripts/>
 </body>
 </html>

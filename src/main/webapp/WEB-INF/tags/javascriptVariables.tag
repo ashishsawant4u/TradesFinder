@@ -24,6 +24,7 @@
 <c:url scope="session" var="currencyRulesUrl" value="/currency/rules"/>
 <c:url scope="session" var="saveRuleUrl" value="/currency/saveRule"/>
 <c:url scope="session" var="getAllRulesUrl" value="/currency/getAllRules"/>
+<c:url scope="session" var="getTradesLearningsUrl" value="/currency/getTradesLearnings"/>
 
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
@@ -47,4 +48,5 @@
 	var currencyRulesUrl = "${currencyRulesUrl}";
 	var getAllRulesUrl = "${getAllRulesUrl}";
 	var saveRuleUrl = "${saveRuleUrl}";
+	var getTradesLearningsUrl = "${getTradesLearningsUrl}";
 </script>

@@ -16,14 +16,13 @@
 <tags:navigation-currency/>
 <tags:currencyGlobalError/>
 
-<div class="container-fluid">
+<div class="container-fluid mt-1">
 
-<table class="table table-sm table-hover text-center table-bordered pt-1" id="cur_TradeLearningsTable">
+<table class="table table-striped table-hover text-center table-bordered pt-1" id="cur_TradeLearningsTable">
 	<thead style="position: sticky;top: 0" class="bg-light">
 	    <tr>
 	      <th scope="col">ID</th>
 	      <th scope="col">Instrument</th>
-	      <th scope="col">Date</th>
 	      <th scope="col">Decision</th>
 	      <th scope="col">Trade State</th>
 	      <th scope="col">Learnings</th>

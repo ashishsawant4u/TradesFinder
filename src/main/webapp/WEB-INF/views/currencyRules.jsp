@@ -16,10 +16,10 @@
 <tags:navigation-currency/>
 <tags:currencyGlobalError/>
 
-<div class="container-fluid">
+<div class="container-fluid mt-1">
 
 
-<div class="row mb-2 border p-2 bg-light">
+<div class="row mb-2 border p-2 bg-light" id="createRuleDiv">
 	<div class="col-md-1">
     	<label for="inputEmail3" class="col-form-label fw-bold">Create Rule</label>
     </div>
@@ -31,7 +31,7 @@
 	</div>
 </div>
 
-<table class="table table-sm table-dark table-striped table-hover table-bordered pt-1" id="cur_RulesTable">
+<table class="table table-sm table-striped table-hover table-bordered pt-1" id="cur_RulesTable">
 	<thead style="position: sticky;top: 0" class="bg-light">
 	    <tr>
 	      <th scope="col">ID</th>

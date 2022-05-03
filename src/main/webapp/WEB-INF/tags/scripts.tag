@@ -18,6 +18,7 @@
 
 <script src="/tradesfinder/js/custom.js"></script>
 <script src="/tradesfinder/js/currencyLearningsPage.js"></script>
+<script src="/tradesfinder/js/currencyStyle.js"></script>
 <script src="/tradesfinder/js/doubleScreenSystem.js"></script>
 <script src="/tradesfinder/js/currencyPage.js"></script>
 <link href="/tradesfinder/css/custom.css" rel="stylesheet">

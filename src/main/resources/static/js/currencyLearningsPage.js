@@ -18,6 +18,7 @@ $( document ).ready(function() {
 	$('#cur_globalalert').on( "close.bs.alert", function(e) {
 			e.preventDefault();
 			$('#cur_globalalert').removeClass('show');
+			$('#cur_globalalert').addClass('d-none');
 	});
 	
 });	
@@ -28,6 +29,7 @@ function cur_getRules()
 			    ajax: getAllRulesUrl,
 				dataSrc:"",
 				ordering: false,
+				pagingType: "full",
 				columnDefs: [
 					{
 						"createdCell": function (td, cellData, rowData, row, col) {
@@ -59,6 +61,7 @@ function cur_saveRule()
 	            },
 				error: function (jqXHR) {
 					$('#cur_globalalert').addClass('show');	
+					$('#cur_globalalert').removeClass('d-none');
 					$('#cur_alert_status').text(jqXHR.status);
 					$('#cur_alert_msg').html(jqXHR.responseText);
 				}
@@ -68,10 +71,12 @@ function cur_saveRule()
 function cur_loadLerningsTable()
 {
 	$('#cur_TradeLearningsTable').DataTable({
-			    ajax: getTradeSummaryUrl,
+			    ajax: getTradesLearningsUrl,
 				dataSrc:"",
 				ordering: false,
-				
+				pageLength:7,
+				lengthMenu:[7,10,25,100],
+				pagingType: "full",
 				columnDefs: [
 				  {
 				    className: "text-uppercase",
@@ -95,19 +100,18 @@ function cur_loadLerningsTable()
 							}
 							$(td).addClass('text-uppercase');
 		                },
-						targets: [3]
+						targets: [2]
 				  },
 				  {
 						"render": function ( data, type, row ) {
 		                    return '<a href="' + data + '" target="_blank">Chart Snap</a>';
 		                },
-						targets: [7]
+						targets: [6]
 				  }
 				],
 				columns: [
 					  { data: 'uid' },
 					  { data: 'calculations.instrument' },
-					  { data: 'date' },
 					  { data: 'calculations.tradeDecision' },
 					  { data: 'tradeState' },
 					  { data: 'learnings' },

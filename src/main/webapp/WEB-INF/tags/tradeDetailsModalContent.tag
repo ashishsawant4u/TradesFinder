@@ -36,7 +36,7 @@
 	<div class="w-50"> 
 		<tags:currencyTradeDetailCalculations/>
 	</div>
-	<div class="w-50 bg-light"> 
+	<div class="w-50 bg-light" id="cur_tradeModelCommentsDiv"> 
 		<div class="row">
 			<div class="col-md-4">
 				<label for="cur_Confirmation" class="form-label">Confirmation</label>

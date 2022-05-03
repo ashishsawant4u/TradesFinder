@@ -17,7 +17,7 @@
 <tags:navigation-currency/>
 <tags:currencyGlobalError/>
 
-<div class="container-fluid">
+<div class="container-fluid mt-1">
 
 
 

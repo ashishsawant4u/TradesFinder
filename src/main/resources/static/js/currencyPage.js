@@ -2,6 +2,8 @@ $( document ).ready(function() {
 	
 	$("[rel='tooltip']").tooltip();
 	
+	cur_PerformanceStats();
+	
 	$("#cur_capitalAmount,#cur_percentageRiskPerTrade").keyup(function(){
 		
 		let urlPath = "/"+$('#cur_capitalAmount').val()+"/"+$('#cur_percentageRiskPerTrade').val();
@@ -17,6 +19,7 @@ $( document ).ready(function() {
             },
 			error: function (jqXHR) {
 				$('#cur_globalalert').addClass('show');
+				$('#cur_globalalert').removeClass('d-none');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}	
@@ -37,6 +40,7 @@ $( document ).ready(function() {
             },
 			error: function (jqXHR) {
 				$('#cur_globalalert').addClass('show');
+				$('#cur_globalalert').removeClass('d-none');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}
@@ -79,6 +83,7 @@ $( document ).ready(function() {
 			    ajax: getTradeSummaryUrl,
 				dataSrc:"",
 				ordering: false,
+				pagingType: "full",
 				columnDefs: [
 				  {
 				    className: "text-uppercase",
@@ -326,6 +331,7 @@ function calculateCurrencyTrade(entryForm)
             },
 			error: function (jqXHR) {
 				$('#cur_globalalert').addClass('show');
+				$('#cur_globalalert').removeClass('d-none');
 				$('#cur_alert_status').text(jqXHR.status);
 				$('#cur_alert_msg').text(jqXHR.responseText);
 			}
@@ -353,12 +359,14 @@ function renderTradeCalculations(resp)
 		if(Math.abs(resp.maxLossAllLots) > resp.riskPerTrade)
 		{
 			$('#cur_globalalert').addClass('show');
+			$('#cur_globalalert').removeClass('d-none');
 			$('#cur_alert_status').text('Your risking more than your trade limit!!');
 			$('#cur_alert_msg').html('');
 		}
 		else
 		{
 			$('#cur_globalalert').removeClass('show');
+			$('#cur_globalalert').addClass('d-none');
 		}
 		
 		
@@ -424,6 +432,7 @@ function cur_saveTrade()
 	            },
 				error: function (jqXHR) {
 					$('#cur_globalalert').addClass('show');
+					$('#cur_globalalert').removeClass('d-none');
 					$('#cur_alert_status').text(jqXHR.status);
 					$('#cur_alert_msg').text(jqXHR.responseText);
 				}

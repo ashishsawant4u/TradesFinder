@@ -17,6 +17,11 @@
 	background-color: Tomato!important;
 	color: white;
 }
+.theme5
+{
+	background-color: #3b3f43;
+	color: white;
+}
 
 .theme1-gradient
 {
@@ -86,7 +91,8 @@ button.theme1:hover
 	color: white;
 	opacity: 0.9;
 }
-#cur_TradeLearningsTable.dataTable tbody td
+button.theme5:hover
 {
-	padding: 0!important;
+	color: white;
+	opacity: 0.9;
 }

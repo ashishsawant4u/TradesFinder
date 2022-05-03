@@ -184,6 +184,34 @@ public class CurrencyTradeController
 		
 	}
 	
+	@RequestMapping("/getTradesLearnings")
+	@ResponseBody
+	public Map<String, List<CurrencyTradeDetails>> getTradesLearnings()
+	{
+		try 
+		{
+			List<CurrencyTradeDetails> listOfTrades = readCurrencyTradesCSV();
+			
+			listOfTrades = listOfTrades.stream().filter(t->StringUtils.isNotBlank(t.getLearnings()) || StringUtils.isNotBlank(t.getComment()))
+						.collect(Collectors.toList());
+			
+			Collections.reverse(listOfTrades);
+			
+		    Map<String, List<CurrencyTradeDetails>> data = new HashMap<String, List<CurrencyTradeDetails>>();
+		    
+		    data.put("data", listOfTrades);
+		    
+		    return data;
+		    //return listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList());
+		} 
+		catch (Exception e) 
+		{
+			 e.printStackTrace();
+			 return null;
+		}
+		
+	}
+	
 	private List<CurrencyRulesData> readCurrencyRulesCSV() throws FileNotFoundException, IOException, CsvException 
 	{
 		String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;

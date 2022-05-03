@@ -33,6 +33,12 @@
 		  </a>
         </li>
        </ul>
+    </div>
+    <div>
+    		<div class="form-check form-switch">
+			  <input class="form-check-input" type="checkbox" id="cur_darkModeSwitch">
+			  <label class="form-check-label text-white" for="cur_darkModeSwitch">Dark Mode</label>
+			</div>
     </div>    
   </div>
 </nav>

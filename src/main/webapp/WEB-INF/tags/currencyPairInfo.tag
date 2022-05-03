@@ -2,7 +2,7 @@
 
 <div class="row pt-1">
 
-	  <div class="col-md-4 theme2 p-1">
+	  <div class="col-md-4 theme5 p-1">
 	    <label for="cur_instrument" class="form-label">Instrument</label>
 	    <div class="input-group">
 	    <span class="input-group-text">
@@ -13,19 +13,19 @@
 	    <input type="text" class="form-control text-uppercase" id="cur_instrument">
 	    </div>
 	  </div>
-	  <div class="col-md-2 theme2 p-1">
+	  <div class="col-md-2 theme5 p-1">
 	    <label for="cur_pipSize" class="form-label">PIP Size</label>
 	    <div class="input-group">
 	       <input type="text" class="form-control" id="cur_pipSize" disabled>
 		</div>
 	  </div>
-	  <div class="col-md-2 theme2 p-1">
+	  <div class="col-md-2 theme5 p-1">
 	    <label for="cur_lotSize" class="form-label">Lot Size</label>
 	  	<div class="input-group">
 	    <input type="text" class="form-control" id="cur_lotSize" disabled>
 	    </div>
 	  </div>
-	  <div class="col-md-4 theme2 p-1">
+	  <div class="col-md-4 theme5 p-1">
 	    <label for="cur_profitAndLossPerLotPerPip" class="form-label">P/L PerLot PerPip</label>
 	  	<div class="input-group">
 	    <input type="text" class="form-control" id="cur_profitAndLossPerLotPerPip" disabled>
