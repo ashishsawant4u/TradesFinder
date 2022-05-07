@@ -36,6 +36,7 @@
 	    <tr>
 	      <th scope="col">ID</th>
 	      <th scope="col">Rules</th>
+	      <th scope="col">Delete</th>
 	    </tr>
   </thead>
 </table>  

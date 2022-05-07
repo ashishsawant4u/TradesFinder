@@ -63,4 +63,6 @@ function cur_activateDarkMode()
 	$('#cur_chartImage').attr('src','https://beeimg.com/images/f21989410552.png');
 	$('#marginHelp').removeClass('text-danger').addClass('text-white');
 	$('.content-grp1').removeClass('theme1').addClass('theme5');
+	$('#cur_TradeDetailsModal #cur_TradeAnalysisTable').removeClass('table-dark');
+	$('#cur_TradeDetailsModal #cur_TradeEntryTable').removeClass('table-dark');
 }

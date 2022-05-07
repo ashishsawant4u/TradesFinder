@@ -66,7 +66,7 @@
 </div>
 <div class="row pt-1 pb-1">
  <div class="col-md-6 ps-0">
- 		<button type="button" class="btn theme1" id="cur_TradeCalBtn">Calculate Trade</button>
+ 		<button type="button" class="btn theme1 content-grp1" id="cur_TradeCalBtn">Calculate Trade</button>
  </div>
  <div class="col-md-3">
     <div class="input-group">
