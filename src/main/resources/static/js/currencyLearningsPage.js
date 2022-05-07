@@ -37,7 +37,16 @@ function cur_deleteRule(ruleId)
 	            url: deleteRuleUrl+'/'+ ruleId,
 	            success: function (response) {
 	                console.log(response);
-					window.location.href = currencyRulesUrl;		
+					if(response === true)
+					{
+						$('#cur_globalalert').addClass('show');	
+						$('#cur_globalalert').removeClass('d-none');
+						$('#cur_alert_status').text("SUCCESS!!");
+						$('#cur_alert_msg').html("Rule "+ruleId+" removed");
+							window.setTimeout(function() { 
+									window.location.href = currencyRulesUrl;	
+							}, 2000);
+					}
 	            },
 				error: function (jqXHR) {
 					$('#cur_globalalert').addClass('show');	
