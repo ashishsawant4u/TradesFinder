@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -284,14 +282,11 @@ public class CurrencyTradeController
 		//String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
 		//FileReader filereader = new FileReader(filePath);
 		
-		//File tradesFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
-		//FileReader filereader = new FileReader(tradesFile);
-		
-		ClassLoader cl = this.getClass().getClassLoader();
-		InputStream inputStream = cl.getResourceAsStream("/app/src/main/resources/currency_trades.csv");
+		File tradesFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
+		FileReader filereader = new FileReader(tradesFile);
 		
 		
-		CSVReader csvReader = new CSVReaderBuilder(new InputStreamReader(inputStream))
+		CSVReader csvReader = new CSVReaderBuilder(filereader)
 		        .withSkipLines(1)
 		        .build();
 		List<String[]> allData = csvReader.readAll();
