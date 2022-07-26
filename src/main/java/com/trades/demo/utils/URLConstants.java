@@ -49,4 +49,6 @@ public class URLConstants
 	public static final String CURRRENCY_RULES_CSV_FILE = "C:\\Users\\ashis\\Documents\\Trades\\currency_rules.csv";
 	
 	public static final String PAPA_GUIDE_CSV_FILE = "C:\\Users\\ashis\\Documents\\ASTA\\Book6.csv";
+	
+	public static final String USDINR_OI_DATA_CSV_FILE = "C:\\Users\\ashis\\Documents\\Trades\\";
 }

@@ -68,4 +68,5 @@
 
 <div class="row pt-1 pb-1">
 	<img src="https://iili.io/VcW1t4.png" class="img-fluid w-50" id="cur_chartImage" alt="chart image">
+	<img src="https://beeimg.com/images/c39315909592.png" class="img-fluid w-50" id="cur_chartImage" alt="chart image">
 </div>

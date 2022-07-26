@@ -108,6 +108,19 @@ $( document ).ready(function() {
 							$(td).addClass('text-uppercase');
 		                },
 						targets: [3]
+				  },
+				  {
+						"createdCell": function (td, cellData, rowData, row, col) {
+							if(cellData === 'Go for it' || cellData === 'Watchful')
+							{
+						        $(td).addClass('bg-info');
+						    }
+							if(cellData === 'In Progress')
+							{
+						        $(td).html('<div class="spinner-grow spinner-grow-sm text-success me-2" role="status"><span class="visually-hidden">Loading...</span></div>'+cellData);
+						    }
+		                },
+						targets: [9]
 				  }
 				],
 				columns: [

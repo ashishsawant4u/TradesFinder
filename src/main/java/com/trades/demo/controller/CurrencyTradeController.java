@@ -253,10 +253,10 @@ public class CurrencyTradeController
 	
 	private List<CurrencyRulesData> readCurrencyRulesCSV() throws FileNotFoundException, IOException, CsvException 
 	{
-		//String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
-		//FileReader filereader = new FileReader(filePath);
-		File rulesFile = resourceLoader.getResource("classpath:currency_rules.csv").getFile();
-		FileReader filereader = new FileReader(rulesFile);
+		String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
+		FileReader filereader = new FileReader(filePath);
+		//File rulesFile = resourceLoader.getResource("classpath:currency_rules.csv").getFile();
+		//FileReader filereader = new FileReader(rulesFile);
 		
 		
 		CSVReader csvReader = new CSVReaderBuilder(filereader)
@@ -279,8 +279,7 @@ public class CurrencyTradeController
 
 	private List<CurrencyTradeDetails> readCurrencyTradesCSV() throws FileNotFoundException, IOException, CsvException 
 	{
-		//String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
-		String filePath = "/app/src/main/resources/currency_trades.csv";
+		String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
 		FileReader filereader = new FileReader(filePath);
 		
 		//File tradesFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
@@ -342,7 +341,7 @@ public class CurrencyTradeController
 		}
 		
 		
-		return listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore")).collect(Collectors.toList());
+		return listOfTrades.stream().filter(t->!t.getTradeState().equals("Ignore") && !t.getTradeState().equals("No Confirmation")).collect(Collectors.toList());
 	}
 	
 	@RequestMapping("/getTradeDetails/{tradeid}")
@@ -361,8 +360,8 @@ public class CurrencyTradeController
 		
 		try
 		{
-			//File inputFile = new File(URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE);
-			File inputFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
+			File inputFile = new File(URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE);
+			//File inputFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
 			
 			// Read existing file 
 			CSVReader reader = new CSVReader(new FileReader(inputFile));
@@ -392,14 +391,14 @@ public class CurrencyTradeController
 	
 	public void saveRuleHandler(String ruleStr)
 	{
-		//String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
+		String filePath = URLConstants.CURRRENCY_RULES_CSV_FILE;
 		
 		try 
 		{
 		    
-			//FileReader filereader = new FileReader(filePath);
-			File rulesFile = resourceLoader.getResource("classpath:currency_rules.csv").getFile();
-			FileReader filereader = new FileReader(rulesFile);
+			FileReader filereader = new FileReader(filePath);
+			//File rulesFile = resourceLoader.getResource("classpath:currency_rules.csv").getFile();
+			//FileReader filereader = new FileReader(rulesFile);
 			
 		    CSVReader csvReader = new CSVReaderBuilder(filereader)
 	                .withSkipLines(1)
@@ -414,7 +413,7 @@ public class CurrencyTradeController
 	    
 	   		//File file = new File(filePath);
 	        
-	        FileWriter outputfile = new FileWriter(rulesFile,true);
+	        FileWriter outputfile = new FileWriter(filePath,true);
 	  
 	        CSVWriter writer = new CSVWriter(outputfile);
 			
@@ -430,15 +429,15 @@ public class CurrencyTradeController
 	
 	public void currencyTradeDetailsHandler(CurrencyTradeDetails d)
 	{
-		//String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
+		String filePath = URLConstants.CURRRENCY_TRADE_LOG_CSV_FILE;
 		
 		
 		try 
 		{
 		    
-			//FileReader filereader = new FileReader(filePath);
-			File tradesFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
-			FileReader filereader = new FileReader(tradesFile);
+			FileReader filereader = new FileReader(filePath);
+			//File tradesFile = resourceLoader.getResource("classpath:currency_trades.csv").getFile();
+			//FileReader filereader = new FileReader(tradesFile);
 			
 		    CSVReader csvReader = new CSVReaderBuilder(filereader)
 	                .withSkipLines(1)
@@ -465,7 +464,7 @@ public class CurrencyTradeController
 	    
 	   		//File file = new File(filePath);
 	        
-	        FileWriter outputfile = new FileWriter(tradesFile,true);
+	        FileWriter outputfile = new FileWriter(filePath,true);
 	  
 	        CSVWriter writer = new CSVWriter(outputfile);
 			

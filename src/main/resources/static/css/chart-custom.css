@@ -1,0 +1,20 @@
+.chart-oi-tooltip
+{
+	height: 70px;
+	position: absolute;
+	font-size: 9px;
+	color: '#20262E';
+	text-align: left;
+	z-index: 1000;
+	pointer-events: none;
+}
+.chart-price-tooltip
+{
+	height: 70px;
+	position: absolute;
+	font-size: 9px;
+	color: '#20262E';
+	text-align: left;
+	z-index: 1000;
+	pointer-events: none;
+}

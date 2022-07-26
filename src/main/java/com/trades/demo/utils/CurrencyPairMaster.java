@@ -8,12 +8,14 @@ import com.trades.demo.models.CurrencyPairModel;
 public class CurrencyPairMaster 
 {
 	private static CurrencyPairModel usd_inr = new CurrencyPairModel("USDINR", 0.0025, 1000, 0.0025*1000);
+	private static CurrencyPairModel eur_inr = new CurrencyPairModel("EURINR", 0.0025, 1000, 0.0025*1000);
 	
 	static Map<String, CurrencyPairModel> currencyPairMasterMap = new HashMap<String, CurrencyPairModel>();
 	
 	public static void prepareCurrencyData()
 	{
 		currencyPairMasterMap.put("USDINR", usd_inr);
+		currencyPairMasterMap.put("EURINR", eur_inr);
 	}
 	public static CurrencyPairModel getCurrencyPairInfo(String currencyPair) 
 	{

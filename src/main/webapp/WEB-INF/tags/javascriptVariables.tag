@@ -26,6 +26,8 @@
 <c:url scope="session" var="getAllRulesUrl" value="/currency/getAllRules"/>
 <c:url scope="session" var="getTradesLearningsUrl" value="/currency/getTradesLearnings"/>
 <c:url scope="session" var="deleteRuleUrl" value="/currency/deleteRule"/>
+<c:url scope="session" var="oiLightWeightChartPageUrl" value="/oichart/lightweight"/>
+<c:url scope="session" var="oiLightWeightChartLineDataUrl" value="/oichart/linechartdata"/>
 
 <script type="text/javascript">
 	var dssPlannerUrl = "${dssPlannerUrl}";
@@ -51,4 +53,6 @@
 	var saveRuleUrl = "${saveRuleUrl}";
 	var getTradesLearningsUrl = "${getTradesLearningsUrl}";
 	var deleteRuleUrl = "${deleteRuleUrl}";
+	var oiLightWeightChartPageUrl = "${oiLightWeightChartPageUrl}";
+	var oiLightWeightChartLineDataUrl = "${oiLightWeightChartLineDataUrl}";
 </script>

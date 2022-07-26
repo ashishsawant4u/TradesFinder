@@ -16,14 +16,21 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
+<script src="/tradesfinder/plugins/lightweight-charts.standalone.production.js"></script>
+
 <script src="/tradesfinder/js/custom.js"></script>
 <script src="/tradesfinder/js/currencyLearningsPage.js"></script>
 <script src="/tradesfinder/js/currencyStyle.js"></script>
 <script src="/tradesfinder/js/doubleScreenSystem.js"></script>
 <script src="/tradesfinder/js/currencyPage.js"></script>
 <link href="/tradesfinder/css/custom.css" rel="stylesheet">
+<link href="/tradesfinder/css/chart-custom.css" rel="stylesheet">
+<script src="/tradesfinder/js/oiDetailsPage.js"></script>
+<script src="/tradesfinder/js/lightweightchartPage.js"></script>
 
 <script src="/tradesfinder/plugins/jquery.tableToExcel.js"></script>
+
+
 
 
 
